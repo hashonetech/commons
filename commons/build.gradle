@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
+
+group = 'com.hashone.commons'
+version = '1.0.0'
 
 android {
     namespace 'com.hashone.commons'
@@ -10,8 +14,16 @@ android {
     defaultConfig {
         minSdk 26
         targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
 
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "${archivesBaseName}_${variant.name}_${defaultConfig.versionName}.aar"
+        }
     }
 
     buildTypes {
@@ -21,15 +33,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         viewBinding true
         dataBinding true
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
@@ -41,4 +59,18 @@ dependencies {
 
     /*Glide*/
     implementation 'com.github.bumptech.glide:glide:4.15.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.hashone'
+                artifactId = 'commons'
+                version = '1.0.0'
+            }
+        }
+    }
 }
