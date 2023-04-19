@@ -11,5 +11,5 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:Commons:v1.0.0'
+	        implementation 'com.github.hashonetech:Commons:v1.0.1'
 	}
