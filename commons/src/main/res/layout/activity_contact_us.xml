@@ -125,6 +125,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    app:cardUseCompatPadding="false"
                     app:cardBackgroundColor="@color/extra_extra_light_gray"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="0dp">
@@ -132,7 +133,7 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/textViewFeedbackMessage"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="160dp"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginVertical="12dp"
                         android:background="@null"
@@ -140,7 +141,6 @@
                         android:gravity="top"
                         android:hint="@string/label_type_here"
                         android:lines="7"
-                        android:minHeight="160dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_gray"
                         android:textSize="14sp"
