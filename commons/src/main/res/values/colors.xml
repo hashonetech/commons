@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Theme Colors-->
+    <color name="color_primary">#ff5a5f</color>
+    <color name="color_secondary">#ff5a5f</color>
+    <color name="black">#121212</color>
+    <color name="dark_gray">#505050</color>
+    <color name="light_gray">#999999</color>
+    <color name="secondary_light_gray">#cccccc</color>
+    <color name="secondary_extra_light_gray">#efefef</color>
+    <color name="extra_light_gray">#f5f5f5</color>
+    <color name="extra_extra_light_gray">#fbfbfb</color>
+    <color name="white">#ffffff</color>
+    <color name="alert">#ff1800</color>
+
+    <!--Alert-->
+    <color name="snack_bar_text">#deffffff</color>
+    <color name="snack_bar_background">#de000000</color>
+    <color name="snack_bar_button">#ffcc00</color>
+</resources>

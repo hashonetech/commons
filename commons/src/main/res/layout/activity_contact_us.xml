@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutContactUsParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".contactus.ContactUsActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/layoutCoordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:gravity="center_horizontal|top"
+            app:elevation="0dp"
+            app:layout_scrollFlags="noScroll">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="10dp"
+                app:layout_scrollFlags="noScroll">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:visibility="visible"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:navigationIcon="@drawable/ic_back_contact_us">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="24dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="15dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textViewToolBarTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/outfit_bold"
+                            android:inputType="textCapWords"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@string/label_contact"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioButtonType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radioButtonFeedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:checked="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="18dp"
+                        android:buttonTint="@color/black"
+                        android:text="@string/label_feedback"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radioButtonIssue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="32dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="18dp"
+                        android:text="@string/label_issue"
+                        android:textColor="@color/black"
+                        android:buttonTint="@color/black"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardBackgroundColor="@color/extra_extra_light_gray"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/textViewFeedbackMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="top"
+                        android:hint="@string/label_type_here"
+                        android:lines="7"
+                        android:minHeight="160dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_gray"
+                        android:textSize="14sp"
+                        android:theme="@style/myEditText" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewAttachments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    app:cardBackgroundColor="@color/extra_extra_light_gray"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textViewAttachmentTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/add_screenshots"
+                            android:textColor="@color/light_gray"
+                            android:textSize="14sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <RelativeLayout
+                            android:id="@+id/cardViewAttachments1"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginBottom="12dp"
+                            android:padding="1dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments2"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardViewAttachments11"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewAttachment1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerCrop" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewThumb1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_add_attachment" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewDelete1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end|top"
+                                    android:adjustViewBounds="true"
+                                    android:padding="4dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_img_delete"
+                                    android:visibility="gone" />
+
+                            </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/cardViewAttachments2"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginBottom="12dp"
+                            android:padding="1dp"
+                            app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments3"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/cardViewAttachments1"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardViewAttachments22"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewAttachment2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerCrop" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewThumb2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_add_attachment" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewDelete2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end|top"
+                                    android:adjustViewBounds="true"
+                                    android:padding="4dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_img_delete"
+                                    android:visibility="gone" />
+                            </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/cardViewAttachments3"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:padding="1dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/cardViewAttachments2"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardViewAttachments33"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewAttachment3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerCrop" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewThumb3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_add_attachment" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/imageViewDelete3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end|top"
+                                    android:adjustViewBounds="true"
+                                    android:padding="4dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ic_contact_us_img_delete"
+                                    android:visibility="gone" />
+                            </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="24dp"
+                    app:cardBackgroundColor="@color/light_gray"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="0dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewSubmit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfit_bold"
+                        android:paddingHorizontal="26dp"
+                        android:paddingVertical="13dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/action_submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:textAllCaps="false" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
