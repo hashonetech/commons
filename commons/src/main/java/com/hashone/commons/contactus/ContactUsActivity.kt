@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -55,13 +54,11 @@ import java.text.DecimalFormat
 import java.util.Locale
 import kotlin.math.roundToInt
 
-
 class ContactUsActivity : BaseActivity() {
 
     private lateinit var binding: ActivityContactUsBinding
 
     private lateinit var builder: ContactUs.Builder
-    private var isFeedbackSelected: Boolean = true
 
     private var attachmentUri1: Uri? = null
     private var attachmentUri2: Uri? = null
@@ -75,7 +72,7 @@ class ContactUsActivity : BaseActivity() {
         builder = (intent!!.extras!!.getSerializable(KEY_CONTACT_US) as ContactUs).builder
 
         if (builder.isFullScreen) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -314,15 +311,15 @@ class ContactUsActivity : BaseActivity() {
     }
 
     var selectedOptionId: Int = -1
-    @SuppressLint("ResourceType")
+
+    @SuppressLint("ResourceType", "ClickableViewAccessibility")
     private fun setRadioButtonUI() {
         //TODO: Radio Buttons
-//        binding.flexRadioButtons.flexDirection = FlexDirection.ROW
-//        binding.flexRadioButtons.flexWrap = FlexWrap.WRAP
-//        binding.flexRadioButtons.justifyContent = JustifyContent.FLEX_START
-//        binding.flexRadioButtons.alignItems = AlignItems.BASELINE
-//        binding.flexRadioButtons.alignContent = AlignContent.FLEX_START
-
+        binding.flexRadioButtons.flexDirection = FlexDirection.ROW
+        binding.flexRadioButtons.flexWrap = FlexWrap.WRAP
+        binding.flexRadioButtons.justifyContent = JustifyContent.FLEX_START
+        binding.flexRadioButtons.alignItems = AlignItems.BASELINE
+        binding.flexRadioButtons.alignContent = AlignContent.FLEX_START
         binding.flexRadioButtons.isVisible = builder.optionItemsList.isNotEmpty()
 
         builder.optionItemsList.forEachIndexed { index, optionItem ->
@@ -332,6 +329,8 @@ class ContactUsActivity : BaseActivity() {
             radioButton.isClickable = false
             radioButton.text = optionItem.text
             if (optionItem.isChecked) {
+                if (selectedOptionId != -1)
+                    binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
                 selectedOptionId = radioButton.id
                 binding.textViewFeedbackMessage.hint = optionItem.message
             }
@@ -452,6 +451,7 @@ class ContactUsActivity : BaseActivity() {
                 TypedValue.COMPLEX_UNIT_SP,
                 builder.attachmentTitleSize
             )
+        updateFileSizeUI()
 
         if (builder.attachmentBackgroundColor != -1) {
             binding.cardViewAttachments11.setCardBackgroundColor(getColorCode(builder.attachmentBackgroundColor))
@@ -612,8 +612,18 @@ class ContactUsActivity : BaseActivity() {
         )
 
         binding.textViewAttachmentSize.setTextColor(
-            ContextCompat.getColor(mActivity,
-                if (attachmentFileSize > builder.maxFileSize) R.color.alert else R.color.light_gray)
+            ContextCompat.getColor(
+                mActivity,
+                if (attachmentFileSize > builder.maxFileSize) {
+                    R.color.alert
+                } else {
+                    if (builder.attachmentTitleColor != -1) {
+                        getColorCode(builder.attachmentTitleColor)
+                    } else {
+                        R.color.light_gray
+                    }
+                }
+            )
         )
         updateSubmitButtonUI()
     }

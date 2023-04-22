@@ -84,14 +84,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                <RadioGroup-->
-<!--                    android:id="@+id/radioButtonType"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingHorizontal="10dp"-->
-<!--                    android:paddingVertical="12dp">-->
-
                     <com.hashone.commons.module.flexbox.FlexboxLayout
                         android:id="@+id/flexRadioButtons"
                         android:layout_width="match_parent"
@@ -107,8 +99,6 @@
                         app:flexWrap="wrap">
 
                     </com.hashone.commons.module.flexbox.FlexboxLayout>
-
-<!--                </RadioGroup>-->
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/textViewFeedbackMessage"

@@ -9,11 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.CompoundButtonCompat
 
-
-inline fun Int.mulitple(a1: Int, a2: Int): Int {
-    return (a1 * a2)
-}
-
 inline fun View.doOnGlobalLayout(crossinline action: (view: View) -> Unit) {
     val vto = viewTreeObserver
     vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
