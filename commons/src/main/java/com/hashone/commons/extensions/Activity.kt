@@ -3,18 +3,16 @@ package com.hashone.commons.extensions
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.util.DisplayMetrics
 import android.view.View
-import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.hashone.commons.R
-import com.hashone.commons.enums.StatusIconColorType
 
 fun Activity.setStatusBarColor(color: Int) {
     this.window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -92,10 +90,12 @@ fun Activity.showSystemUI() {
 
 fun Activity.navigationUI(isShow: Boolean = false, color: Int = -1) {
     if (color != -1)
-        window.navigationBarColor =  color
+        window.navigationBarColor = color
     WindowCompat.setDecorFitsSystemWindows(window, true)
-    WindowInsetsControllerCompat(window,
-        window.decorView.findViewById(android.R.id.content)).let { controller ->
+    WindowInsetsControllerCompat(
+        window,
+        window.decorView.findViewById(android.R.id.content)
+    ).let { controller ->
         if (isShow)
             controller.show(WindowInsetsCompat.Type.systemBars())
         else
@@ -104,6 +104,19 @@ fun Activity.navigationUI(isShow: Boolean = false, color: Int = -1) {
         // When the screen is swiped up at the bottom
         // of the application, the navigationBar shall
         // appear for some time
-        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
+}
+
+fun Activity.getScreenWidth(): Int {
+    val displayMetrics = DisplayMetrics()
+    windowManager.defaultDisplay.getMetrics(displayMetrics)
+    return displayMetrics.widthPixels
+}
+
+fun Activity.getScreenHeight(): Int {
+    val displayMetrics = DisplayMetrics()
+    windowManager.defaultDisplay.getMetrics(displayMetrics)
+    return displayMetrics.heightPixels
 }

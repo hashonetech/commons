@@ -1,6 +1,7 @@
 package com.hashone.commons.contactus
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -12,11 +13,15 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.RadioButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -25,19 +30,31 @@ import com.bumptech.glide.Glide
 import com.hashone.commons.R
 import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.databinding.ActivityContactUsBinding
-import com.hashone.commons.enums.StatusIconColorType
 import com.hashone.commons.extensions.applyTextStyle
 import com.hashone.commons.extensions.applyTintColor
+import com.hashone.commons.extensions.corneredDrawable
 import com.hashone.commons.extensions.getColorCode
 import com.hashone.commons.extensions.getMediaPickIntent
+import com.hashone.commons.extensions.getScreenWidth
 import com.hashone.commons.extensions.hideSystemUI
+import com.hashone.commons.extensions.length
 import com.hashone.commons.extensions.navigationUI
 import com.hashone.commons.extensions.setStatusBarColor
+import com.hashone.commons.module.flexbox.AlignContent
+import com.hashone.commons.module.flexbox.AlignItems
+import com.hashone.commons.module.flexbox.FlexDirection
+import com.hashone.commons.module.flexbox.FlexWrap
+import com.hashone.commons.module.flexbox.FlexboxLayout.LayoutParams
+import com.hashone.commons.module.flexbox.JustifyContent
 import com.hashone.commons.utils.checkClickTime
+import com.hashone.commons.utils.dpToPx
 import com.hashone.commons.utils.openKeyboard
 import com.hashone.commons.utils.sendContactEmail
 import com.hashone.commons.utils.showSnackBar
+import java.text.DecimalFormat
 import java.util.Locale
+import kotlin.math.roundToInt
+
 
 class ContactUsActivity : BaseActivity() {
 
@@ -50,6 +67,8 @@ class ContactUsActivity : BaseActivity() {
     private var attachmentUri2: Uri? = null
     private var attachmentUri3: Uri? = null
 
+    private var attachmentFileSize: Double = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,7 +77,10 @@ class ContactUsActivity : BaseActivity() {
         if (builder.isFullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
             setStatusBarColor(getColorCode(builder.statusBarColor))
             navigationUI(false, getColorCode(builder.statusBarColor))
             hideSystemUI()
@@ -143,6 +165,8 @@ class ContactUsActivity : BaseActivity() {
                                     attachmentUri3.toString().isNotEmpty()
                             }
                         }
+
+                        updateFileSizeUI()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -154,10 +178,22 @@ class ContactUsActivity : BaseActivity() {
     private fun selectImageFromGallery(requestCode: Int) {
         try {
             mRequestCode = requestCode
-            registerActivityResult.launch(getMediaPickIntent(builder.allowPhotosOnly, builder.allowVideosOnly, builder.allowBoth))
+            registerActivityResult.launch(
+                getMediaPickIntent(
+                    builder.allowPhotosOnly,
+                    builder.allowVideosOnly,
+                    builder.allowBoth
+                )
+            )
         } catch (e: Exception) {
             try {
-                registerActivityResult.launch(getMediaPickIntent(builder.allowPhotosOnly, builder.allowVideosOnly, builder.allowBoth))
+                registerActivityResult.launch(
+                    getMediaPickIntent(
+                        builder.allowPhotosOnly,
+                        builder.allowVideosOnly,
+                        builder.allowBoth
+                    )
+                )
             } catch (e2: Exception) {
                 showSnackBar(
                     mActivity, binding.cardViewSubmit, getString(R.string.no_gallery_app)
@@ -277,39 +313,82 @@ class ContactUsActivity : BaseActivity() {
             )
     }
 
+    var selectedOptionId: Int = -1
+    @SuppressLint("ResourceType")
     private fun setRadioButtonUI() {
         //TODO: Radio Buttons
-        binding.radioButtonFeedback.applyTintColor(getColorCode(builder.radioButtonTextColor))
-        binding.radioButtonIssue.applyTintColor(getColorCode(builder.radioButtonTextColor))
+//        binding.flexRadioButtons.flexDirection = FlexDirection.ROW
+//        binding.flexRadioButtons.flexWrap = FlexWrap.WRAP
+//        binding.flexRadioButtons.justifyContent = JustifyContent.FLEX_START
+//        binding.flexRadioButtons.alignItems = AlignItems.BASELINE
+//        binding.flexRadioButtons.alignContent = AlignContent.FLEX_START
 
-        binding.radioButtonFeedback.applyTextStyle(
-            getColorCode(builder.radioButtonTextColor),
-            builder.radioButtonTextFont,
-            builder.radioButtonTextSize
-        )
-        binding.radioButtonIssue.applyTextStyle(
-            getColorCode(builder.radioButtonTextColor),
-            builder.radioButtonTextFont,
-            builder.radioButtonTextSize
-        )
+        binding.flexRadioButtons.isVisible = builder.optionItemsList.isNotEmpty()
 
-        binding.radioButtonFeedback.setOnCheckedChangeListener { buttonView, isChecked ->
-            isFeedbackSelected = isChecked
-        }
-        binding.radioButtonIssue.setOnCheckedChangeListener { buttonView, isChecked ->
-            isFeedbackSelected = !isChecked
+        builder.optionItemsList.forEachIndexed { index, optionItem ->
+            val radioButton = RadioButton(mActivity)
+            radioButton.id = 100 + index
+            radioButton.isChecked = optionItem.isChecked
+            radioButton.isClickable = false
+            radioButton.text = optionItem.text
+            if (optionItem.isChecked) {
+                selectedOptionId = radioButton.id
+                binding.textViewFeedbackMessage.hint = optionItem.message
+            }
+            radioButton.applyTintColor(getColorCode(builder.radioButtonTextColor))
+            radioButton.applyTextStyle(
+                getColorCode(builder.radioButtonTextColor),
+                builder.radioButtonTextFont,
+                builder.radioButtonTextSize
+            )
+            radioButton.setPadding(
+                dpToPx(4F).roundToInt(),
+                dpToPx(0F).roundToInt(),
+                dpToPx(32F).roundToInt(),
+                dpToPx(0F).roundToInt()
+            )
+            val flexLayoutParams =
+                LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+            radioButton.layoutParams = flexLayoutParams
+
+            radioButton.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (selectedOptionId != -1) {
+                    binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
+                }
+                if (isChecked) {
+                    binding.textViewFeedbackMessage.hint = optionItem.message
+                    selectedOptionId = radioButton.id
+                }
+            }
+
+            radioButton.setOnTouchListener { v, event ->
+                if (event.actionMasked == MotionEvent.ACTION_UP)
+                    radioButton.isChecked = !radioButton.isChecked
+                return@setOnTouchListener true
+            }
+
+            binding.flexRadioButtons.addView(radioButton)
         }
     }
 
     private fun setMessageUI() {
         //TODO: Message UI
-        if (builder.messageCardBackgroundColor != -1)
-            binding.cardViewMessage.setCardBackgroundColor(getColorCode(builder.messageCardBackgroundColor))
-        binding.cardViewMessage.radius = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            builder.messageCardBackgroundRadius,
-            mActivity.resources.displayMetrics
-        )
+        (binding.textViewFeedbackMessage.layoutParams as LinearLayout.LayoutParams).apply {
+            height = (getScreenWidth() * builder.messageBoxHeight).roundToInt()
+        }
+
+        if (builder.messageCardBackgroundColor != -1) {
+            binding.textViewFeedbackMessage.background = corneredDrawable(
+                ContextCompat.getColor(mActivity, builder.messageCardBackgroundColor),
+                dpToPx(builder.messageCardBackgroundRadius)
+            )
+        } else {
+            binding.textViewFeedbackMessage.background = corneredDrawable(
+                ContextCompat.getColor(mActivity, R.color.extra_extra_light_gray),
+                dpToPx(builder.messageCardBackgroundRadius)
+            )
+        }
+
         if (builder.messageHint.isNotEmpty())
             binding.textViewFeedbackMessage.hint = builder.messageHint
         if (builder.messageHintColor != -1)
@@ -330,13 +409,7 @@ class ContactUsActivity : BaseActivity() {
             override fun onTextChanged(
                 s: CharSequence, start: Int, before: Int, count: Int
             ) {
-                if (s.isNotEmpty()) {
-                    binding.cardViewSubmit.isEnabled = true
-                    binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundColor))
-                } else {
-                    binding.cardViewSubmit.isEnabled = false
-                    binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundInactiveColor))
-                }
+                updateSubmitButtonUI()
             }
 
             override fun beforeTextChanged(
@@ -350,13 +423,22 @@ class ContactUsActivity : BaseActivity() {
 
     private fun setAttachmentUI() {
         //TODO: Attachment UI
-        if (builder.attachmentCardBackgroundColor != -1)
-            binding.cardViewAttachments.setCardBackgroundColor(getColorCode(builder.attachmentCardBackgroundColor))
-        binding.cardViewAttachments.radius = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            builder.attachmentCardBackgroundRadius,
-            mActivity.resources.displayMetrics
-        )
+
+        (binding.layoutAttachments.layoutParams as LinearLayout.LayoutParams).apply {
+            height = (getScreenWidth() * builder.attachmentBoxHeight).roundToInt()
+        }
+
+        if (builder.attachmentCardBackgroundColor != -1) {
+            binding.layoutAttachments.background = corneredDrawable(
+                ContextCompat.getColor(mActivity, builder.attachmentCardBackgroundColor),
+                dpToPx(builder.attachmentCardBackgroundRadius)
+            )
+        } else {
+            binding.layoutAttachments.background = corneredDrawable(
+                ContextCompat.getColor(mActivity, R.color.extra_extra_light_gray),
+                dpToPx(builder.messageCardBackgroundRadius)
+            )
+        }
 
         if (builder.attachmentTitle.isNotEmpty())
             binding.textViewAttachmentTitle.text = builder.attachmentTitle
@@ -416,6 +498,8 @@ class ContactUsActivity : BaseActivity() {
                 binding.imageViewAttachment1.setImageBitmap(null)
                 binding.imageViewThumb1.isVisible = true
                 binding.imageViewDelete1.isVisible = false
+
+                updateFileSizeUI()
             }
         }
 
@@ -431,6 +515,8 @@ class ContactUsActivity : BaseActivity() {
                 binding.imageViewAttachment2.setImageBitmap(null)
                 binding.imageViewThumb2.isVisible = true
                 binding.imageViewDelete2.isVisible = false
+
+                updateFileSizeUI()
             }
         }
 
@@ -446,6 +532,8 @@ class ContactUsActivity : BaseActivity() {
                 binding.imageViewAttachment3.setImageBitmap(null)
                 binding.imageViewThumb3.isVisible = true
                 binding.imageViewDelete3.isVisible = false
+
+                updateFileSizeUI()
             }
         }
 
@@ -495,16 +583,62 @@ class ContactUsActivity : BaseActivity() {
                     //TODO: Email details
                     sendContactEmail(
                         context = mActivity,
-                        selectionType = if (isFeedbackSelected) {
-                            "Feedback"
-                        } else {
-                            "Issue"
-                        },
+                        selectionType = (binding.root.findViewById<RadioButton>(selectedOptionId)).text.toString(),
                         message = binding.textViewFeedbackMessage.text.toString().trim(),
                         fileUris = fileUris,
                         builder = builder
                     )
                 }
+            }
+        }
+    }
+
+    private fun updateFileSizeUI() {
+        var localFileSize = 0L
+        if (attachmentUri1 != null) {
+            localFileSize += attachmentUri1!!.length(contentResolver)
+        }
+        if (attachmentUri2 != null) {
+            localFileSize += attachmentUri2!!.length(contentResolver)
+        }
+        if (attachmentUri3 != null) {
+            localFileSize += attachmentUri3!!.length(contentResolver)
+        }
+        val decimalFormat = DecimalFormat("0.00")
+        val sizeInMB = localFileSize / (1024 * 1024).toDouble()
+        attachmentFileSize = sizeInMB
+        binding.textViewAttachmentSize.text = String.format(
+            "%s MB/%s MB", decimalFormat.format(attachmentFileSize), builder.maxFileSize.toString()
+        )
+
+        binding.textViewAttachmentSize.setTextColor(
+            ContextCompat.getColor(mActivity,
+                if (attachmentFileSize > builder.maxFileSize) R.color.alert else R.color.light_gray)
+        )
+        updateSubmitButtonUI()
+    }
+
+    private fun updateSubmitButtonUI() {
+        if (attachmentFileSize > 0L) {
+            if (attachmentFileSize > builder.maxFileSize) {
+                binding.cardViewSubmit.isEnabled = false
+                binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundInactiveColor))
+            } else {
+                if (binding.textViewFeedbackMessage.text.toString().trim().isNotEmpty()) {
+                    binding.cardViewSubmit.isEnabled = true
+                    binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundColor))
+                } else {
+                    binding.cardViewSubmit.isEnabled = false
+                    binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundInactiveColor))
+                }
+            }
+        } else {
+            if (binding.textViewFeedbackMessage.text.toString().trim().isNotEmpty()) {
+                binding.cardViewSubmit.isEnabled = true
+                binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundColor))
+            } else {
+                binding.cardViewSubmit.isEnabled = false
+                binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.buttonBackgroundInactiveColor))
             }
         }
     }

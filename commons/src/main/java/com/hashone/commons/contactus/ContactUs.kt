@@ -2,8 +2,9 @@ package com.hashone.commons.contactus
 
 import android.app.Activity
 import com.hashone.commons.R
+import java.io.Serializable
 
-open class ContactUs constructor(val builder: Builder) : java.io.Serializable {
+open class ContactUs constructor(val builder: Builder) : Serializable {
 
     companion object {
         inline fun build(
@@ -23,6 +24,10 @@ open class ContactUs constructor(val builder: Builder) : java.io.Serializable {
             allowPhotosOnly: Boolean = false,
             allowVideosOnly: Boolean = false,
             allowBoth: Boolean = true,
+            maxFileSize: Long = 25L,
+            messageBoxHeight: Double = 0.4444444444,
+            attachmentBoxHeight: Double = 0.588888888888889,
+            optionItemsList: ArrayList<Builder.OptionItem> = arrayListOf(),
             block: Builder.() -> Unit
         ) = Builder(
             emailTitle,
@@ -38,7 +43,11 @@ open class ContactUs constructor(val builder: Builder) : java.io.Serializable {
             showKeyboard,
             allowPhotosOnly,
             allowVideosOnly,
-            allowBoth
+            allowBoth,
+            maxFileSize,
+            messageBoxHeight,
+            attachmentBoxHeight,
+            optionItemsList
         ).apply(block).build()
 
         fun open(activity: Activity, contactUs: ContactUs) {
@@ -62,15 +71,19 @@ open class ContactUs constructor(val builder: Builder) : java.io.Serializable {
         //TODO: Allow Media Pick
         var allowPhotosOnly: Boolean = false,
         var allowVideosOnly: Boolean = false,
-        var allowBoth: Boolean = true
-    ) : java.io.Serializable {
+        var allowBoth: Boolean = true,
+        var maxFileSize: Long = 0L,
+        var messageBoxHeight: Double = 0.0,
+        var attachmentBoxHeight: Double = 0.0,
+        var optionItemsList: ArrayList<OptionItem> = arrayListOf()
+    ) : Serializable {
         //TODO: Screen
         var isFullScreen: Boolean = false
         var windowBackgroundColor: Int = R.color.white
-        var statusBarColor: Int = R.color.white
+        var statusBarColor: Int = R.color.extra_extra_light_gray
 
         //TODO: Toolbar
-        var toolBarColor: Int = R.color.white
+        var toolBarColor: Int = R.color.extra_extra_light_gray
         var backPressIcon: Int = R.drawable.ic_back_contact_us
         var backPressIconDescription: String = ""
         var toolBarTitle: String = ""
@@ -113,6 +126,12 @@ open class ContactUs constructor(val builder: Builder) : java.io.Serializable {
         var buttonTextColor: Int = R.color.white
         var buttonTextFont: Int = R.font.outfit_bold
         var buttonTextSize: Float = 16F
+
+        data class OptionItem(
+            val text: String = "",
+            val message: String = "",
+            val isChecked: Boolean = false
+        ) : Serializable
 
         fun build() = ContactUs(this)
     }

@@ -36,7 +36,7 @@
                     android:id="@+id/toolBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/extra_extra_light_gray"
                     android:visibility="visible"
                     app:contentInsetEnd="0dp"
                     app:contentInsetStart="0dp"
@@ -59,13 +59,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/outfit_bold"
+                            android:fontFamily="@font/roboto_bold"
                             android:inputType="textCapWords"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:text="@string/label_contact"
                             android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            android:textSize="16sp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.Toolbar>
@@ -85,256 +85,247 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RadioGroup
-                    android:id="@+id/radioButtonType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <RadioGroup-->
+<!--                    android:id="@+id/radioButtonType"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingHorizontal="10dp"-->
+<!--                    android:paddingVertical="12dp">-->
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/radioButtonFeedback"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:buttonTint="@color/black"
-                        android:checked="true"
-                        android:fontFamily="@font/roboto_medium"
-                        android:paddingHorizontal="5dp"
-                        android:paddingVertical="18dp"
-                        android:text="@string/label_feedback"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                    <com.hashone.commons.module.flexbox.FlexboxLayout
+                        android:id="@+id/flexRadioButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:columnCount="3"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="12dp"
+                        android:columnOrderPreserved="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap">
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/radioButtonIssue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="32dp"
-                        android:buttonTint="@color/black"
-                        android:fontFamily="@font/roboto_medium"
-                        android:paddingHorizontal="5dp"
-                        android:paddingVertical="18dp"
-                        android:text="@string/label_issue"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                    </com.hashone.commons.module.flexbox.FlexboxLayout>
 
-                </RadioGroup>
+<!--                </RadioGroup>-->
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewMessage"
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/textViewFeedbackMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    app:cardUseCompatPadding="false"
-                    app:cardBackgroundColor="@color/extra_extra_light_gray"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
+                    android:background="@null"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="top"
+                    android:hint="@string/label_type_here"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_gray"
+                    android:textSize="14sp"
+                    android:theme="@style/myEditText" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/textViewFeedbackMessage"
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginVertical="12dp"
-                        android:background="@null"
-                        android:fontFamily="@font/roboto_medium"
-                        android:gravity="top"
-                        android:hint="@string/label_type_here"
-                        android:lines="7"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/light_gray"
-                        android:textSize="14sp"
-                        android:theme="@style/myEditText" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewAttachments"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAttachments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="18dp"
-                    app:cardBackgroundColor="@color/extra_extra_light_gray"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
+                    android:minHeight="212dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewAttachmentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/add_media"
+                        android:textColor="@color/light_gray"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/textViewAttachmentTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="@string/add_screenshots"
-                            android:textColor="@color/light_gray"
-                            android:textSize="14sp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textViewAttachmentSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="0.0 MB/25 MB"
+                        android:textColor="@color/light_gray"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <RelativeLayout
-                            android:id="@+id/cardViewAttachments1"
-                            android:layout_width="0dp"
-                            android:layout_height="160dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="6dp"
-                            android:layout_marginBottom="12dp"
-                            android:padding="1dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments2"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+                    <RelativeLayout
+                        android:id="@+id/cardViewAttachments1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="12dp"
+                        android:padding="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardViewAttachments11"
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardViewAttachments11"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#ecedef"
+                            app:strokeWidth="1dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewAttachment1"
                                 android:layout_width="match_parent"
-                                android:layout_height="160dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp">
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop" />
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewAttachment1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerCrop" />
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewThumb1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_add_attachment" />
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewDelete1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end|top"
-                                    android:adjustViewBounds="true"
-                                    android:padding="4dp"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_img_delete"
-                                    android:visibility="gone" />
-
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/cardViewAttachments2"
-                            android:layout_width="0dp"
-                            android:layout_height="160dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="6dp"
-                            android:layout_marginBottom="12dp"
-                            android:padding="1dp"
-                            app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments3"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/cardViewAttachments1"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardViewAttachments22"
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewThumb1"
                                 android:layout_width="match_parent"
-                                android:layout_height="160dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp">
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_add_attachment" />
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewAttachment2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerCrop" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewDelete1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|top"
+                                android:adjustViewBounds="true"
+                                android:padding="4dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_img_delete"
+                                android:visibility="gone" />
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewThumb2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_add_attachment" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </RelativeLayout>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewDelete2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end|top"
-                                    android:adjustViewBounds="true"
-                                    android:padding="4dp"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_img_delete"
-                                    android:visibility="gone" />
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/cardViewAttachments2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="12dp"
+                        android:padding="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments3"
+                        app:layout_constraintStart_toEndOf="@+id/cardViewAttachments1"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
 
-                        <RelativeLayout
-                            android:id="@+id/cardViewAttachments3"
-                            android:layout_width="0dp"
-                            android:layout_height="160dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="12dp"
-                            android:padding="1dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/cardViewAttachments2"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardViewAttachments22"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#ecedef"
+                            app:strokeWidth="1dp">
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardViewAttachments33"
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewAttachment2"
                                 android:layout_width="match_parent"
-                                android:layout_height="160dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp">
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop" />
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewAttachment3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerCrop" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewThumb2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_add_attachment" />
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewThumb3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_add_attachment" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewDelete2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|top"
+                                android:adjustViewBounds="true"
+                                android:padding="4dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_img_delete"
+                                android:visibility="gone" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </RelativeLayout>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/imageViewDelete3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end|top"
-                                    android:adjustViewBounds="true"
-                                    android:padding="4dp"
-                                    android:scaleType="centerInside"
-                                    android:src="@drawable/ic_contact_us_img_delete"
-                                    android:visibility="gone" />
-                            </androidx.cardview.widget.CardView>
-                        </RelativeLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                    <RelativeLayout
+                        android:id="@+id/cardViewAttachments3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:padding="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/cardViewAttachments2"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardViewAttachments33"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#ecedef"
+                            app:strokeWidth="1dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewAttachment3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewThumb3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_add_attachment" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imageViewDelete3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|top"
+                                android:adjustViewBounds="true"
+                                android:padding="4dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_contact_us_img_delete"
+                                android:visibility="gone" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewSubmit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginVertical="24dp"
                     app:cardBackgroundColor="@color/light_gray"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="0dp">
@@ -344,8 +335,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/outfit_bold"
-                        android:paddingHorizontal="26dp"
-                        android:paddingVertical="13dp"
+                        android:paddingHorizontal="25dp"
+                        android:paddingVertical="15dp"
                         android:stateListAnimator="@null"
                         android:text="@string/action_submit"
                         android:textAllCaps="false"
