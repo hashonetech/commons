@@ -12,8 +12,7 @@
         android:id="@+id/layoutCoordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fitsSystemWindows="true">
+        android:clipToPadding="false">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbarLayout"
@@ -115,6 +114,7 @@
                     android:id="@+id/textViewFeedbackMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="0dp"
                     android:layout_marginHorizontal="16dp"
                     android:background="@null"
                     android:fontFamily="@font/roboto_medium"
