@@ -35,6 +35,7 @@ Call below function to open ContactUs Screen
 		allowPhotosOnly = true/false,
 		allowVideosOnly = true/false,
 		allowBoth = true/false,
+		//TODO: In MB
 		maxFileSize: Long = 25L,
 		messageBoxHeight: Double = 0.0,
             	attachmentBoxHeight: Double = 0.0,
