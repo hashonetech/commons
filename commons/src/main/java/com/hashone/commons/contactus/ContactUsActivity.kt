@@ -378,12 +378,12 @@ class ContactUsActivity : BaseActivity() {
 
         if (builder.messageCardBackgroundColor != -1) {
             binding.textViewFeedbackMessage.background = corneredDrawable(
-                ContextCompat.getColor(mActivity, builder.messageCardBackgroundColor),
+                getColorCode(builder.messageCardBackgroundColor),
                 dpToPx(builder.messageCardBackgroundRadius)
             )
         } else {
             binding.textViewFeedbackMessage.background = corneredDrawable(
-                ContextCompat.getColor(mActivity, R.color.extra_extra_light_gray),
+                getColorCode(R.color.extra_extra_light_gray),
                 dpToPx(builder.messageCardBackgroundRadius)
             )
         }
@@ -429,12 +429,12 @@ class ContactUsActivity : BaseActivity() {
 
         if (builder.attachmentCardBackgroundColor != -1) {
             binding.layoutAttachments.background = corneredDrawable(
-                ContextCompat.getColor(mActivity, builder.attachmentCardBackgroundColor),
+                getColorCode(builder.attachmentCardBackgroundColor),
                 dpToPx(builder.attachmentCardBackgroundRadius)
             )
         } else {
             binding.layoutAttachments.background = corneredDrawable(
-                ContextCompat.getColor(mActivity, R.color.extra_extra_light_gray),
+                getColorCode(R.color.extra_extra_light_gray),
                 dpToPx(builder.messageCardBackgroundRadius)
             )
         }
@@ -612,13 +612,12 @@ class ContactUsActivity : BaseActivity() {
         )
 
         binding.textViewAttachmentSize.setTextColor(
-            ContextCompat.getColor(
-                mActivity,
+            getColorCode(
                 if (attachmentFileSize > builder.maxFileSize) {
                     R.color.alert
                 } else {
                     if (builder.attachmentTitleColor != -1) {
-                        getColorCode(builder.attachmentTitleColor)
+                        builder.attachmentTitleColor
                     } else {
                         R.color.light_gray
                     }
