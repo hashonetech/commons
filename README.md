@@ -11,7 +11,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.6'
+	        implementation 'com.github.hashonetech:commons:v1.0.7'
 	}
 
 Call below function to open ContactUs Screen
