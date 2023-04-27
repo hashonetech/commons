@@ -1,7 +1,7 @@
 # Commons
 Used for basic functions and data.
 
-[![](https://jitpack.io/v/hashonetech/Commons.svg)](https://jitpack.io/#hashonetech/Commons)
+[![](https://jitpack.io/v/hashonetech/commons.svg)](https://jitpack.io/#hashonetech/commons)
 
 	allprojects {
 		repositories {
