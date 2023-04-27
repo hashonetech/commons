@@ -35,6 +35,7 @@ Call below function to open ContactUs Screen
 		allowPhotosOnly = true/false,
 		allowVideosOnly = true/false,
 		allowBoth = true/false,
+		maxFileSize: Long = 25L,
 		messageBoxHeight: Double = 0.0,
             	attachmentBoxHeight: Double = 0.0,
 		optionItemsList = ArrayList<ContactUs.Builder.OptionItem>().apply {
@@ -77,7 +78,8 @@ Call below function to open ContactUs Screen
 		//TODO: Message UI
                 messageCardBackgroundColor = R.color.extra_extra_light_gray
                 messageCardBackgroundRadius = 8F
-                messageHint = ""
+		messageHint = ""
+	        messageHintColor = R.color.light_gray
                 message = ""
                 messageColor = R.color.black
                 messageFont = R.font.roboto_medium
