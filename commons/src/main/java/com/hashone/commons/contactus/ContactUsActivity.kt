@@ -79,12 +79,12 @@ class ContactUsActivity : BaseActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
             setStatusBarColor(getColorCode(builder.statusBarColor))
-            navigationUI(false, getColorCode(builder.statusBarColor))
+            navigationUI(false, getColorCode(builder.navigationBarColor))
             hideSystemUI()
         } else {
             if (builder.statusBarColor != -1) {
                 setStatusBarColor(getColorCode(builder.statusBarColor))
-                navigationUI(true, getColorCode(builder.statusBarColor))
+                navigationUI(true, getColorCode(builder.navigationBarColor))
             }
         }
 
@@ -583,7 +583,9 @@ class ContactUsActivity : BaseActivity() {
                     //TODO: Email details
                     sendContactEmail(
                         context = mActivity,
-                        selectionType = (binding.root.findViewById<RadioButton>(selectedOptionId)).text.toString(),
+                        selectionType = if (selectedOptionId != -1) {
+                            (binding.root.findViewById<RadioButton>(selectedOptionId)).text.toString()
+                        } else "",
                         message = binding.textViewFeedbackMessage.text.toString().trim(),
                         fileUris = fileUris,
                         builder = builder

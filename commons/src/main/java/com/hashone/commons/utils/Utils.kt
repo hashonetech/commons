@@ -80,7 +80,11 @@ fun sendContactEmail(
     emailIntent.setPackage("com.google.android.gm")
     emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.feedbackEmail))
     emailIntent.putExtra(
-        Intent.EXTRA_SUBJECT, "${builder.appName}($selectionType)"
+        Intent.EXTRA_SUBJECT, if (selectionType.isNotEmpty()) {
+            "${builder.appName}($selectionType)"
+        } else {
+            builder.appName
+        }
     )
 
     val currentTime: String = SimpleDateFormat("HH:mm:ss a", Locale.getDefault()).format(Date())
@@ -107,6 +111,8 @@ fun sendContactEmail(
         }
     }
     body += "User ID: ${builder.androidDeviceToken}\n"
+    if (builder.customerNumber.isNotEmpty())
+        body += "Customer No.: ${builder.customerNumber}\n"
 
     emailIntent.putExtra(Intent.EXTRA_TEXT, body)
     if (fileUris.size > 0) {

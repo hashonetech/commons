@@ -15,6 +15,7 @@ open class ContactUs constructor(val builder: Builder) : Serializable {
             packageName: String,
             versionName: String,
             androidDeviceToken: String = "",
+            customerNumber: String = "",
             countryCode: String = "",
             isPremium: Boolean = false,
             purchasedTitle: String = "",
@@ -36,6 +37,7 @@ open class ContactUs constructor(val builder: Builder) : Serializable {
             packageName,
             versionName,
             androidDeviceToken,
+            customerNumber,
             countryCode,
             isPremium,
             purchasedTitle,
@@ -63,6 +65,7 @@ open class ContactUs constructor(val builder: Builder) : Serializable {
         var packageName: String,
         var versionName: String,
         var androidDeviceToken: String = "",
+        var customerNumber: String = "",
         var countryCode: String = "",
         var isPremium: Boolean = false,
         var purchasedTitle: String = "",
@@ -81,6 +84,7 @@ open class ContactUs constructor(val builder: Builder) : Serializable {
         var isFullScreen: Boolean = false
         var windowBackgroundColor: Int = R.color.white
         var statusBarColor: Int = R.color.extra_extra_light_gray
+        var navigationBarColor: Int = R.color.extra_extra_light_gray
 
         //TODO: Toolbar
         var toolBarColor: Int = R.color.extra_extra_light_gray
