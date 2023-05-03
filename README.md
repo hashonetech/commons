@@ -11,7 +11,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.7'
+	        implementation 'com.github.hashonetech:commons:v1.0.8'
 	}
 
 Call below function to open ContactUs Screen
@@ -27,6 +27,7 @@ Call below function to open ContactUs Screen
 		
 		//TODO: Optional
 		androidDeviceToken = "Device Token",
+		customerNumber = "",
 		countryCode = "Country Code",
 		isPremium = true/false,
 		purchasedTitle = "Purchase Title",
@@ -37,8 +38,10 @@ Call below function to open ContactUs Screen
 		allowBoth = true/false,
 		//TODO: In MB
 		maxFileSize: Long = 25L,
-		messageBoxHeight: Double = 0.0,
-            	attachmentBoxHeight: Double = 0.0,
+		//TODO: Ratio (messageBoxHeight / ScreenWidth)
+		messageBoxHeight = 0.4444444444,
+		//TODO: Ratio (attachmentBoxHeight / ScreenWidth)
+		attachmentBoxHeight = 0.588888888888889,
 		optionItemsList = ArrayList<ContactUs.Builder.OptionItem>().apply {
 		    add(
 			ContactUs.Builder.OptionItem(
@@ -61,6 +64,7 @@ Call below function to open ContactUs Screen
                 isFullScreen = false
                 windowBackgroundColor = R.color.extra_extra_light_gray
                 statusBarColor = R.color.extra_extra_light_gray
+		navigationBarColor = R.color.extra_extra_light_gray
                 
 		//TODO: Toolbar
                 toolBarColor = R.color.white
