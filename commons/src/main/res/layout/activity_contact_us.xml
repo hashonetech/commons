@@ -84,28 +84,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                    <com.hashone.commons.module.flexbox.FlexboxLayout
-                        android:id="@+id/flexRadioButtons"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:columnCount="3"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="12dp"
-                        android:columnOrderPreserved="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        app:flexDirection="row"
-                        app:flexWrap="wrap">
+                <com.hashone.commons.module.flexbox.FlexboxLayout
+                    android:id="@+id/flexRadioButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:columnCount="3"
+                    android:columnOrderPreserved="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="12dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap">
 
-                    </com.hashone.commons.module.flexbox.FlexboxLayout>
+                </com.hashone.commons.module.flexbox.FlexboxLayout>
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/textViewFeedbackMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="0dp"
                     android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="0dp"
                     android:background="@null"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="top"
@@ -125,31 +125,42 @@
                     android:layout_marginTop="18dp"
                     android:minHeight="212dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/textViewAttachmentTitle"
-                        android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layoutAttachmentTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="12dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/add_media"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp"
+                        android:gravity="center_vertical|top"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/textViewAttachmentSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="0.0 MB/25 MB"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textViewAttachmentTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/add_media"
+                            android:textColor="@color/light_gray"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textViewAttachmentSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="0.0 MB/25 MB"
+                            android:textColor="@color/light_gray"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <RelativeLayout
                         android:id="@+id/cardViewAttachments1"
@@ -163,7 +174,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments2"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+                        app:layout_constraintTop_toBottomOf="@+id/layoutAttachmentTitle">
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardViewAttachments11"
@@ -216,7 +227,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/cardViewAttachments3"
                         app:layout_constraintStart_toEndOf="@+id/cardViewAttachments1"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+                        app:layout_constraintTop_toBottomOf="@+id/layoutAttachmentTitle">
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardViewAttachments22"
@@ -269,7 +280,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/cardViewAttachments2"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewAttachmentTitle">
+                        app:layout_constraintTop_toBottomOf="@+id/layoutAttachmentTitle">
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardViewAttachments33"
