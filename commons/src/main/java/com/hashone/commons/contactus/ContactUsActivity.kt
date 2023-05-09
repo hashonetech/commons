@@ -362,7 +362,9 @@ class ContactUsActivity : BaseActivity() {
 
             radioButton.setOnTouchListener { v, event ->
                 if (event.actionMasked == MotionEvent.ACTION_UP)
-                    radioButton.isChecked = !radioButton.isChecked
+                    if (!radioButton.isChecked) {
+                        radioButton.isChecked = true
+                    }
                 return@setOnTouchListener true
             }
 
