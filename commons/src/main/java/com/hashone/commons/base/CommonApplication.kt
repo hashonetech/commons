@@ -19,22 +19,22 @@ class CommonApplication : MultiDexApplication() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        lateinit var instance: CommonApplication
+        lateinit var mInstance: CommonApplication
     }
 
-    var context: Context? = null
-    lateinit var storeUserData: StoreUserData
+    var mContext: Context? = null
+    lateinit var mStoreUserData: StoreUserData
 
     fun setLocaleContext(context: Context) {
-        this.context = context
+        this.mContext = context
     }
 
     override fun attachBaseContext(base: Context?) {
         if (base != null) {
             val languagesList = LanguageItem().getLanguages(base)
-            storeUserData = StoreUserData(base)
+            mStoreUserData = StoreUserData(base)
 
-            storeUserData.apply {
+            mStoreUserData.apply {
                 if (getString(DEFAULT_LANGUAGE)!!.isEmpty()) {
                     val defaultLanguage =
                         Locale.getDefault().language.lowercase(Locale.getDefault()).trim()
@@ -49,28 +49,28 @@ class CommonApplication : MultiDexApplication() {
                         }
                     }
                     if (isContain) {
-                        storeUserData.setString(
+                        mStoreUserData.setString(
                             DEFAULT_LANGUAGE,
                             Locale.getDefault().language.lowercase(Locale.getDefault()).trim()
                         )
                         for (i in 0 until languagesList.size) {
-                            if (storeUserData.getString(DEFAULT_LANGUAGE)!!.equals(
+                            if (mStoreUserData.getString(DEFAULT_LANGUAGE)!!.equals(
                                     languagesList[i].languageCode,
                                     ignoreCase = true
                                 )
                             ) {
-                                storeUserData.setString(
+                                mStoreUserData.setString(
                                     DEFAULT_LANGUAGE_NAME,
                                     languagesList[i].languageName
                                 )
                             }
                         }
                     } else {
-                        storeUserData.setString(
+                        mStoreUserData.setString(
                             DEFAULT_LANGUAGE,
                             languagesList[0].languageCode
                         )
-                        storeUserData.setString(
+                        mStoreUserData.setString(
                             DEFAULT_LANGUAGE_NAME,
                             languagesList[0].languageName
                         )
@@ -80,7 +80,7 @@ class CommonApplication : MultiDexApplication() {
             super.attachBaseContext(
                 LocaleHelper.setLocale(
                     base,
-                    storeUserData.getString(DEFAULT_LANGUAGE)
+                    mStoreUserData.getString(DEFAULT_LANGUAGE)
                 )
             )
             MultiDex.install(base)

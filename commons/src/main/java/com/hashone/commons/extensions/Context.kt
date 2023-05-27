@@ -108,6 +108,6 @@ fun Context.getScreenWidth(): Int = getDisplayMetrics()!!.widthPixels
 
 fun Context.getScreenHeight(): Int = getDisplayMetrics()!!.heightPixels
 
-fun getLocaleContext(): Context = CommonApplication.instance.context!!
+fun getLocaleContext(): Context = CommonApplication.mInstance.mContext!!
 
 fun getLocaleString(@StringRes id: Int) = getLocaleContext().getString(id)

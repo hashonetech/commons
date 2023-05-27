@@ -1,11 +1,14 @@
 package com.hashone.commons.base
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +17,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import com.hashone.commons.R
 import com.hashone.commons.databinding.DialogConfirmationBinding
+import com.hashone.commons.languages.LocaleHelper
+import com.hashone.commons.utils.DEFAULT_LANGUAGE
 import com.hashone.commons.utils.dpToPx
 import kotlin.math.roundToInt
 
@@ -21,10 +26,25 @@ open class BaseActivity : AppCompatActivity() {
 
     lateinit var mActivity: Activity
 
+    val mActivityLauncher: BetterActivityResult<Intent, ActivityResult> =
+        BetterActivityResult.registerActivityForResult(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mActivity = this
+
+        LocaleHelper.setLocale(
+            mActivity, CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE)
+        )?.let {
+            CommonApplication.mInstance.setLocaleContext(
+                it
+            )
+        }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase))
     }
 
     var alertDialog: AlertDialog? = null
