@@ -11,7 +11,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.11'
+	        implementation 'com.github.hashonetech:commons:v1.0.13'
 	}
 
 In AndroidManifest.xml
