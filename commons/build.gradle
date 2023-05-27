@@ -2,7 +2,8 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
-    id("com.google.devtools.ksp")
+    id 'kotlin-kapt'
+//    id("com.google.devtools.ksp")
 }
 
 group = 'com.hashone.commons'
@@ -72,7 +73,7 @@ dependencies {
 
     /*Glide*/
     api("com.github.bumptech.glide:glide:4.15.1")
-    ksp("com.github.bumptech.glide:compiler:4.15.1")
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
     /*Retrofit*/
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
