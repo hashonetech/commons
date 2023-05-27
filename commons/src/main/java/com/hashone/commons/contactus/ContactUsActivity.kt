@@ -33,6 +33,7 @@ import com.hashone.commons.extensions.applyTextStyle
 import com.hashone.commons.extensions.applyTintColor
 import com.hashone.commons.extensions.corneredDrawable
 import com.hashone.commons.extensions.getColorCode
+import com.hashone.commons.extensions.getLocaleString
 import com.hashone.commons.extensions.getMediaPickIntent
 import com.hashone.commons.extensions.getScreenWidth
 import com.hashone.commons.extensions.hideSystemUI
@@ -193,7 +194,7 @@ class ContactUsActivity : BaseActivity() {
                 )
             } catch (e2: Exception) {
                 showSnackBar(
-                    mActivity, binding.cardViewSubmit, getString(R.string.no_gallery_app)
+                    mActivity, binding.cardViewSubmit, getLocaleString(R.string.no_gallery_app)
                 )
             }
         }
@@ -216,7 +217,6 @@ class ContactUsActivity : BaseActivity() {
                 selectImageFromGallery(mRequestCode)
             } else {
                 requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
             }
         }
     }
@@ -229,12 +229,12 @@ class ContactUsActivity : BaseActivity() {
                 }
             } else {
                 runOnUiThread {
-                    showCustomAlertDialog(message = getString(R.string.allow_permission),
-                        negativeButtonText = getString(R.string.action_cancel)
+                    showCustomAlertDialog(message = getLocaleString(R.string.allow_permission),
+                        negativeButtonText = getLocaleString(R.string.action_cancel)
                             .uppercase(
                                 Locale.getDefault()
                             ),
-                        positionButtonText = getString(R.string.action_grant)
+                        positionButtonText = getLocaleString(R.string.action_grant)
                             .uppercase(Locale.getDefault()),
                         negativeCallback = {
                             alertDialog?.cancel()
@@ -332,7 +332,8 @@ class ContactUsActivity : BaseActivity() {
                 if (selectedOptionId != -1)
                     binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
                 selectedOptionId = radioButton.id
-                binding.textViewFeedbackMessage.hint = optionItem.message
+                if (builder.messageHint.isEmpty())
+                    binding.textViewFeedbackMessage.hint = builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
             }
             radioButton.applyTintColor(getColorCode(builder.radioButtonTextColor))
             radioButton.applyTextStyle(
@@ -355,7 +356,7 @@ class ContactUsActivity : BaseActivity() {
                     binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
                 }
                 if (isChecked) {
-                    binding.textViewFeedbackMessage.hint = optionItem.message
+                    binding.textViewFeedbackMessage.hint = builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
                     selectedOptionId = radioButton.id
                 }
             }

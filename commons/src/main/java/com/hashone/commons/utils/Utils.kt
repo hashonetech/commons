@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.LabeledIntent
 import android.content.res.Resources
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
@@ -175,16 +177,4 @@ fun dpToPx(dp: Float): Float {
 fun openKeyboard(activity: Activity) {
     val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
-}
-
-fun getScreenWidth(context: Context): Int {
-    val displayMetrics = DisplayMetrics()
-    (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.widthPixels
-}
-
-fun getScreenHeight(context: Context): Int {
-    val displayMetrics = DisplayMetrics()
-    (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.heightPixels
 }

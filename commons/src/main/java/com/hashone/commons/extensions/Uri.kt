@@ -1,5 +1,6 @@
 package com.hashone.commons.extensions
 
+import android.app.Activity
 import android.content.ContentResolver
 import android.net.Uri
 import android.provider.OpenableColumns
@@ -37,4 +38,13 @@ fun Uri.length(contentResolver: ContentResolver): Long {
     } else {
         return -1L
     }
+}
+
+fun Uri.toFilePath(activity: Activity): String {
+    val returnCursor = activity.contentResolver.query(this, null, null, null, null)!!
+    val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+    returnCursor.moveToFirst()
+    val name = returnCursor.getString(nameIndex)
+    returnCursor.close()
+    return name
 }

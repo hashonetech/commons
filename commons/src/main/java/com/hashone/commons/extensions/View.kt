@@ -8,6 +8,7 @@ import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.CompoundButtonCompat
+import com.hashone.commons.utils.checkClickTime
 
 inline fun View.doOnGlobalLayout(crossinline action: (view: View) -> Unit) {
     val vto = viewTreeObserver
@@ -71,3 +72,9 @@ fun RadioButton.applyTextStyle(color: Int, font: Int, size: Float) {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
 }
 
+inline fun View.onClick(crossinline action: (view: View) -> Unit) {
+    setOnClickListener {
+        if (checkClickTime())
+            action(this@onClick)
+    }
+}

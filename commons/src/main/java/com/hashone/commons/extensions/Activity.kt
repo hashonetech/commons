@@ -2,8 +2,10 @@ package com.hashone.commons.extensions
 
 import android.app.Activity
 import android.content.Context
+import android.hardware.display.DisplayManager
 import android.os.Build
 import android.util.DisplayMetrics
+import android.view.Display
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
@@ -107,16 +109,4 @@ fun Activity.navigationUI(isShow: Boolean = false, color: Int = -1) {
         controller.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
-}
-
-fun Activity.getScreenWidth(): Int {
-    val displayMetrics = DisplayMetrics()
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.widthPixels
-}
-
-fun Activity.getScreenHeight(): Int {
-    val displayMetrics = DisplayMetrics()
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
-    return displayMetrics.heightPixels
 }

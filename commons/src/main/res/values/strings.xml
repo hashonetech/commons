@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--Text-->
     <string name="label_contact">Contact</string>
     <string name="label_feedback">Feedback</string>
@@ -17,4 +17,13 @@
     <!--Permission-->
     <string name="allow_permission">You need to allow access to storage permissions.</string>
     <!--Permission-->
+    <!--Locale Languages-->
+    <string name="language_name_1" translatable="false" tools:override="true">English</string>
+    <string-array name="language_names" tools:override="true">
+        <item>@string/language_name_1</item>
+    </string-array>
+    <string-array name="language_codes" tools:override="true">
+        <item>en</item>
+    </string-array>
+    <!--Locale Languages-->
 </resources>
