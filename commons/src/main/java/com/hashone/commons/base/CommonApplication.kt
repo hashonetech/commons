@@ -88,4 +88,9 @@ class CommonApplication : MultiDexApplication() {
             super.attachBaseContext(null)
         }
     }
+
+    override fun onCreate() {
+        super.onCreate()
+        mInstance = this
+    }
 }
