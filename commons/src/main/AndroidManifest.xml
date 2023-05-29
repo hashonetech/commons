@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
+        android:name=".base.CommonApplication"
         android:theme="@style/Theme.Commons">
         <activity
             android:name=".contactus.ContactUsActivity"
