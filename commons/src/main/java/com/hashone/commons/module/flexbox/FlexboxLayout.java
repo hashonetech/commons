@@ -26,14 +26,8 @@ import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -42,12 +36,16 @@ import androidx.core.view.ViewCompat;
 
 import com.hashone.commons.R;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+
 /**
  * A layout that arranges its children in a way its attributes can be specified like the
  * CSS Flexible Box Layout Module.
  * This class extends the {@link ViewGroup} like other layout classes such as {@link LinearLayout}
  * or {@link RelativeLayout}, the attributes can be specified from a layout XML or from code.
- *
+ * <p>
  * The supported attributes that you can use are:
  * <ul>
  * <li>{@code flexDirection}</li>
@@ -64,7 +62,7 @@ import com.hashone.commons.R;
  * <li>{@code maxLine}</li>
  * </ul>
  * for the FlexboxLayout.
- *
+ * <p>
  * And for the children of the FlexboxLayout, you can use:
  * <ul>
  * <li>{@code layout_order}</li>
@@ -145,23 +143,35 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
 
     }
 
-    /** Constant to show no dividers */
+    /**
+     * Constant to show no dividers
+     */
     public static final int SHOW_DIVIDER_NONE = 0;
 
-    /** Constant to show a divider at the beginning of the flex lines (or flex items). */
+    /**
+     * Constant to show a divider at the beginning of the flex lines (or flex items).
+     */
     public static final int SHOW_DIVIDER_BEGINNING = 1;
 
-    /** Constant to show dividers between flex lines or flex items. */
+    /**
+     * Constant to show dividers between flex lines or flex items.
+     */
     public static final int SHOW_DIVIDER_MIDDLE = 1 << 1;
 
-    /** Constant to show a divider at the end of the flex lines or flex items. */
+    /**
+     * Constant to show a divider at the end of the flex lines or flex items.
+     */
     public static final int SHOW_DIVIDER_END = 1 << 2;
 
-    /** The drawable to be drawn for the horizontal dividers. */
+    /**
+     * The drawable to be drawn for the horizontal dividers.
+     */
     @Nullable
     private Drawable mDividerDrawableHorizontal;
 
-    /** The drawable to be drawn for the vertical dividers. */
+    /**
+     * The drawable to be drawn for the vertical dividers.
+     */
     @Nullable
     private Drawable mDividerDrawableVertical;
 
@@ -179,10 +189,14 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
      */
     private int mShowDividerVertical;
 
-    /** The height of the {@link #mDividerDrawableHorizontal}. */
+    /**
+     * The height of the {@link #mDividerDrawableHorizontal}.
+     */
     private int mDividerHorizontalHeight;
 
-    /** The width of the {@link #mDividerDrawableVertical}. */
+    /**
+     * The width of the {@link #mDividerDrawableVertical}.
+     */
     private int mDividerVerticalWidth;
 
     /**
@@ -436,7 +450,7 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
      * @see #setFlexDirection(int)
      */
     private void setMeasuredDimensionForFlex(@FlexDirection int flexDirection, int widthMeasureSpec,
-            int heightMeasureSpec, int childState) {
+                                             int heightMeasureSpec, int childState) {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -770,7 +784,7 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
      * @see LayoutParams#mAlignSelf
      */
     private void layoutVertical(boolean isRtl, boolean fromBottomToTop, int left, int top,
-            int right, int bottom) {
+                                int right, int bottom) {
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
 
@@ -1567,7 +1581,7 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
 
     /**
      * Per child parameters for children views of the {@link FlexboxLayout}.
-     *
+     * <p>
      * Note that some parent fields (which are not primitive nor a class implements
      * {@link Parcelable}) are not included as the stored/restored fields after this class
      * is serialized/de-serialized as an {@link Parcelable}.

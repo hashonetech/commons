@@ -11,11 +11,7 @@ import com.hashone.commons.utils.DEFAULT_LANGUAGE_NAME
 import com.hashone.commons.utils.StoreUserData
 import java.util.Locale
 
-class CommonApplication : MultiDexApplication() {
-
-    init {
-        System.loadLibrary("native-lib")
-    }
+open class CommonApplication : MultiDexApplication() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -30,7 +26,9 @@ class CommonApplication : MultiDexApplication() {
     }
 
     override fun attachBaseContext(base: Context?) {
+        mInstance = this
         if (base != null) {
+            setLocaleContext(base)
             val languagesList = LanguageItem().getLanguages(base)
             mStoreUserData = StoreUserData(base)
 
@@ -85,6 +83,7 @@ class CommonApplication : MultiDexApplication() {
             )
             MultiDex.install(base)
         } else {
+            setLocaleContext(applicationContext)
             super.attachBaseContext(null)
         }
     }

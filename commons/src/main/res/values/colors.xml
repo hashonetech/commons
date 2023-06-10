@@ -12,6 +12,7 @@
     <color name="extra_extra_light_gray">#fbfbfb</color>
     <color name="white">#ffffff</color>
     <color name="alert">#ff1800</color>
+    <color name="pure_black">#000000</color>
 
     <!--Alert-->
     <color name="snack_bar_text">#deffffff</color>

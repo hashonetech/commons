@@ -45,7 +45,7 @@ import java.util.List;
  * {@link RecyclerView} and offers the same capabilities of measure/layout its children
  * as the {@link FlexboxLayout}.
  */
-public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements FlexContainer,
+public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements com.hashone.commons.module.flexbox.FlexContainer,
         RecyclerView.SmoothScroller.ScrollVectorProvider {
 
     private static final String TAG = "FlexboxLayoutManager";

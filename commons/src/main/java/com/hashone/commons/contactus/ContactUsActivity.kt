@@ -333,7 +333,8 @@ class ContactUsActivity : BaseActivity() {
                     binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
                 selectedOptionId = radioButton.id
                 if (builder.messageHint.isEmpty())
-                    binding.textViewFeedbackMessage.hint = builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
+                    binding.textViewFeedbackMessage.hint =
+                        builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
             }
             radioButton.applyTintColor(getColorCode(builder.radioButtonTextColor))
             radioButton.applyTextStyle(
@@ -356,7 +357,8 @@ class ContactUsActivity : BaseActivity() {
                     binding.root.findViewById<RadioButton>(selectedOptionId).isChecked = false
                 }
                 if (isChecked) {
-                    binding.textViewFeedbackMessage.hint = builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
+                    binding.textViewFeedbackMessage.hint =
+                        builder.messageHint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
                     selectedOptionId = radioButton.id
                 }
             }
