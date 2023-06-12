@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.hashone.commons'
-version = '1.0.17'
+version = '1.0.18'
 
 android {
     namespace 'com.hashone.commons'
@@ -16,7 +16,7 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.0.17"
+        versionName "1.0.18"
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -78,7 +78,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.hashone'
                 artifactId = 'commons'
-                version = '1.0.17'
+                version = '1.0.18'
             }
         }
     }
