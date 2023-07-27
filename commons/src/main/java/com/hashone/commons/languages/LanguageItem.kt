@@ -12,6 +12,8 @@ class LanguageItem : Serializable {
 
     private var translatedBy: String = ""
 
+    var isChecked: Boolean = false
+
     private var namesList = ArrayList<String>()
     private var codesList = ArrayList<String>()
 
@@ -27,6 +29,16 @@ class LanguageItem : Serializable {
         this.translatedBy = translatedBy
     }
 
+    constructor(
+        languageName: String,
+        languageCode: String,
+        isChecked: Boolean
+    ) {
+        this.languageName = languageName
+        this.languageCode = languageCode
+        this.translatedBy = translatedBy
+    }
+
     fun getLanguages(context: Context): ArrayList<LanguageItem> {
         val stringsList = ArrayList<LanguageItem>()
 
@@ -36,9 +48,8 @@ class LanguageItem : Serializable {
         codesList =
             getLocaleContext().resources.getStringArray(R.array.language_codes)
                 .toCollection(ArrayList())
-
         for (i in namesList.indices) {
-            stringsList.add(LanguageItem(namesList[i], codesList[i], ""))
+            stringsList.add(LanguageItem(namesList[i], codesList[i], false))
         }
 
         return stringsList

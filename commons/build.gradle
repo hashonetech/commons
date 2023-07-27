@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.hashone.commons'
-version = '1.0.18'
+version = '1.0.19'
 
 android {
     namespace 'com.hashone.commons'
@@ -16,9 +16,12 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.0.18"
+        versionName "1.0.19"
 
         consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     libraryVariants.all { variant ->
@@ -38,16 +41,25 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true
         dataBinding true
+        compose true
     }
 
     publishing {
         singleVariant("release") {
             withSourcesJar()
+        }
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
 }
@@ -61,6 +73,14 @@ dependencies {
 
     /*Glide*/
     api("com.github.bumptech.glide:glide:4.15.1")
+    api ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    api ("androidx.activity:activity-compose:1.7.2")
+    api platform('androidx.compose:compose-bom:2023.03.00')
+    api ("androidx.compose.ui:ui")
+    api ("androidx.compose.ui:ui-graphics")
+    api ("androidx.compose.ui:ui-tooling-preview")
+    api ("androidx.compose.material3:material3")
+    api platform('androidx.compose:compose-bom:2023.03.00')
     kapt("com.github.bumptech.glide:compiler:4.15.1")
     /*Retrofit*/
     api("com.squareup.retrofit2:retrofit:2.9.0")
@@ -68,6 +88,9 @@ dependencies {
     /*Kotlin-Coroutines*/
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    // system bars customization
+    api("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 }
 
 afterEvaluate {
@@ -78,7 +101,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.hashone'
                 artifactId = 'commons'
-                version = '1.0.18'
+                version = '1.0.19'
             }
         }
     }

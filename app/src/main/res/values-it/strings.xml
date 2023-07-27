@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Commons</string>
+    <string name="label_language">Lingua</string>
+    <string name="label_contact">Contatto</string>
+</resources>

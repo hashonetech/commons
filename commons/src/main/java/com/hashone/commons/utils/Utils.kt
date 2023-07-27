@@ -80,12 +80,12 @@ fun sendContactEmail(
     val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
     emailIntent.type = "text/plain"
     emailIntent.setPackage("com.google.android.gm")
-    emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.feedbackEmail))
+    emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.emailBuilder.feedbackEmail))
     emailIntent.putExtra(
         Intent.EXTRA_SUBJECT, if (selectionType.isNotEmpty()) {
-            "${builder.appName}($selectionType)"
+            "${builder.emailBuilder.appName}($selectionType)"
         } else {
-            builder.appName
+            builder.emailBuilder.appName
         }
     )
 
@@ -94,8 +94,8 @@ fun sendContactEmail(
     var body = message
     body += "\n\n"
     body += "======Do not delete this======" + "\n"
-    body += "App name: ${builder.appName}\n"
-    body += "App Version : ${builder.versionName}\n"
+    body += "App name: ${builder.emailBuilder.appName}\n"
+    body += "App Version : ${builder.emailBuilder.versionName}\n"
     body += "Brand : " + Build.BRAND + "\n"
     body += "Manufacturer : " + Build.MANUFACTURER + "\n"
     body += "Model : " + Build.MODEL + "\n"
@@ -104,17 +104,17 @@ fun sendContactEmail(
     body += "Free Memory : " + mi.availMem + "\n"
     body += "Screen Resolution : $width*$height\n"
     body += "Time : $currentTime\n"
-    body += "Package Name: ${builder.packageName}\n"
-    body += "Country Code: " + builder.countryCode + "\n"
-    if (builder.isPremium) {
-        body += "Purchase : ${builder.purchasedTitle}\n"
-        if (builder.orderId.isNotEmpty()) {
-            body += "Order ID : ${builder.orderId}\n"
+    body += "Package Name: ${builder.emailBuilder.packageName}\n"
+    body += "Country Code: " + builder.emailBuilder.countryCode + "\n"
+    if (builder.emailBuilder.isPremium) {
+        body += "Purchase : ${builder.emailBuilder.purchasedTitle}\n"
+        if (builder.emailBuilder.orderId.isNotEmpty()) {
+            body += "Order ID : ${builder.emailBuilder.orderId}\n"
         }
     }
-    body += "User ID: ${builder.androidDeviceToken}\n"
-    if (builder.customerNumber.isNotEmpty())
-        body += "Customer No.: ${builder.customerNumber}\n"
+    body += "User ID: ${builder.emailBuilder.androidDeviceToken}\n"
+    if (builder.emailBuilder.customerNumber.isNotEmpty())
+        body += "Customer No.: ${builder.emailBuilder.customerNumber}\n"
 
     emailIntent.putExtra(Intent.EXTRA_TEXT, body)
     if (fileUris.size > 0) {
@@ -124,7 +124,7 @@ fun sendContactEmail(
     try {
         context.startActivity(
             Intent.createChooser(
-                emailIntent, builder.emailTitle.ifEmpty { context.getString(R.string.email_title) }
+                emailIntent, builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }
             )
         )
     } catch (e: ActivityNotFoundException) {
@@ -143,11 +143,11 @@ fun sendContactEmail(
                 emailIntent.setPackage(emailPackageName)
             } else if (emailPackageName.contains("android.gm")) {
                 val intent = getEmailIntent(
-                    builder.appName,
+                    builder.emailBuilder.appName,
                     emailPackageName,
                     resolveInfo,
                     selectionType,
-                    builder.feedbackEmail,
+                    builder.emailBuilder.feedbackEmail,
                     body,
                     fileUris
                 )
@@ -164,7 +164,7 @@ fun sendContactEmail(
         context.startActivity(
             Intent.createChooser(
                 emailIntent,
-                builder.emailTitle.ifEmpty { context.getString(R.string.email_title) }).apply {
+                builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }).apply {
                 putExtra(Intent.EXTRA_INITIAL_INTENTS, intentList.toTypedArray())
             })
     }

@@ -25,6 +25,12 @@
         android:name=".base.CommonApplication"
         android:theme="@style/Theme.Commons">
         <activity
+            android:name=".languages.LanguageActivity"
+            android:configChanges="locale|layoutDirection|uiMode|orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Commons" />
+        <activity
             android:name=".contactus.ContactUsActivity"
             android:configChanges="locale|layoutDirection|uiMode|orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false"

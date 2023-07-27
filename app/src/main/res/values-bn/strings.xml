@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Commons</string>
+    <string name="label_language">ভাষা</string>
+    <string name="label_contact">যোগাযোগ</string>
+</resources>
