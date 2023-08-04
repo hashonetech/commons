@@ -35,67 +35,62 @@ Used for basic functions and data.
 		</provider>
 	 </application>
 
+ ## MyApplication
+ 	//TODO: Extends Application class with CommonApplication:
+ 	MyApplication: CommonApplication()
+
 ## ContactUs
 
-	ContactUs.open(activity, build(
-		//TODO: Required
-		emailTitle = "Email Title",
-		feedbackEmail = "abc@email.com",
-		appName = "App Name",
-		packageName = "PackageName",
-		versionName = "App Version Name",
-		emailBuilder = ContactUs.EmailBuilder(
-		                    emailTitle = "Email Title",
-		                    feedbackEmail = "abc@email.com",
-		                    appName = "App Name",
-		                    packageName = "PackageName",
-		                    versionName = "App Version Name",
-		                    androidDeviceToken = "Device Token",
-		                    customerNumber = "",
-		                    countryCode = "Country Code",
-		                    isPremium = true/false,
-		                    purchasedTitle = "Purchase Title",
-		                    orderId = "Order Id",
-		                    showKeyboard = true/false,
-		                )
+	ContactUs.open(activity = this, ContactUs.build(
+                emailBuilder = ContactUs.EmailBuilder(
+                    emailTitle = "",
+                    feedbackEmail = "",
+                    appName = "",
+                    packageName = "",
+                    versionName = "",
+                    androidDeviceToken = "",
+                    customerNumber = "",
+                    countryCode = "",
+                    isPremium = false,
+                    purchasedTitle = "",
+                    orderId = "",
+                    showKeyboard = false,
+                ),
+                mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
+                    allowVideosOnly = false,
+                    allowBoth = true,
+                    maxFileSize = 15L,
+                    //TODO: Ratio (messageBoxHeight / ScreenWidth)
+                    messageBoxHeight = 0.4444444444,
+                    //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
+                    attachmentBoxHeight = 0.588888888888889,
+                    optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
+                        add(
+                            ContactUs.OptionItem(
+                                text = "Feedback",
+                                message = "Type your feedback here.",
+                                isChecked = true
+                            )
+                        )
+                        add(
+                            ContactUs.OptionItem(
+                                text = "Issue",
+                                message = "Please describe issue in detail.",
+                                isChecked = false
+                            )
+                        )
+                        add(
+                            ContactUs.OptionItem(
+                                text = "Request",
+                                message = "Add your request here.",
+                                isChecked = false
+                            )
+                        )
+                    }),
 
-		mediaBuilder = ContactUs.MediaBuilder(
-  				allowPhotosOnly = true/false,
-				allowVideosOnly = true/false,
-				allowBoth = true/false,
-				//TODO: In MB
-				maxFileSize: Long = 25L,
-				//TODO: Ratio (messageBoxHeight / ScreenWidth)
-				messageBoxHeight = 0.4444444444,
-				//TODO: Ratio (attachmentBoxHeight / ScreenWidth)
-				attachmentBoxHeight = 0.588888888888889,
-				optionItemsList = ArrayList<ContactUs.Builder.OptionItem>().apply {
-					add(
-						ContactUs.Builder.OptionItem(
-							text = "Feedback",
-							message = "Type your feedback here.",
-							isChecked = true/false
-						)
-					    )
-					add(
-						ContactUs.Builder.OptionItem(
-						    text = "Issue",
-						    message = "Please describe issue in detail.",
-						    isChecked = false/false
-						)
-					    )
-					add(
-		                            	ContactUs.OptionItem(
-		                                	text = "Request",
-		                                	message = "Add your request here.",
-		                                	isChecked = false
-		                            	)
-		                        	)
 
-					}
-		){
-		//TODO: Optional - Below fields are for UI theme.
-		//TODO: Screen
+                ) {
+                //TODO: Screen
                 screenBuilder = ContactUs.ScreenBuilder(
                     isFullScreen = false,
                     windowBackgroundColor = R.color.extra_extra_light_gray,
@@ -156,7 +151,7 @@ Used for basic functions and data.
                     buttonTextFont = R.font.outfit_bold,
                     buttonTextSize = 16F,
                 )
-	})
+            })
  
 ## Language
 
