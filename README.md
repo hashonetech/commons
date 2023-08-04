@@ -254,10 +254,6 @@ Used for basic functions and data.
                                             LocaleListCompat.forLanguageTags(languageItem.languageCode)
                                         AppCompatDelegate.setApplicationLocales(localeList)
 
-                                        mBinding.buttonContactus.text =
-                                            getLocaleString(com.hashone.commons.test.R.string.label_contact)
-                                        mBinding.buttonLanguage.text =
-                                            getLocaleString(com.hashone.commons.test.R.string.label_language)
                                     }
                                 }
                             }
