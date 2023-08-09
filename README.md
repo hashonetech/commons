@@ -23,7 +23,7 @@ Used for basic functions and data.
 
 	<application
 		...
-		tools:replace="android:theme">
+		tools:replace="android:theme,android:name">
 		...
 
 		<provider
@@ -38,7 +38,11 @@ Used for basic functions and data.
  ## MyApplication
  	//TODO: Extends Application class with CommonApplication:
  	MyApplication: CommonApplication()
-
+  
+ ## BaseActivity
+ 	//TODO: Extends BaseActivity class with Common Lib BaseActivity:
+ 	BaseActivity: BaseActivity()
+  
 ## ContactUs
 
 	ContactUs.open(activity = this, ContactUs.build(
