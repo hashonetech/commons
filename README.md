@@ -21,8 +21,12 @@ Used for basic functions and data.
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/104345897/b494ac15-8716-462e-bc3b-c97f34c3b298" width="30%"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/104345897/435c7343-778b-4bfd-bdd3-605bb91eb162" width="30%"> 
 
+<!--ts-->
+* [AndroidManifest](#androidmanifest)
+* [In-App Billing](#in-app-billing)
+<!--te-->
 
- ## AndroidManifest.xml
+ ## AndroidManifest
 
 ```xml
 	<application
