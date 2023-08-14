@@ -261,3 +261,230 @@ Used for basic functions and data.
                 }
             )
         }
+# In-App Billing
+
+### Initialize BillingClient
+
+```kotlin
+	MyApplication: CommonApplication(){
+  		override fun onCreate() {
+    		super.onCreate()
+    		PurchaseManager.initializeBillingClient(this)
+		}
+	}
+```
+
+### Checking User Premium Status
+To determine if a user has premium access, you can call the isPremium method within your splash screen or any relevant location. Ensure you have an array of product IDs representing premium subscriptions and products.
+
+```kotlin
+	val premiumArray = arrayListOf(Constants.SUB_YEAR, Constants.SUB_MONTH, Constants.PROD_LIFETIME)
+	PurchaseManager.isPremium(premiumArray) { isPremium ->
+		if (isPremium) {
+    		// User is premium
+    		// Proceed with premium features
+		} else {
+    		// User is not premium
+    		// Provide non-premium features or prompt to upgrade
+	 	}
+	}
+```
+
+### Retrieving Product and Subscription Details
+
+Fetch the details of products and subscriptions to display related information in your Pro screen. Use the queryAllProductDetails method and provide the list of product IDs
+
+```kotlin
+	val subscriptions = listOf(Constants.SUB_YEAR, Constants.SUB_MONTH)
+	val products = listOf(Constants.PROD_LIFETIME)
+
+	PurchaseManager.queryAllProductDetails(subscriptions, products, object : PurchaseListener() {
+ 
+		override fun onBillingError(responseCode: Int, debugMessage: String) {
+                	// Handle error
+            	}
+
+		override fun onProductDetail(productDetails: List<ProductDetails>) {
+    			runOnUiThread {
+        		productDetails.forEach { product ->
+            		setupProUIItem(product)           		
+        		}
+
+			setSelection(Constants.SUB_YEAR)
+			// Example usage: pre-select the subscription
+    		   }
+		}
+	})
+```
+
+### Setting Up Pro UI Items
+In order to display subscription and product details on your Pro screen, you can use the following example code. This code sets up the UI elements based on the retrieved **ProductDetails**.
+
+-Feel free to customize and adjust the provided code snippets as per your application's needs and design preferences.
+
+```kotlin
+	private fun setupProUIItem(skuDetails: ProductDetails) {
+        try {
+            var trialString = ""
+            var hasTrail = false
+
+	    // Example of PurchaseManager.getFreeTrial(skuDetails) function
+
+            if (PurchaseManager.getFreeTrial(skuDetails).isNotEmpty()) {
+                hasTrail = true
+
+                val trialPeriod = PurchaseManager.getFreeTrial(skuDetails)[PurchaseManager.TrialPeriod.KEY_OFFER_DURATION.name].orEmpty()
+                val dayOrMonth = PurchaseManager.getFreeTrial(skuDetails)[PurchaseManager.TrialPeriod.KEY_OFFER_TYPE.name]
+
+                when {
+                    dayOrMonth.equals(PurchaseManager.TrialPeriod.WEEK.name, ignoreCase = true) -> {
+                        trialString = "$trialPeriod Days Trial"
+			// Note if trial period is week it return 7 day so no need to caluclate day * 7
+                    }
+
+                    dayOrMonth.equals(PurchaseManager.TrialPeriod.DAY.name, ignoreCase = true) -> {
+                        trialString = "$trialPeriod Days Trial"
+                    }
+
+                    dayOrMonth.equals(PurchaseManager.TrialPeriod.MONTH.name, ignoreCase = true) -> {
+                        trialString = "$trialPeriod Month Trial"
+                    }
+
+                    else -> {
+                    }
+                }
+            }
+
+            if (MyApplication.mInstance.isCountryExcluded()) hasTrail = false
+
+            // Example of PurchaseManager.getFormattedPrice(skuDetails) function.
+
+            when (skuDetails.productId) {
+                Constants.SUB_MONTH -> {
+                    monthSkuDetails = skuDetails
+                    val subtitleString = if (hasTrail) {
+                        trialString
+                    } else {
+                        "Start today"
+                    }
+                    val titleString = "${
+                        PurchaseManager.getFormattedPrice(skuDetails)
+                    }/ Month"
+
+                }
+
+                Constants.LIFETIME_PACK -> {
+                    lifeTimeSkuDetails = skuDetails
+                     val titleString = String.format("%s for Lifetime", PurchaseManager.getFormattedPrice(skuDetails))
+                }
+
+                Constants.SUB_YEAR -> {
+                    yearSkuDetails = skuDetails
+                    val subtitleString = if (hasTrail) {
+                        trialString
+                    } else {
+                        "Start today"
+                    }
+                    val titleString = "${
+                        PurchaseManager.getFormattedPrice(skuDetails)
+                    }/ Year"
+                    
+		    // Example of PurchaseManager.getPriceValue(skuDetails) function.
+
+                    val yearMonthValue = PurchaseManager.getPriceValue(skuDetails) * 12
+                    val yearValue = PurchaseManager.getPriceValue(skuDetails)
+                    val finalPercentage = abs(100F - ((100 * yearValue) / yearMonthValue))
+                    
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+```
+### Purchase Process
+
+**Note:** purchaseSubscription & purchaseProduct is an Extension function which requires activity to use.
+
+```kotlin
+	binding.layoutContinue.setOnClickListener {
+                if (Utils.checkClickTime()) {
+                    if (Utils.isNetworkAvailable(mActivity)) {
+                        if (selectedSkuId.isNotEmpty()) {
+                            if (selectedSkuId == Constants.PROD_LIFETIME) {
+                                lifeTimeSkuDetails?.let { it1 -> purchaseProduct(it1) }
+                            } else {
+                                (if (selectedSkuId == Constants.SUB_MONTH) monthSkuDetails else yearSkuDetails)?.let { it1 -> purchaseSubscription(it1) }
+                            }
+                        }
+                    }
+                }
+            }
+```
+### Handling Purchase Events
+To handle purchase events after the purchase is completed, implement the onPurchaseReceived method. This method is triggered when a purchase event occurs.
+
+
+Subscribe to the event using @Subscribe annotation and specify the thread mode.
+```kotlin
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	fun onPurchaseReceived(event: PurchaseEventModel?) {
+		event?.let { it1 ->
+    		if (it1.isPurchaseSuccess) {
+        		it1.purchaseData?.let { handlePurchase(it)
+			}
+    		} else {
+        		Log.d("onPurchaseReceived", "it1 ${it1.errorCode}")
+    		}
+	   }
+	}
+	// Note: you have to register the event bus to retrieve callback 
+```
+
+Handling Purchase
+
+```kotlin
+	private fun handlePurchase(purchase: PurchaseData) {
+    	PurchaseManager.storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchase)
+    	PurchaseManager.storePurchaseData?.setPremiumPurchase(true)
+    	showSuccessScreen()
+	}
+	// Note: You have to store purchase related data in preference.
+	// if purchased item is premium then save in **CURRENT_PURCHASE key** & setPremiumPurchase **true** otherwise save as **productId**.
+```
+### PurchaseHistory:
+Retrieves the purchase history of both subscription and in-app products and notifies the listener with the history.
+
+```kotlin
+	PurchaseManager.getPurchaseHistory(object : PurchaseListener() {
+	override fun onPurchaseHistoryReceived(historyList: List<HistoryPurchaseData>) {
+    		if (historyList.isNotEmpty()) {
+        		// Display purchase history to the user
+        		for (history in historyList) {
+            		val productType = if (history.productType == ProductType.SUBS) "Subscription" else "In-App"
+            		val autoRenewingStatus = if (history.isAutoRenewing) "Auto-Renewing" else "Not Auto-Renewing"
+            		Log.d("PurchaseHistory", "Product: ${history.productId}, Type: $productType, Order ID: ${history.orderId}, Time: ${history.purchaseTime}, $autoRenewingStatus")
+        	}
+    		} else {
+        	// No purchase history available
+        	Log.d("PurchaseHistory", "No purchase history available.")
+    		}
+	  }
+	})
+
+
+	//Below is sample function to convert history data to JSONArray for our Userdetail API.
+
+        fun convertHistoryDataToJsonArray(array: ArrayList<HistoryPurchaseData>): JSONArray {
+    		val jsonArray = JSONArray()
+    		array.forEach { historyData ->
+        		jsonArray.put(JSONObject().apply {
+            		put("product_id", historyData.productId)
+            		put("order_id", historyData.orderId)
+            		put("purchase_time", historyData.purchaseTime)
+            		qput("auto_renew", historyData.autoRenew)
+        		})
+    		}
+    	return jsonArray
+	}
+```
