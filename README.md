@@ -3,6 +3,7 @@ Used for basic functions and data.
 
 [![](https://jitpack.io/v/hashonetech/commons.svg)](https://jitpack.io/#hashonetech/commons)
 
+```gradle
 	allprojects {
 		repositories {
 			...
@@ -13,6 +14,8 @@ Used for basic functions and data.
 	dependencies {
 	        implementation 'com.github.hashonetech:commons:v1.0.20'
 	}
+```
+
 ## 📸 Screenshot
 
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/104345897/b494ac15-8716-462e-bc3b-c97f34c3b298" width="30%"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -21,6 +24,7 @@ Used for basic functions and data.
 
  ## AndroidManifest.xml
 
+```xml
 	<application
 		...
 		tools:replace="android:theme,android:name">
@@ -34,17 +38,22 @@ Used for basic functions and data.
 		    ...>
 		</provider>
 	 </application>
+```
 
  ## MyApplication
+ ```kotlin
  	//TODO: Extends Application class with CommonApplication:
  	MyApplication: CommonApplication()
+```
   
  ## BaseActivity
+ ```kotlin
  	//TODO: Extends BaseActivity class with Common Lib BaseActivity:
  	BaseActivity: BaseActivity()
-  
-## ContactUs
+```
 
+## ContactUs
+```kotlin
 	ContactUs.open(activity = this, ContactUs.build(
                 emailBuilder = ContactUs.EmailBuilder(
                     emailTitle = "",
@@ -156,9 +165,10 @@ Used for basic functions and data.
                     buttonTextSize = 16F,
                 )
             })
- 
-## Language
+```
 
+## Language
+```kotlin
 	mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
                     languageItemsList = ArrayList<LanguageItem>().apply {
@@ -261,6 +271,8 @@ Used for basic functions and data.
                 }
             )
         }
+```
+
 # In-App Billing
 
 ### Initialize BillingClient
