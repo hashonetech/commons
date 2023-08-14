@@ -21,9 +21,24 @@ Used for basic functions and data.
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/104345897/b494ac15-8716-462e-bc3b-c97f34c3b298" width="30%"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/104345897/435c7343-778b-4bfd-bdd3-605bb91eb162" width="30%"> 
 
+Table of contents
+=================
+
 <!--ts-->
 * [AndroidManifest](#androidmanifest)
+* [MyApplication](#myapplication)
+* [BaseActivity](#baseactivity)
+* [ContactUs](#contactus)
+* [Language](#language)
 * [In-App Billing](#in-app-billing)
+	* [Initialize BillingClient](#initialize-billingclient)
+ 	* [Checking User Premium Status](#checking-user-premium-status)
+  	* [Retrieving Product and Subscription Details](#retrieving-product-and-subscription-details)
+  	* [Setting Up Pro UI Items](#setting-up-pro-ui-items)
+  	* [Purchase Process](#purchase-process)
+  	* [Handling Purchase Events](#handling-purchase-events)
+  	* [Handling Purchase](#handling-purchase)
+  	* [PurchaseHistory](#purchasehistory)
 <!--te-->
 
  ## AndroidManifest
@@ -457,7 +472,7 @@ Subscribe to the event using @Subscribe annotation and specify the thread mode.
 	// Note: you have to register the event bus to retrieve callback 
 ```
 
-Handling Purchase
+### Handling Purchase
 
 ```kotlin
 	private fun handlePurchase(purchase: PurchaseData) {
