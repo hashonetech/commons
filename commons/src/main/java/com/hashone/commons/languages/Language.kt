@@ -77,15 +77,21 @@ open class Language(val builder: Builder) : Serializable {
         @FloatRange
         var titleSize: Float = 14F,
         @IntRange
-        var titlePaddingStart: Int = 16,
+        var paddingStart: Int = 16,
         @IntRange
-        var titlePaddingEnd: Int = 0,
+        var paddingEnd: Int = 0,
         @IntRange
-        var titlePaddingTop: Int = 24,
+        var paddingTop: Int = 16,
         @IntRange
-        var titlePaddingBottom: Int = 24,
+        var paddingBottom: Int = 16,
         @IntRange
-        var titlePaddingAll: Int = -1,
+        var paddingAll: Int = -1,
+
+        @FontRes
+        var originalNameFont: Int = R.font.roboto_regular,
+        @FloatRange
+        var originalNameSize: Float = 12F,
+
         @IntRange
         var iconPaddingStart: Int = 8,
         @IntRange

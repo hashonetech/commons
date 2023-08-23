@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -14,6 +13,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -23,7 +23,6 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
@@ -53,7 +52,9 @@ import com.hashone.commons.utils.dpToPx
 import com.hashone.commons.utils.openKeyboard
 import com.hashone.commons.utils.sendContactEmail
 import com.hashone.commons.utils.showSnackBar
+import java.math.BigDecimal
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.Locale
 import kotlin.math.roundToInt
 
@@ -357,12 +358,12 @@ class ContactUsActivity : BaseActivity() {
 //            )
 //
 //            radioButton.setButtonTintList(colorStateList)
-            radioButton.setPadding(
-                dpToPx(4F).roundToInt(),
-                dpToPx(0F).roundToInt(),
-                dpToPx(32F).roundToInt(),
-                dpToPx(0F).roundToInt()
-            )
+//            radioButton.setPadding(
+//                dpToPx(4F).roundToInt(),
+//                dpToPx(0F).roundToInt(),
+//                dpToPx(32F).roundToInt(),
+//                dpToPx(0F).roundToInt()
+//            )
             val flexLayoutParams =
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             radioButton.layoutParams = flexLayoutParams
@@ -385,8 +386,8 @@ class ContactUsActivity : BaseActivity() {
                     }
                 return@setOnTouchListener true
             }
-
             binding.flexRadioButtons.addView(radioButton)
+            binding.flexRadioButtons.setSpaceBetweenItem(dpToPx(32F))
         }
     }
 
@@ -626,7 +627,9 @@ class ContactUsActivity : BaseActivity() {
         if (attachmentUri3 != null) {
             localFileSize += attachmentUri3!!.length(contentResolver)
         }
+
         val decimalFormat = DecimalFormat("0.00")
+        decimalFormat.decimalFormatSymbols = DecimalFormatSymbols(Locale.US)
         val sizeInMB = localFileSize / (1024 * 1024).toDouble()
         attachmentFileSize = sizeInMB
         binding.textViewAttachmentSize.text = String.format(

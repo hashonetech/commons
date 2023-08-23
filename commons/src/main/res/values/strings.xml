@@ -62,6 +62,23 @@
         <item>uk</item>
     </string-array>
 
+
+    <string-array name="language_original_names" translatable="false">
+        <item>Indonesia</item>
+        <item>Bangladesh</item>
+        <item>Germany</item>
+        <item></item>
+        <item>Spain</item>
+        <item>Philippines</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Portugal</item>
+        <item>Russia</item>
+        <item>Turkey</item>
+        <item>Ukraine</item>
+    </string-array>
+
+
     <string name="title_activity_language">LanguageActivity</string>
     <!--Locale Languages-->
 

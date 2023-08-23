@@ -3,11 +3,9 @@ package com.hashone.commons
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import com.google.gson.Gson
 import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.base.BetterActivityResult
 import com.hashone.commons.base.CommonApplication
@@ -83,98 +81,91 @@ class MainActivity : BaseActivity() {
                             )
                         )
                     }),
-
-
                 ) {
-//                //TODO: Screen
-//                screenBuilder = ContactUs.ScreenBuilder(
-//                    isFullScreen = false,
-//                    windowBackgroundColor = R.color.extra_extra_light_gray,
-//                    statusBarColor = R.color.extra_extra_light_gray,
-//                    navigationBarColor = R.color.extra_extra_light_gray,
-//                )
-//
-//                //TODO: Toolbar
-//                toolBarBuilder = ContactUs.ToolBarBuilder(
-//                    toolBarColor = R.color.white,
-//                    backPressIcon = R.drawable.ic_back_contact_us,
-//                    backPressIconDescription = "",
-//                    toolBarTitle = "",
-//                    toolBarTitleColor = R.color.black,
-//                    toolBarTitleFont = R.font.outfit_semi_bold,
-//                    toolBarTitleSize = 16F,
-//                )
-//
-//                //TODO: Radio Buttons
-//                radioButtonBinding = ContactUs.RadioButtonBuilder(
-//                    radioButtonTextColor = R.color.black,
-//                    radioButtonTextFont = R.font.roboto_medium,
-//                    radioButtonTextSize = 14F,
-//                )
-//
-//                //TODO: Message UI
-//                messageBuilder = ContactUs.MessageBuilder(
-//                    messageCardBackgroundColor = R.color.extra_extra_light_gray,
-//                    messageCardBackgroundRadius = 8F,
-//                    messageHint = "",
-//                    message = "",
-//                    messageColor = R.color.black,
-//                    messageFont = R.font.roboto_medium,
-//                    messageSize = 14F,
-//                )
-//
-//                //TODO: Attachment UI
-//                attachmentBuilder = ContactUs.AttachmentBuilder(
-//                    attachmentCardBackgroundColor = R.color.extra_extra_light_gray,
-//                    attachmentCardBackgroundRadius = 8F,
-//                    attachmentBackgroundColor = R.color.white,
-//                    attachmentBackgroundRadius = 8F,
-//                    attachmentTitle = "",
-//                    attachmentTitleColor = R.color.light_gray,
-//                    attachmentTitleFont = R.font.roboto_medium,
-//                    attachmentTitleSize = 14F,
-//                    attachmentIcon = R.drawable.ic_contact_us_add_attachment,
-//                    attachmentDeleteIcon = R.drawable.ic_contact_us_img_delete,
-//                )
-//
-//                //TODO: Action button
-//                actionButtonBuilder = ContactUs.ActionButtonBuilder(
-//                    buttonBackgroundInactiveColor = R.color.light_gray,
-//                    buttonBackgroundColor = R.color.black,
-//                    buttonRadius = 30F,
-//                    buttonText = "",
-//                    buttonTextColor = R.color.white,
-//                    buttonTextFont = R.font.outfit_bold,
-//                    buttonTextSize = 16F,
-//                )
+                //TODO: Screen
+               /* screenBuilder = ContactUs.ScreenBuilder(
+                    isFullScreen = false,
+                    windowBackgroundColor = R.color.extra_extra_light_gray,
+                    statusBarColor = R.color.white,
+                    navigationBarColor = R.color.extra_extra_light_gray,
+                )
+
+                //TODO: Toolbar
+                toolBarBuilder = ContactUs.ToolBarBuilder(
+                    toolBarColor = R.color.white,
+                    backPressIcon = R.drawable.ic_back_contact_us,
+                    backPressIconDescription = "",
+                    toolBarTitle = "",
+                    toolBarTitleColor = R.color.black,
+                    toolBarTitleFont = R.font.outfit_semi_bold,
+                    toolBarTitleSize = 16F,
+                )
+
+                //TODO: Radio Buttons
+                radioButtonBinding = ContactUs.RadioButtonBuilder(
+                    radioButtonTextColor = R.color.black,
+                    radioButtonTextFont = R.font.roboto_medium,
+                    radioButtonTextSize = 14F,
+                )
+
+                //TODO: Message UI
+                messageBuilder = ContactUs.MessageBuilder(
+                    messageCardBackgroundColor = R.color.white,
+                    messageCardBackgroundRadius = 8F,
+                    messageHint = "",
+                    message = "",
+                    messageColor = R.color.black,
+                    messageFont = R.font.roboto_medium,
+                    messageSize = 14F,
+                )
+
+                //TODO: Attachment UI
+                attachmentBuilder = ContactUs.AttachmentBuilder(
+                    attachmentCardBackgroundColor = R.color.extra_extra_light_gray,
+                    attachmentCardBackgroundRadius = 8F,
+                    attachmentBackgroundColor = R.color.white,
+                    attachmentBackgroundRadius = 8F,
+                    attachmentTitle = "",
+                    attachmentTitleColor = R.color.light_gray,
+                    attachmentTitleFont = R.font.roboto_medium,
+                    attachmentTitleSize = 14F,
+                    attachmentIcon = R.drawable.ic_contact_us_add_attachment,
+                    attachmentDeleteIcon = R.drawable.ic_contact_us_img_delete,
+                )
+
+                //TODO: Action button
+                actionButtonBuilder = ContactUs.ActionButtonBuilder(
+                    buttonBackgroundInactiveColor = R.color.light_gray,
+                    buttonBackgroundColor = R.color.black,
+                    buttonRadius = 30F,
+                    buttonText = "",
+                    buttonTextColor = R.color.white,
+                    buttonTextFont = R.font.outfit_bold,
+                    buttonTextSize = 16F,
+                )*/
             })
         }
 
         if (CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE) != null && CommonApplication.mInstance.mStoreUserData.getString(
                 DEFAULT_LANGUAGE
             )!!.isEmpty()
-        )
+        ) {
             CommonApplication.mInstance.mStoreUserData.setString(
                 DEFAULT_LANGUAGE,
                 "en"
             )
+        }
 
         val languageList = LanguageItem().getLanguages(this)
 
 
         mBinding.buttonLanguage.setOnClickListener {
             languageList.forEachIndexed { index, languageItem ->
-                Log.d(
-                    "TestData",
-                    ":${languageItem.languageCode} == ::${
-                        CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE)
-                    }"
-                )
-                languageItem.isChecked =
-                    (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(
-                        DEFAULT_LANGUAGE
-                    ))
-                Log.d("TestData", "${languageItem.languageCode}:::${languageItem.isChecked}")
+                languageItem.isChecked = (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE))
+                if (languageItem.isChecked) {
+                    val localContext = LocaleHelper.setLocale(mActivity, languageItem.languageCode)
+                    CommonApplication.mInstance.setLocaleContext(localContext!!)
+                }
             }
 
             Language.open(activity = this, Language.build(
@@ -217,10 +208,10 @@ class MainActivity : BaseActivity() {
                         bgColor = R.color.white,
                         titleFont = R.font.roboto_medium,
                         titleSize = 14F,
-                        titlePaddingStart = 16,
-                        titlePaddingEnd = 0,
-                        titlePaddingTop = 24,
-                        titlePaddingBottom = 24,
+                        paddingStart = 16,
+                        paddingEnd = 0,
+                        paddingTop = 24,
+                        paddingBottom = 24,
                         iconPaddingStart = 8,
                         iconPaddingEnd = 8,
                         iconPaddingTop = 8,
@@ -238,12 +229,6 @@ class MainActivity : BaseActivity() {
                                         intentData.extras?.serializable<LanguageItem>(
                                             KEY_RETURN_LANGUAGE_DATA
                                         )
-                                    Log.d(
-                                        "TestData",
-                                        "onActivityResult languageItem:" + Gson().toJson(
-                                            languageItem
-                                        )
-                                    )
                                     languageItem?.let {
                                         CommonApplication.mInstance.mStoreUserData.setString(
                                             DEFAULT_LANGUAGE_NAME,
@@ -266,8 +251,7 @@ class MainActivity : BaseActivity() {
                                         CommonApplication.mInstance.setLocaleContext(localContext!!)
                                         sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
                                         /*Below Code use to tell System to set App language*/
-                                        val localeList =
-                                            LocaleListCompat.forLanguageTags(languageItem.languageCode)
+                                        val localeList = LocaleListCompat.forLanguageTags(languageItem.languageCode)
                                         AppCompatDelegate.setApplicationLocales(localeList)
 
                                         mBinding.buttonContactus.text =

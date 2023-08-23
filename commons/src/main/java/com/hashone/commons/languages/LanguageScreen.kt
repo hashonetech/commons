@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -31,9 +32,12 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.LocaleListCompat
 import com.hashone.commons.R
+import com.hashone.commons.base.CommonApplication
 import com.hashone.commons.languages.LanguageActivity.Companion.KEY_RETURN_LANGUAGE_DATA
 import com.hashone.commons.languages.ui.theme.CircularIndeterminateProgressBar
+import com.hashone.commons.utils.ACTION_LANGUAGE_CHANGE
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,6 +90,18 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
             }
         ) { languageItem ->
             activity?.let { myActivity ->
+                val localContext =
+                    LocaleHelper.setLocale(
+                        myActivity,
+                        languageItem.languageCode
+                    )
+                CommonApplication.mInstance.setLocaleContext(localContext!!)
+                myActivity.sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
+                /*Below Code use to tell System to set App language*/
+                val localeList =
+                    LocaleListCompat.forLanguageTags(languageItem.languageCode)
+                AppCompatDelegate.setApplicationLocales(localeList)
+
                 myActivity.setResult(Activity.RESULT_OK, Intent().apply {
                     putExtra(KEY_RETURN_LANGUAGE_DATA, languageItem)
                 })
@@ -139,9 +155,6 @@ fun LanguageSelection(
         }
         languageList.indexOf(languageItem)
     }
-
-    Log.d("TestData", "LanguageSelection initialSelectedIndex:$initialSelectedIndex  :${languageList.size}  ")
-
 
     AnimatedLanguageSelection(languageBuilder = languageBuilder,
         languageList = languageList,

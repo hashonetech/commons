@@ -130,21 +130,30 @@ fun LanguageSelectionCard(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             if (languageData.languageName.isNotEmpty()) {
-                val mModifier = if (languageItemBuilder.titlePaddingAll != -1) Modifier.padding(
-                    languageItemBuilder.titlePaddingAll.dp
+                val mModifier = if (languageItemBuilder.paddingAll != -1) Modifier.padding(
+                    languageItemBuilder.paddingAll.dp
                 ) else Modifier.padding(
-                    start = languageItemBuilder.titlePaddingStart.dp,
-                    top = languageItemBuilder.titlePaddingTop.dp,
-                    end = languageItemBuilder.titlePaddingEnd.dp,
-                    bottom = languageItemBuilder.titlePaddingBottom.dp
+                    start = languageItemBuilder.paddingStart.dp,
+                    top = languageItemBuilder.paddingTop.dp + if (languageData.languageOriginalName.isNullOrEmpty()) 8.dp else 0.dp,
+                    end = languageItemBuilder.paddingEnd.dp,
+                    bottom = languageItemBuilder.paddingBottom.dp  + if (languageData.languageOriginalName.isNullOrEmpty()) 8.dp else 0.dp
                 )
-                Text(
-                    modifier = mModifier,
-                    text = languageData.languageName,
-                    color = itemColor,
-                    fontSize = fontSize.sp,
-                    fontFamily = font,
-                )
+                Column(modifier = mModifier) {
+                    Text(
+                        text = languageData.languageName,
+                        color = itemColor,
+                        fontSize = fontSize.sp,
+                        fontFamily = font,
+                    )
+                    if (languageData.languageOriginalName.isNotEmpty())
+                        Text(
+                            text = languageData.languageOriginalName,
+                            color = itemColor,
+                            fontSize = languageItemBuilder.originalNameSize.sp,
+                            fontFamily = FontFamily(Font(languageItemBuilder.originalNameFont)),
+                        )
+                }
+
             }
             if (selectedIcon != null) {
                 val mModifier = if (languageItemBuilder.iconPaddingAll != -1) Modifier.padding(

@@ -23,6 +23,7 @@
 
     <application
         android:name=".base.CommonApplication"
+        android:supportsRtl="true"
         android:theme="@style/Theme.Commons">
         <activity
             android:name=".languages.LanguageActivity"

@@ -16,6 +16,8 @@
 
 package com.hashone.commons.module.flexbox;
 
+import static com.hashone.commons.utils.UtilsKt.dpToPx;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -23,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -216,6 +219,8 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
     private FlexboxHelper mFlexboxHelper = new FlexboxHelper(this);
 
     private ArrayList<FlexLine> mFlexLines = new ArrayList<>();
+
+    float spaceBetweenItem = dpToPx(0F);
 
     /**
      * Used for receiving the calculation of the flex results to avoid creating a new instance
@@ -653,7 +658,6 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
                 childBottom -= mDividerHorizontalHeight;
                 childTop += mDividerHorizontalHeight;
             }
-            float spaceBetweenItem = 0f;
             switch (mJustifyContent) {
                 case JustifyContent.FLEX_START:
                     childLeft = paddingLeft;
@@ -1185,6 +1189,12 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
     public void setFlexWrap(@FlexWrap int flexWrap) {
         if (mFlexWrap != flexWrap) {
             mFlexWrap = flexWrap;
+            requestLayout();
+        }
+    }
+    public void setSpaceBetweenItem(float sBItem) {
+        if (spaceBetweenItem != sBItem) {
+            spaceBetweenItem = sBItem;
             requestLayout();
         }
     }

@@ -55,12 +55,13 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textViewToolBarTitle"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:fontFamily="@font/roboto_bold"
                             android:inputType="textCapWords"
                             android:maxLines="1"
+                            android:layout_gravity="start|center_vertical"
                             android:singleLine="true"
                             android:text="@string/label_contact"
                             android:textColor="@color/black"
@@ -107,9 +108,11 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="0dp"
                     android:background="@null"
+                    android:textAlignment="viewStart"
                     android:fontFamily="@font/roboto_medium"
-                    android:gravity="top"
+                    android:gravity="start|top"
                     android:hint="@string/label_type_here"
+                    android:layoutDirection="locale"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black"
@@ -125,7 +128,7 @@
                     android:layout_marginTop="18dp"
                     android:minHeight="212dp">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layoutAttachmentTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,10 +141,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textViewAttachmentTitle"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
+                            android:layout_gravity="start"
                             android:fontFamily="@font/roboto_medium"
                             android:text="@string/add_media"
                             android:textColor="@color/light_gray"
@@ -160,7 +163,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RelativeLayout
                         android:id="@+id/cardViewAttachments1"

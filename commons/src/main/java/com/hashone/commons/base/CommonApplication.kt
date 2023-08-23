@@ -2,6 +2,7 @@ package com.hashone.commons.base
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.hashone.commons.languages.LanguageItem
