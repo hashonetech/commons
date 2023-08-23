@@ -12,7 +12,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.20'
+	        implementation 'com.github.hashonetech:commons:v1.0.21'
 	}
 ```
 
@@ -83,39 +83,44 @@ Table of contents
                     androidDeviceToken = "",
                     customerNumber = "",
                     countryCode = "",
-                    isPremium = false,
+                    isPremium = true/false,
                     purchasedTitle = "",
                     orderId = "",
                     showKeyboard = false,
                 ),
-                mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
-                    allowVideosOnly = false,
-                    allowBoth = true,
+                mediaBuilder = ContactUs.MediaBuilder(
+		    //TODO: Show only Photo
+		    allowPhotosOnly = true/false,
+		    //TODO: Show only Video
+                    allowVideosOnly = true/false,
+		    //TODO: Show Photo and Video
+                    allowBoth = true/false,
                     maxFileSize = 15L,
                     //TODO: Ratio (messageBoxHeight / ScreenWidth)
                     messageBoxHeight = 0.4444444444,
                     //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
                     attachmentBoxHeight = 0.588888888888889,
+		    //TODO: Radio Button Item
                     optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
                         add(
                             ContactUs.OptionItem(
                                 text = "Feedback",
                                 message = "Type your feedback here.",
-                                isChecked = true
+                                isChecked = true/false
                             )
                         )
                         add(
                             ContactUs.OptionItem(
                                 text = "Issue",
                                 message = "Please describe issue in detail.",
-                                isChecked = false
+                                isChecked = true/false
                             )
                         )
                         add(
                             ContactUs.OptionItem(
                                 text = "Request",
                                 message = "Add your request here.",
-                                isChecked = false
+                                isChecked = true/false
                             )
                         )
                     }),
@@ -124,7 +129,7 @@ Table of contents
                 ) {
                 //TODO: Screen
                 screenBuilder = ContactUs.ScreenBuilder(
-                    isFullScreen = false,
+                    isFullScreen = true/false,
                     windowBackgroundColor = R.color.extra_extra_light_gray,
                     statusBarColor = R.color.extra_extra_light_gray,
                     navigationBarColor = R.color.extra_extra_light_gray,
@@ -195,14 +200,16 @@ Table of contents
                             LanguageItem(
                                 languageName = "English",
                                 languageCode = "en",
-                                isChecked = true
+				languageOriginalName = "United States",
+                                isChecked = true/false
                             )
                         ),
 			 add(
 	                      LanguageItem(
 	                          languageName = "বাংলা",
 	                          languageCode = "bn",
-	                          isChecked = false
+				  languageOriginalName = "Bangla",
+	                          isChecked = true/false
 	                        )
 	                ),
 			}
@@ -210,7 +217,7 @@ Table of contents
 
                     //TODO: Screen
                     screenBuilder = Language.ScreenBuilder(
-                        isFullScreen = false,
+                        isFullScreen = true/false,
                         windowBackgroundColor = R.color.white,
                         statusBarColor = R.color.white,
                         navigationBarColor = R.color.white,
@@ -234,14 +241,16 @@ Table of contents
                         bgColor = R.color.white,
                         titleFont = R.font.roboto_medium,
                         titleSize = 14F,
-                        titlePaddingStart = 16,
-                        titlePaddingEnd = 0,
-                        titlePaddingTop = 24,
-                        titlePaddingBottom = 24,
+                        paddingStart = 16,
+                        paddingEnd = 0,
+                        paddingTop = 24,
+                        paddingBottom = 24,
                         iconPaddingStart = 8,
                         iconPaddingEnd = 8,
                         iconPaddingTop = 8,
                         iconPaddingBottom = 8,
+                        originalNameFont = R.font.roboto_regular,
+                        originalNameSize = 12F,
                         dividerColor = R.color.secondary_extra_light_gray,
                         dividerThickness = 1,
                     )
