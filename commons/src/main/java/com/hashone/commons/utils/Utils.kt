@@ -116,6 +116,11 @@ fun sendContactEmail(
     if (builder.emailBuilder.customerNumber.isNotEmpty())
         body += "Customer No.: ${builder.emailBuilder.customerNumber}\n"
 
+    if (builder.emailBuilder.contentId.isNotEmpty())
+        body += "content Id: ${builder.emailBuilder.contentId}\n"
+    if (builder.emailBuilder.contentTitle.isNotEmpty())
+        body += "content Title: ${builder.emailBuilder.contentTitle}\n"
+
     emailIntent.putExtra(Intent.EXTRA_TEXT, body)
     if (fileUris.size > 0) {
         emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, fileUris)

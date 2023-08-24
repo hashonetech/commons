@@ -160,6 +160,8 @@ open class ContactUs(val builder: Builder) : Serializable {
         var isPremium: Boolean = false,
         var purchasedTitle: String = "",
         var orderId: String = "",
+        var contentId: String = "",
+        var contentTitle: String = "",
         var showKeyboard: Boolean = false,
     ) : Serializable
     class MediaBuilder(

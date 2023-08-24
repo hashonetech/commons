@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
+import androidx.annotation.FloatRange
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.BaseActivity
@@ -48,6 +49,8 @@ class MainActivity : BaseActivity() {
                     isPremium = false,
                     purchasedTitle = "",
                     orderId = "",
+                    contentId = "",
+                    contentTitle = "",
                     showKeyboard = false,
                 ),
                 mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
@@ -210,12 +213,14 @@ class MainActivity : BaseActivity() {
                         titleSize = 14F,
                         paddingStart = 16,
                         paddingEnd = 0,
-                        paddingTop = 24,
-                        paddingBottom = 24,
+                        paddingTop = 16,
+                        paddingBottom = 16,
                         iconPaddingStart = 8,
                         iconPaddingEnd = 8,
                         iconPaddingTop = 8,
                         iconPaddingBottom = 8,
+                        originalNameFont = R.font.roboto_regular,
+                        originalNameSize = 12F,
                         dividerColor = R.color.secondary_extra_light_gray,
                         dividerThickness = 1,
                     )
