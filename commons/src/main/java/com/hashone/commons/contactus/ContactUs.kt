@@ -1,14 +1,14 @@
 package com.hashone.commons.contactus
 
 import android.app.Activity
+import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
 import androidx.annotation.LongDef
-import androidx.compose.material3.RadioButton
+import com.google.android.datatransport.runtime.dagger.multibindings.LongKey
 import com.hashone.commons.R
-import com.hashone.commons.languages.Language
 import java.io.Serializable
 
 open class ContactUs(val builder: Builder) : Serializable {
@@ -71,81 +71,83 @@ open class ContactUs(val builder: Builder) : Serializable {
 
     class ToolBarBuilder(
         @ColorRes
-        var toolBarColor: Int = R.color.extra_extra_light_gray,
+        var barColor: Int = R.color.extra_extra_light_gray,
         @DrawableRes
-        var backPressIcon: Int = R.drawable.ic_back_contact_us,
-        var backPressIconDescription: String = "",
-        var toolBarTitle: String = "",
+        var backIcon: Int = R.drawable.ic_back_contact_us,
+        var backIconDescription: String = "",
+        var title: String = "",
         @ColorRes
-        var toolBarTitleColor: Int = R.color.black,
+        var titleColor: Int = R.color.black,
         @FontRes
-        var toolBarTitleFont: Int = R.font.outfit_semi_bold,
+        var titleFont: Int = R.font.outfit_semi_bold,
         @FloatRange
-        var toolBarTitleSize: Float = 16F,
+        var titleSize: Float = 16F,
     ) : Serializable
 
     class RadioButtonBuilder(
         @ColorRes
-        var radioButtonTextColor: Int = R.color.black,
+        var selectedColor: Int = R.color.black,
+        @ColorRes
+        var defaultColor: Int = R.color.black,
         @FontRes
-        var radioButtonTextFont: Int = R.font.roboto_medium,
+        var textFont: Int = R.font.roboto_medium,
         @FloatRange
-        var radioButtonTextSize: Float = 14F,
+        var textSize: Float = 14F,
     ) : Serializable
 
     class MessageBuilder(
         @ColorRes
-        var messageCardBackgroundColor: Int = R.color.extra_extra_light_gray,
+        var backgroundColor: Int = R.color.extra_extra_light_gray,
         @FloatRange
-        var messageCardBackgroundRadius: Float = 8F,
-        var messageHint: String = "",
+        var backgroundRadius: Float = 8F,
+        var hint: String = "",
         @ColorRes
-        var messageHintColor: Int = R.color.light_gray,
+        var hintColor: Int = R.color.light_gray,
         var message: String = "",
         @ColorRes
-        var messageColor: Int = R.color.black,
+        var color: Int = R.color.black,
         @FontRes
-        var messageFont: Int = R.font.roboto_medium,
+        var font: Int = R.font.roboto_medium,
         @FloatRange
-        var messageSize: Float = 14F,
+        var size: Float = 14F,
     ) : Serializable
 
     class AttachmentBuilder(
         @ColorRes
-        var attachmentCardBackgroundColor: Int = R.color.extra_extra_light_gray,
+        var cardBackgroundColor: Int = R.color.extra_extra_light_gray,
         @FloatRange
-        var attachmentCardBackgroundRadius: Float = 8F,
+        var cardBackgroundRadius: Float = 8F,
         @ColorRes
-        var attachmentBackgroundColor: Int = R.color.white,
+        var backgroundColor: Int = R.color.white,
         @FloatRange
-        var attachmentBackgroundRadius: Float = 8F,
-        var attachmentTitle: String = "",
+        var backgroundRadius: Float = 8F,
+        var title: String = "",
         @ColorRes
-        var attachmentTitleColor: Int = R.color.light_gray,
+        var titleColor: Int = R.color.light_gray,
         @FontRes
-        var attachmentTitleFont: Int = R.font.roboto_medium,
+        var titleFont: Int = R.font.roboto_medium,
         @FloatRange
-        var attachmentTitleSize: Float = 14F,
+        var titleSize: Float = 14F,
         @DrawableRes
-        var attachmentIcon: Int = R.drawable.ic_contact_us_add_attachment,
+        var addIcon: Int = R.drawable.ic_contact_us_add_attachment,
         @DrawableRes
-        var attachmentDeleteIcon: Int = R.drawable.ic_contact_us_img_delete,
+        var deleteIcon: Int = R.drawable.ic_contact_us_img_delete,
     ) : Serializable
 
     class ActionButtonBuilder(
         @ColorRes
-        var buttonBackgroundInactiveColor: Int = R.color.light_gray,
+        var backgroundInactiveColor: Int = R.color.light_gray,
         @ColorRes
-        var buttonBackgroundColor: Int = R.color.black,
+        var backgroundColor: Int = R.color.black,
         @FloatRange
-        var buttonRadius: Float = 30F,
-        var buttonText: String = "",
+        var radius: Float = 30F,
+        var text: String = "",
         @ColorRes
-        var buttonTextColor: Int = R.color.white,
+        var textColor: Int = R.color.white,
         @FontRes
-        var buttonTextFont: Int = R.font.outfit_bold,
+        var textFont: Int = R.font.outfit_bold,
         @FloatRange
-        var buttonTextSize: Float = 16F,
+        var textSize: Float = 16F,
     ) : Serializable
 
     class EmailBuilder(

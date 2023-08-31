@@ -92,6 +92,10 @@ open class BaseActivity : AppCompatActivity() {
 
             dialogBinding.textViewYes.isVisible = positionButtonText.isNotEmpty()
             dialogBinding.textViewNo.isVisible = negativeButtonText.isNotEmpty()
+
+            dialogBinding.textViewYes.isAllCaps = true
+            dialogBinding.textViewNo.isAllCaps = true
+
             dialogBinding.view4.isVisible = neutralButtonText.isNotEmpty()
             dialogBinding.textViewNeutral.isVisible = neutralButtonText.isNotEmpty()
 

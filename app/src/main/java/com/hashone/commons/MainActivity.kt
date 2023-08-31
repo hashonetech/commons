@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
-import androidx.annotation.FloatRange
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.BaseActivity
@@ -86,7 +85,7 @@ class MainActivity : BaseActivity() {
                     }),
                 ) {
                 //TODO: Screen
-               /* screenBuilder = ContactUs.ScreenBuilder(
+                screenBuilder = ContactUs.ScreenBuilder(
                     isFullScreen = false,
                     windowBackgroundColor = R.color.extra_extra_light_gray,
                     statusBarColor = R.color.white,
@@ -95,57 +94,57 @@ class MainActivity : BaseActivity() {
 
                 //TODO: Toolbar
                 toolBarBuilder = ContactUs.ToolBarBuilder(
-                    toolBarColor = R.color.white,
-                    backPressIcon = R.drawable.ic_back_contact_us,
-                    backPressIconDescription = "",
-                    toolBarTitle = "",
-                    toolBarTitleColor = R.color.black,
-                    toolBarTitleFont = R.font.outfit_semi_bold,
-                    toolBarTitleSize = 16F,
+                    barColor = R.color.white,
+                    backIcon = R.drawable.ic_back_contact_us,
+                    backIconDescription = "",
+                    title = "",
+                    titleColor = R.color.black,
+                    titleFont = R.font.outfit_semi_bold,
+                    titleSize = 16F,
                 )
 
                 //TODO: Radio Buttons
                 radioButtonBinding = ContactUs.RadioButtonBuilder(
-                    radioButtonTextColor = R.color.black,
-                    radioButtonTextFont = R.font.roboto_medium,
-                    radioButtonTextSize = 14F,
+                    selectedColor = R.color.black,
+                    textFont = R.font.roboto_medium,
+                    textSize = 14F,
                 )
 
                 //TODO: Message UI
                 messageBuilder = ContactUs.MessageBuilder(
-                    messageCardBackgroundColor = R.color.white,
-                    messageCardBackgroundRadius = 8F,
-                    messageHint = "",
+                    backgroundColor = R.color.white,
+                    backgroundRadius = 8F,
+                    hint = "",
                     message = "",
-                    messageColor = R.color.black,
-                    messageFont = R.font.roboto_medium,
-                    messageSize = 14F,
+                    color = R.color.black,
+                    font = R.font.roboto_medium,
+                    size = 14F,
                 )
 
                 //TODO: Attachment UI
                 attachmentBuilder = ContactUs.AttachmentBuilder(
-                    attachmentCardBackgroundColor = R.color.extra_extra_light_gray,
-                    attachmentCardBackgroundRadius = 8F,
-                    attachmentBackgroundColor = R.color.white,
-                    attachmentBackgroundRadius = 8F,
-                    attachmentTitle = "",
-                    attachmentTitleColor = R.color.light_gray,
-                    attachmentTitleFont = R.font.roboto_medium,
-                    attachmentTitleSize = 14F,
-                    attachmentIcon = R.drawable.ic_contact_us_add_attachment,
-                    attachmentDeleteIcon = R.drawable.ic_contact_us_img_delete,
+                    cardBackgroundColor = R.color.extra_extra_light_gray,
+                    cardBackgroundRadius = 8F,
+                    backgroundColor = R.color.white,
+                    backgroundRadius = 8F,
+                    title = "",
+                    titleColor = R.color.light_gray,
+                    titleFont = R.font.roboto_medium,
+                    titleSize = 14F,
+                    addIcon = R.drawable.ic_contact_us_add_attachment,
+                    deleteIcon = R.drawable.ic_contact_us_img_delete,
                 )
 
                 //TODO: Action button
                 actionButtonBuilder = ContactUs.ActionButtonBuilder(
-                    buttonBackgroundInactiveColor = R.color.light_gray,
-                    buttonBackgroundColor = R.color.black,
-                    buttonRadius = 30F,
-                    buttonText = "",
-                    buttonTextColor = R.color.white,
-                    buttonTextFont = R.font.outfit_bold,
-                    buttonTextSize = 16F,
-                )*/
+                    backgroundInactiveColor = R.color.light_gray,
+                    backgroundColor = R.color.black,
+                    radius = 30F,
+                    text = "",
+                    textColor = R.color.white,
+                    textFont = R.font.outfit_bold,
+                    textSize = 16F,
+                )
             })
         }
 
