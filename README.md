@@ -12,7 +12,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.21'
+	        implementation 'com.github.hashonetech:commons:v1.0.23'
 	}
 ```
 
@@ -74,6 +74,8 @@ Table of contents
 
 ## ContactUs
 ```kotlin
+//TODO: Builder inner variable name updated
+
 	ContactUs.open(activity = this, ContactUs.build(
                 emailBuilder = ContactUs.EmailBuilder(
                     emailTitle = "",
@@ -84,9 +86,12 @@ Table of contents
                     androidDeviceToken = "",
                     customerNumber = "",
                     countryCode = "",
-                    isPremium = true/false,
+                    isPremium = false,
                     purchasedTitle = "",
                     orderId = "",
+		    //TODO: If you want to pass content details use (contentId, contentTitle)
+                    contentId = "",
+                    contentTitle = "",
                     showKeyboard = false,
                 ),
                 mediaBuilder = ContactUs.MediaBuilder(
@@ -96,6 +101,7 @@ Table of contents
                     allowVideosOnly = true/false,
 		    //TODO: Show Photo and Video
                     allowBoth = true/false,
+		    //TODO: Max file size in MB
                     maxFileSize = 15L,
                     //TODO: Ratio (messageBoxHeight / ScreenWidth)
                     messageBoxHeight = 0.4444444444,
@@ -137,63 +143,65 @@ Table of contents
                 )
 
                 //TODO: Toolbar
-                toolBarBuilder = ContactUs.ToolBarBuilder(
-                    toolBarColor = R.color.white,
-                    backPressIcon = R.drawable.ic_back_contact_us,
-                    backPressIconDescription = "",
-                    toolBarTitle = "",
-                    toolBarTitleColor = R.color.black,
-                    toolBarTitleFont = R.font.outfit_semi_bold,
-                    toolBarTitleSize = 16F,
-                )
+                toolBarBuilder = Language.ToolBarBuilder(
+                        toolBarColor = R.color.white,
+                        backIcon = R.drawable.ic_back,
+                        title = getLocaleString(com.hashone.commons.test.R.string.label_language),
+                        titleColor = R.color.black,
+                        titleFont = R.font.roboto_medium,
+                        titleSize = 16F,
+                    )
 
                 //TODO: Radio Buttons
                 radioButtonBinding = ContactUs.RadioButtonBuilder(
-                    radioButtonTextColor = R.color.black,
-                    radioButtonTextFont = R.font.roboto_medium,
-                    radioButtonTextSize = 14F,
+                    selectedColor = R.color.black,
+		    //TODO: New, now you set radio button default color
+                    defaultColor = R.color.black,
+                    textFont = R.font.roboto_medium,
+                    textSize = 14F,
                 )
 
                 //TODO: Message UI
                 messageBuilder = ContactUs.MessageBuilder(
-                    messageCardBackgroundColor = R.color.extra_extra_light_gray,
-                    messageCardBackgroundRadius = 8F,
-                    messageHint = "",
+                    backgroundColor = R.color.white,
+                    backgroundRadius = 8F,
+                    hint = "",
                     message = "",
-                    messageColor = R.color.black,
-                    messageFont = R.font.roboto_medium,
-                    messageSize = 14F,
+                    color = R.color.black,
+                    font = R.font.roboto_medium,
+                    size = 14F,
                 )
 
                 //TODO: Attachment UI
                 attachmentBuilder = ContactUs.AttachmentBuilder(
-                    attachmentCardBackgroundColor = R.color.extra_extra_light_gray,
-                    attachmentCardBackgroundRadius = 8F,
-                    attachmentBackgroundColor = R.color.white,
-                    attachmentBackgroundRadius = 8F,
-                    attachmentTitle = "",
-                    attachmentTitleColor = R.color.light_gray,
-                    attachmentTitleFont = R.font.roboto_medium,
-                    attachmentTitleSize = 14F,
-                    attachmentIcon = R.drawable.ic_contact_us_add_attachment,
-                    attachmentDeleteIcon = R.drawable.ic_contact_us_img_delete,
+                    cardBackgroundColor = R.color.extra_extra_light_gray,
+                    cardBackgroundRadius = 8F,
+                    backgroundColor = R.color.white,
+                    backgroundRadius = 8F,
+                    title = "",
+                    titleColor = R.color.light_gray,
+                    titleFont = R.font.roboto_medium,
+                    titleSize = 14F,
+                    addIcon = R.drawable.ic_contact_us_add_attachment,
+                    deleteIcon = R.drawable.ic_contact_us_img_delete,
                 )
 
                 //TODO: Action button
                 actionButtonBuilder = ContactUs.ActionButtonBuilder(
-                    buttonBackgroundInactiveColor = R.color.light_gray,
-                    buttonBackgroundColor = R.color.black,
-                    buttonRadius = 30F,
-                    buttonText = "",
-                    buttonTextColor = R.color.white,
-                    buttonTextFont = R.font.outfit_bold,
-                    buttonTextSize = 16F,
+                    backgroundInactiveColor = R.color.light_gray,
+                    backgroundColor = R.color.black,
+                    radius = 30F,
+                    text = "",
+                    textColor = R.color.white,
+                    textFont = R.font.outfit_bold,
+                    textSize = 16F,
                 )
             })
 ```
 
 ## Language
 ```kotlin
+//TODO: Builder inner variable name updated
 	mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
                     languageItemsList = ArrayList<LanguageItem>().apply {
