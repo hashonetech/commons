@@ -88,7 +88,7 @@ Table of contents
                     androidDeviceToken = "",
                     customerNumber = "",
                     countryCode = "",
-		    //TODO: Use for Premium details
+		    //TODO: Use for Premium purchase details
                     isPremium = false,
                     purchasedTitle = "",
                     orderId = "",
@@ -327,7 +327,7 @@ Table of contents
 ```
 
 ### Checking User Premium Status
-To determine if a user has premium access, you can call the isPremium method within your splash screen or any relevant location. Ensure you have an array of product IDs representing premium subscriptions and products.
+To determine if a user has premium access, you can call the **isPremium()** method within your splash screen or any relevant location. Ensure you have an array of product IDs representing premium subscriptions and products.
 
 ```kotlin
 	val premiumArray = arrayListOf(Constants.SUB_YEAR, Constants.SUB_MONTH, Constants.PROD_LIFETIME)
@@ -344,7 +344,7 @@ To determine if a user has premium access, you can call the isPremium method wit
 
 ### Retrieving Product and Subscription Details
 
-Fetch the details of products and subscriptions to display related information in your Pro screen. Use the queryAllProductDetails method and provide the list of product IDs
+Fetch the details of products and subscriptions to display related information in your Pro screen. Use the **queryAllProductDetails()** method and provide the list of product IDs
 
 ```kotlin
 	val subscriptions = listOf(Constants.SUB_YEAR, Constants.SUB_MONTH)
@@ -372,7 +372,7 @@ Fetch the details of products and subscriptions to display related information i
 ### Setting Up Pro UI Items
 In order to display subscription and product details on your Pro screen, you can use the following example code. This code sets up the UI elements based on the retrieved **ProductDetails**.
 
--Feel free to customize and adjust the provided code snippets as per your application's needs and design preferences.
+- Feel free to customize and adjust the provided code snippets as per your application's needs and design preferences.
 
 ```kotlin
 	private fun setupProUIItem(skuDetails: ProductDetails) {
@@ -474,7 +474,7 @@ In order to display subscription and product details on your Pro screen, you can
             }
 ```
 ### Handling Purchase Events
-To handle purchase events after the purchase is completed, implement the onPurchaseReceived method. This method is triggered when a purchase event occurs.
+To handle purchase events after the purchase is completed, implement the **onPurchaseReceived()** method. This method is triggered when a purchase event occurs.
 
 
 Subscribe to the event using @Subscribe annotation and specify the thread mode.
@@ -490,7 +490,7 @@ Subscribe to the event using @Subscribe annotation and specify the thread mode.
     		}
 	   }
 	}
-	// Note: you have to register the event bus to retrieve callback 
+	// Note: you have to register the eventbus to retrieve callback 
 ```
 
 ### Handling Purchase
