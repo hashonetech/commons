@@ -88,13 +88,14 @@ Table of contents
                     androidDeviceToken = "",
                     customerNumber = "",
                     countryCode = "",
+		    //TODO: Use for Premium details
                     isPremium = false,
                     purchasedTitle = "",
                     orderId = "",
 		    //TODO: If you want to pass content details use (contentId, contentTitle)
                     contentId = "",
                     contentTitle = "",
-                    showKeyboard = false,
+                    showKeyboard = true/false,
                 ),
                 mediaBuilder = ContactUs.MediaBuilder(
 		    //TODO: Show only Photo
