@@ -40,7 +40,7 @@ Table of contents
   	* [Handling Purchase Events](#handling-purchase-events)
   	* [Handling Purchase](#handling-purchase)
   	* [PurchaseHistory](#purchasehistory)
-* [Extensions](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/extensions)
+* [Extension functions](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/extensions)
 * [FlexBox](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/module/flexbox)
 <!--te-->
 
