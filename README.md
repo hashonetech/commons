@@ -12,11 +12,11 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.23'
+	        implementation 'com.github.hashonetech:commons:v1.0.24'
 	}
 ```
 
-## 📸 Screenshot
+### 📸 Screenshot
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/103554796/07088c83-00c4-412c-b614-0e2179f4a015" width="22%"> &nbsp;&nbsp;&nbsp; 
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/103554796/9c8eab74-00cf-4fdb-8aca-43196fd688b3" width="22%"> &nbsp;&nbsp;&nbsp; 
  <img alt="App image" src="https://github.com/hashonetech/commons/assets/103554796/8ef26f4a-ca05-4234-8081-c6c454700eab" width="22%"> &nbsp;&nbsp;&nbsp; 
@@ -31,6 +31,7 @@ Table of contents
 * [BaseActivity](#baseactivity)
 * [ContactUs](#contactus)
 * [Language](#language)
+* [Chromium WebView](#chromium-webview)
 * [In-App Billing](#in-app-billing)
 	* [Initialize BillingClient](#initialize-billingclient)
  	* [Checking User Premium Status](#checking-user-premium-status)
@@ -42,9 +43,10 @@ Table of contents
   	* [PurchaseHistory](#purchasehistory)
 * [Extension functions](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/extensions)
 * [FlexBox](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/module/flexbox)
+* [Utils](https://github.com/hashonetech/commons/tree/master/commons/src/main/java/com/hashone/commons/utils)
 <!--te-->
 
- ## AndroidManifest
+ ### AndroidManifest
 
 ```xml
 	<application
@@ -62,19 +64,23 @@ Table of contents
 	 </application>
 ```
 
- ## MyApplication
+ ### MyApplication
  ```kotlin
  	//TODO: Extends Application class with CommonApplication:
  	MyApplication: CommonApplication()
+
+		//TODO: Android 13 device language update
+		languageList: ArrayList<LanguageItem>
+
 ```
   
- ## BaseActivity
+ ### BaseActivity
  ```kotlin
  	//TODO: Extends BaseActivity class with Common Lib BaseActivity:
  	BaseActivity: BaseActivity()
 ```
 
-## ContactUs
+### ContactUs
 ```kotlin
 //TODO: Builder inner variable name updated
 
@@ -202,7 +208,7 @@ Table of contents
             })
 ```
 
-## Language
+### Language
 ```kotlin
 //TODO: Builder inner variable name updated
 	mActivityLauncher.launch(
@@ -287,7 +293,7 @@ Table of contents
                                             LocaleHelper.setLocale(
                                                 mActivity,
                                                 languageItem.languageCode,
-												languageItem.countryCode
+						languageItem.countryCode
                                             )
                                         CommonApplication.mInstance.mStoreUserData.setString(
                                             DEFAULT_LANGUAGE,
@@ -314,7 +320,41 @@ Table of contents
         }
 ```
 
-# In-App Billing
+### Chromium WebView
+```kotlin
+	val customTabsIntent = CustomTabsIntent.Builder()
+	                .setShareState(CustomTabsIntent.SHARE_STATE_DEFAULT | CustomTabsIntent.SHARE_STATE_OFF | CustomTabsIntent.SHARE_STATE_ON)
+	                .setUrlBarHidingEnabled(true/false)
+	                .setInstantAppsEnabled(true/false)
+	                .setShowTitle(true/false)
+	                .setCloseButtonIcon(
+	                    BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_back)
+	                )
+	                .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM | CustomTabsIntent.COLOR_SCHEME_DARK | CustomTabsIntent.COLOR_SCHEME_LIGHT)
+	                .setDefaultColorSchemeParams(
+	                    CustomTabColorSchemeParams.Builder()
+	                        .setToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+	                        .setNavigationBarColor(ContextCompat.getColor(mActivity, R.color.white))
+	                        .setSecondaryToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+	                        .setNavigationBarDividerColor(
+	                            ContextCompat.getColor(
+	                                mActivity,
+	                                R.color.white
+	                            )
+	                        )
+	                        .build()
+	                )
+	                .build()
+	            CustomTabActivityHelper.openCustomTab(
+	                mActivity,
+	                customTabsIntent,
+	                Uri.parse(<Your URL>),
+	                <Title>,
+	                WebViewFallback()
+	            )
+```
+
+## In-App Billing
 
 ### Initialize BillingClient
 
