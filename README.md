@@ -286,7 +286,8 @@ Table of contents
                                         val localContext =
                                             LocaleHelper.setLocale(
                                                 mActivity,
-                                                languageItem.languageCode
+                                                languageItem.languageCode,
+												languageItem.countryCode
                                             )
                                         CommonApplication.mInstance.mStoreUserData.setString(
                                             DEFAULT_LANGUAGE,

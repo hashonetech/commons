@@ -9,6 +9,7 @@ class LanguageItem : Serializable {
 
     var languageName: String = ""
     var languageCode: String = ""
+    var countryCode: String = ""
     var languageOriginalName: String = ""
 
     private var translatedBy: String = ""
@@ -40,6 +41,19 @@ class LanguageItem : Serializable {
         this.languageName = languageName
         this.languageCode = languageCode
         this.languageOriginalName = languageOriginalName
+        this.isChecked = isChecked
+    }
+    constructor(
+        languageName: String,
+        languageCode: String,
+        languageOriginalName: String,
+        countryCode: String,
+        isChecked: Boolean
+    ) {
+        this.languageName = languageName
+        this.languageCode = languageCode
+        this.languageOriginalName = languageOriginalName
+        this.countryCode = countryCode
         this.isChecked = isChecked
     }
 

@@ -2,15 +2,19 @@ package com.hashone.commons.base
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.hashone.commons.extensions.getLocaleString
 import com.hashone.commons.languages.LanguageItem
 import com.hashone.commons.languages.LocaleHelper
 import com.hashone.commons.utils.DEFAULT_LANGUAGE
+import com.hashone.commons.utils.DEFAULT_LANGUAGE_COUNTY_CODE
 import com.hashone.commons.utils.DEFAULT_LANGUAGE_NAME
 import com.hashone.commons.utils.StoreUserData
 import java.util.Locale
+import kotlin.collections.ArrayList
 
 open class CommonApplication : MultiDexApplication() {
 
@@ -19,9 +23,10 @@ open class CommonApplication : MultiDexApplication() {
         lateinit var mInstance: CommonApplication
     }
 
+    var languageList: ArrayList<LanguageItem> = ArrayList()
     var mContext: Context? = null
     lateinit var mStoreUserData: StoreUserData
-
+//    var languageList
     fun setLocaleContext(context: Context) {
         this.mContext = context
     }
@@ -35,8 +40,11 @@ open class CommonApplication : MultiDexApplication() {
 
             mStoreUserData.apply {
                 if (getString(DEFAULT_LANGUAGE)!!.isEmpty()) {
-                    val defaultLanguage =
+                    var defaultLanguage =
                         Locale.getDefault().language.lowercase(Locale.getDefault()).trim()
+                    var defaultLanguageName = ""
+                    var defaultCountryCode = ""
+
                     var isContain = false
                     for (i in 0 until languagesList.size) {
                         if (languagesList[i].languageCode.equals(
@@ -45,25 +53,40 @@ open class CommonApplication : MultiDexApplication() {
                             )
                         ) {
                             isContain = true
+                            defaultLanguageName = languagesList[i].languageName
+                            defaultCountryCode = languagesList[i].countryCode
+                        }
+                    }
+                    if (!isContain){
+                        defaultLanguage = Locale.getDefault().language.lowercase(Locale.getDefault()).trim() + if (Locale.getDefault().language.lowercase(Locale.getDefault()).trim() == Locale.getDefault().country.lowercase(Locale.getDefault()).trim()) "" else ("-"+Locale.getDefault().country.lowercase(Locale.getDefault()).trim())
+                            Locale.getDefault().language.lowercase(Locale.getDefault()).trim()
+                        languagesList.forEach {
+                            if (it.languageCode.equals(
+                                    defaultLanguage,
+                                    ignoreCase = true
+                                )
+                            ) {
+                                isContain = true
+                                defaultLanguageName = it.languageName
+                                defaultCountryCode = it.countryCode
+
+                            }
                         }
                     }
                     if (isContain) {
                         mStoreUserData.setString(
                             DEFAULT_LANGUAGE,
-                            Locale.getDefault().language.lowercase(Locale.getDefault()).trim()
+                            defaultLanguage
                         )
-                        for (i in 0 until languagesList.size) {
-                            if (mStoreUserData.getString(DEFAULT_LANGUAGE)!!.equals(
-                                    languagesList[i].languageCode,
-                                    ignoreCase = true
-                                )
-                            ) {
-                                mStoreUserData.setString(
-                                    DEFAULT_LANGUAGE_NAME,
-                                    languagesList[i].languageName
-                                )
-                            }
-                        }
+                        mStoreUserData.setString(
+                            DEFAULT_LANGUAGE_NAME,
+                            defaultLanguageName
+                        )
+                        mStoreUserData.setString(
+                            DEFAULT_LANGUAGE_COUNTY_CODE,
+                            defaultCountryCode
+                        )
+
                     } else {
                         mStoreUserData.setString(
                             DEFAULT_LANGUAGE,
@@ -73,13 +96,18 @@ open class CommonApplication : MultiDexApplication() {
                             DEFAULT_LANGUAGE_NAME,
                             languagesList[0].languageName
                         )
+                        mStoreUserData.setString(
+                            DEFAULT_LANGUAGE_COUNTY_CODE,
+                            languagesList[0].countryCode
+                        )
                     }
                 }
             }
             super.attachBaseContext(
                 LocaleHelper.setLocale(
                     base,
-                    mStoreUserData.getString(DEFAULT_LANGUAGE)
+                    mStoreUserData.getString(DEFAULT_LANGUAGE),
+                    mStoreUserData.getString(DEFAULT_LANGUAGE_COUNTY_CODE)
                 )
             )
             MultiDex.install(base)
@@ -92,5 +120,6 @@ open class CommonApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         mInstance = this
+        languageList = LanguageItem().getLanguages(this)
     }
 }

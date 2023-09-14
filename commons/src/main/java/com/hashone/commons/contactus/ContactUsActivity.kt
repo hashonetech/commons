@@ -15,6 +15,7 @@ import android.provider.Settings
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -54,6 +55,8 @@ import com.hashone.commons.utils.dpToPx
 import com.hashone.commons.utils.openKeyboard
 import com.hashone.commons.utils.sendContactEmail
 import com.hashone.commons.utils.showSnackBar
+import java.io.File
+import java.net.URI
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -688,8 +691,10 @@ class ContactUsActivity : BaseActivity() {
 
         val decimalFormat = DecimalFormat("0.00")
         decimalFormat.decimalFormatSymbols = DecimalFormatSymbols(Locale.US)
-        val sizeInMB = localFileSize / (1024 * 1024).toDouble()
+        val sizeInMB = localFileSize / (1000 * 1000).toDouble()
         attachmentFileSize = sizeInMB
+
+
         binding.textViewAttachmentSize.text = String.format(
             "%s MB/%s MB", decimalFormat.format(attachmentFileSize), builder.mediaBuilder.maxFileSize.toString()
         )

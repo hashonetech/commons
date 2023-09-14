@@ -2,9 +2,15 @@ package com.hashone.commons
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.base.BetterActivityResult
@@ -15,11 +21,13 @@ import com.hashone.commons.extensions.serializable
 import com.hashone.commons.languages.Language
 import com.hashone.commons.languages.LanguageActivity.Companion.KEY_RETURN_LANGUAGE_DATA
 import com.hashone.commons.languages.LanguageItem
-import com.hashone.commons.languages.LocaleHelper
 import com.hashone.commons.test.databinding.ActivityMainBinding
 import com.hashone.commons.utils.ACTION_LANGUAGE_CHANGE
 import com.hashone.commons.utils.DEFAULT_LANGUAGE
+import com.hashone.commons.utils.DEFAULT_LANGUAGE_COUNTY_CODE
 import com.hashone.commons.utils.DEFAULT_LANGUAGE_NAME
+import com.hashone.commons.webview.CustomTabActivityHelper
+import com.hashone.commons.webview.WebViewFallback
 
 class MainActivity : BaseActivity() {
 
@@ -30,19 +38,22 @@ class MainActivity : BaseActivity() {
         setContentView(mBinding.root)
 
         mBinding.buttonContactus.text =
-            CommonApplication.mInstance.getText(com.hashone.commons.test.R.string.label_contact)
+            getLocaleString(com.hashone.commons.test.R.string.label_contact)
         mBinding.buttonLanguage.text =
-            CommonApplication.mInstance.getText(com.hashone.commons.test.R.string.label_language)
+            getLocaleString(com.hashone.commons.test.R.string.label_language)
+        mBinding.buttonWebView.text =
+            getLocaleString(com.hashone.commons.test.R.string.label_webview)
 
         mBinding.buttonContactus.setOnClickListener {
-            ContactUs.open(activity = this, ContactUs.build(
-                emailBuilder = ContactUs.EmailBuilder(
-                    emailTitle = "",
-                    feedbackEmail = "",
-                    appName = "",
-                    packageName = "",
-                    versionName = "",
-                    androidDeviceToken = "",
+            ContactUs.open(
+                activity = this, ContactUs.build(
+                    emailBuilder = ContactUs.EmailBuilder(
+                        emailTitle = "",
+                        feedbackEmail = "",
+                        appName = "",
+                        packageName = "",
+                        versionName = "",
+                        androidDeviceToken = "",
                     customerNumber = "",
                     countryCode = "",
                     isPremium = false,
@@ -106,6 +117,7 @@ class MainActivity : BaseActivity() {
                 //TODO: Radio Buttons
                 radioButtonBinding = ContactUs.RadioButtonBuilder(
                     selectedColor = R.color.black,
+                    defaultColor = R.color.black,
                     textFont = R.font.roboto_medium,
                     textSize = 14F,
                 )
@@ -163,21 +175,15 @@ class MainActivity : BaseActivity() {
 
         mBinding.buttonLanguage.setOnClickListener {
             languageList.forEachIndexed { index, languageItem ->
-                languageItem.isChecked = (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE))
-                if (languageItem.isChecked) {
-                    val localContext = LocaleHelper.setLocale(mActivity, languageItem.languageCode)
-                    CommonApplication.mInstance.setLocaleContext(localContext!!)
-                }
+                languageItem.isChecked =
+                    (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(
+                        DEFAULT_LANGUAGE
+                    ))
+//                if (languageItem.isChecked) {
+//                    val localContext = LocaleHelper.setLocale(mActivity, languageItem.languageCode)
+//                    CommonApplication.mInstance.setLocaleContext(localContext!!)
+//                }
             }
-
-            Language.open(activity = this, Language.build(
-                languageItemsList = languageList
-            ) {
-                toolBarBuilder = Language.ToolBarBuilder(
-                    toolBarColor = R.color.white,
-
-                    )
-            })
 
             mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
@@ -234,34 +240,43 @@ class MainActivity : BaseActivity() {
                                             KEY_RETURN_LANGUAGE_DATA
                                         )
                                     languageItem?.let {
-                                        CommonApplication.mInstance.mStoreUserData.setString(
-                                            DEFAULT_LANGUAGE_NAME,
-                                            languageItem.languageName
-                                        )
 
-                                        val localContext =
-                                            LocaleHelper.setLocale(
-                                                mActivity,
-                                                languageItem.languageCode
-                                            )
                                         CommonApplication.mInstance.mStoreUserData.setString(
                                             DEFAULT_LANGUAGE,
                                             languageItem.languageCode
                                         )
                                         CommonApplication.mInstance.mStoreUserData.setString(
+                                            DEFAULT_LANGUAGE_COUNTY_CODE,
+                                            languageItem.countryCode
+                                        )
+                                        CommonApplication.mInstance.mStoreUserData.setString(
                                             DEFAULT_LANGUAGE_NAME,
                                             languageItem.languageName
                                         )
-                                        CommonApplication.mInstance.setLocaleContext(localContext!!)
+
+                                        /*  val localContext =
+                                              LocaleHelper.setLocale(
+                                                  mActivity,
+                                                  languageItem.languageCode,
+                                                  languageItem.countryCode
+                                              )
+
+                                          CommonApplication.mInstance.setLocaleContext(localContext!!)
+
+                                         */
                                         sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
-                                        /*Below Code use to tell System to set App language*/
-                                        val localeList = LocaleListCompat.forLanguageTags(languageItem.languageCode)
+                                        //Below Code use to tell System to set App language
+                                        val localeList =
+                                            LocaleListCompat.forLanguageTags(languageItem.languageCode)
                                         AppCompatDelegate.setApplicationLocales(localeList)
 
                                         mBinding.buttonContactus.text =
                                             getLocaleString(com.hashone.commons.test.R.string.label_contact)
                                         mBinding.buttonLanguage.text =
                                             getLocaleString(com.hashone.commons.test.R.string.label_language)
+                                        mBinding.buttonWebView.text =
+                                            getLocaleString(com.hashone.commons.test.R.string.label_webview)
+
                                     }
                                 }
                             }
@@ -271,5 +286,38 @@ class MainActivity : BaseActivity() {
             )
         }
 
+
+        mBinding.buttonWebView.setOnClickListener {
+            val customTabsIntent = CustomTabsIntent.Builder()
+                .setShareState(CustomTabsIntent.SHARE_STATE_OFF)
+                .setUrlBarHidingEnabled(false)
+                .setInstantAppsEnabled(false)
+                .setShowTitle(true)
+                .setCloseButtonIcon(
+                    BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_back)
+                )
+                .setColorScheme(CustomTabsIntent.COLOR_SCHEME_LIGHT)
+                .setDefaultColorSchemeParams(
+                    CustomTabColorSchemeParams.Builder()
+                        .setToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+                        .setNavigationBarColor(ContextCompat.getColor(mActivity, R.color.white))
+                        .setSecondaryToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+                        .setNavigationBarDividerColor(
+                            ContextCompat.getColor(
+                                mActivity,
+                                R.color.white
+                            )
+                        )
+                        .build()
+                )
+                .build()
+            CustomTabActivityHelper.openCustomTab(
+                mActivity,
+                customTabsIntent,
+                Uri.parse("https://policycreator.net/p/hashone/139/postplus"),
+                "Privacy Policy",
+                WebViewFallback()
+            )
+        }
     }
 }

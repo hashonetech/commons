@@ -2,6 +2,7 @@ package com.hashone.commons.languages
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Handler
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -35,9 +36,13 @@ import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.R
 import com.hashone.commons.base.CommonApplication
+import com.hashone.commons.extensions.getLocaleContext
 import com.hashone.commons.languages.LanguageActivity.Companion.KEY_RETURN_LANGUAGE_DATA
 import com.hashone.commons.languages.ui.theme.CircularIndeterminateProgressBar
 import com.hashone.commons.utils.ACTION_LANGUAGE_CHANGE
+import com.hashone.commons.utils.DEFAULT_LANGUAGE
+import com.hashone.commons.utils.DEFAULT_LANGUAGE_COUNTY_CODE
+import com.hashone.commons.utils.DEFAULT_LANGUAGE_NAME
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -93,13 +98,27 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                 val localContext =
                     LocaleHelper.setLocale(
                         myActivity,
-                        languageItem.languageCode
+                        languageItem.languageCode,
+                        languageItem.countryCode
                     )
                 CommonApplication.mInstance.setLocaleContext(localContext!!)
                 myActivity.sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
                 /*Below Code use to tell System to set App language*/
-                val localeList =
-                    LocaleListCompat.forLanguageTags(languageItem.languageCode)
+                val localeList = LocaleListCompat.forLanguageTags(languageItem.languageCode)
+
+                CommonApplication.mInstance.mStoreUserData.setString(
+                    DEFAULT_LANGUAGE,
+                    languageItem.languageCode
+                )
+                CommonApplication.mInstance.mStoreUserData.setString(
+                    DEFAULT_LANGUAGE_COUNTY_CODE,
+                    languageItem.countryCode
+                )
+                CommonApplication.mInstance.mStoreUserData.setString(
+                    DEFAULT_LANGUAGE_NAME,
+                    languageItem.languageName
+                )
+
                 AppCompatDelegate.setApplicationLocales(localeList)
 
                 myActivity.setResult(Activity.RESULT_OK, Intent().apply {

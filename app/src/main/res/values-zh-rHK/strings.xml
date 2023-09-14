@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Commons</string>
     <string name="label_language">Мова</string>
     <string name="label_contact">контакт</string>
-    <string name="label_webview">Веб-перегляд Chromium</string>
+    <string name="label_webview">Веб-перегляд Chromium hk</string>
 </resources>

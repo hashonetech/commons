@@ -30,6 +30,11 @@
     <string name="language_name_10" translatable="false">pусский</string>
     <string name="language_name_11" translatable="false">Türk</string>
     <string name="language_name_12" translatable="false">yкраїнський</string>
+    <string name="language_name_13" translatable="false">Chinese Simplified</string>
+    <string name="language_name_14" translatable="false">Chinese Hong Kong</string>
+    <string name="language_name_15" translatable="false">Chinese MO</string>
+    <string name="language_name_16" translatable="false">Chinese SG</string>
+    <string name="language_name_17" translatable="false">Chinese Traditional</string>
 
 
     <string-array name="language_names" translatable="false">
@@ -45,8 +50,19 @@
         <item>@string/language_name_10</item>
         <item>@string/language_name_11</item>
         <item>@string/language_name_12</item>
+        <item>@string/language_name_13</item>
+        <item>@string/language_name_14</item>
+        <item>@string/language_name_15</item>
+        <item>@string/language_name_16</item>
+        <item>@string/language_name_17</item>
     </string-array>
 
+
+<!--    <locale android:name="zh-CN"/> &lt;!&ndash; Chinese (Simplified) &ndash;&gt;-->
+<!--    <locale android:name="zh-HK"/> &lt;!&ndash; Chinese (Hong Kong) &ndash;&gt;-->
+<!--    <locale android:name="zh-TW"/> &lt;!&ndash; Chinese (Traditional) &ndash;&gt;-->
+<!--    <locale android:name="zu"/> &lt;!&ndash; Zulu &ndash;&gt;-->
+<!--    -->
     <string-array name="language_codes" translatable="false">
         <item>in</item>
         <item>bn</item>
@@ -60,6 +76,11 @@
         <item>ru</item>
         <item>tr</item>
         <item>uk</item>
+        <item>zh-cn</item>
+        <item>zh-hk</item>
+        <item>zh-mo</item>
+        <item>zh-sg</item>
+        <item>zh-tw</item>
     </string-array>
 
 
@@ -76,6 +97,11 @@
         <item>Russian</item>
         <item>Turkish</item>
         <item>Ukrainian</item>
+        <item>Chinese Simplified</item>
+        <item>Chinese Hong Kong</item>
+        <item>Chinese MO</item>
+        <item>Chinese SG</item>
+        <item>Chinese Traditional</item>
     </string-array>
 
 
@@ -84,5 +110,7 @@
 
     <string name="label_back">Back</string>
     <string name="title_activity_main">MainActivity</string>
-
+    <string name="no_internet">No internet connection.</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="label_retry">Retry</string>
 </resources>

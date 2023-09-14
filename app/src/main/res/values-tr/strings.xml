@@ -2,4 +2,5 @@
     <string name="app_name">Commons</string>
     <string name="label_language">Dil</string>
     <string name="label_contact">Temas etmek</string>
+    <string name="label_webview">Chromium web Görünümü</string>
 </resources>
