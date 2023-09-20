@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!--Text-->
     <string name="label_contact">Contact</string>
     <string name="label_feedback">Feedback</string>
@@ -18,93 +18,6 @@
     <string name="allow_permission">You need to allow access to storage permissions.</string>
     <!--Permission-->
     <!--Locale Languages-->
-    <string name="language_name_1" translatable="false">bahasa Indonesia</string>
-    <string name="language_name_2" translatable="false">বাংলা</string>
-    <string name="language_name_3" translatable="false">Deutsche</string>
-    <string name="language_name_4" translatable="false">English</string>
-    <string name="language_name_5" translatable="false">Español</string>
-    <string name="language_name_6" translatable="false">Filipino</string>
-    <string name="language_name_7" translatable="false">français</string>
-    <string name="language_name_8" translatable="false">Italiano</string>
-    <string name="language_name_9" translatable="false">português</string>
-    <string name="language_name_10" translatable="false">pусский</string>
-    <string name="language_name_11" translatable="false">Türk</string>
-    <string name="language_name_12" translatable="false">yкраїнський</string>
-    <string name="language_name_13" translatable="false">Chinese Simplified</string>
-    <string name="language_name_14" translatable="false">Chinese Hong Kong</string>
-    <string name="language_name_15" translatable="false">Chinese MO</string>
-    <string name="language_name_16" translatable="false">Chinese SG</string>
-    <string name="language_name_17" translatable="false">Chinese Traditional</string>
-
-
-    <string-array name="language_names" translatable="false">
-        <item>@string/language_name_1</item>
-        <item>@string/language_name_2</item>
-        <item>@string/language_name_3</item>
-        <item>@string/language_name_4</item>
-        <item>@string/language_name_5</item>
-        <item>@string/language_name_6</item>
-        <item>@string/language_name_7</item>
-        <item>@string/language_name_8</item>
-        <item>@string/language_name_9</item>
-        <item>@string/language_name_10</item>
-        <item>@string/language_name_11</item>
-        <item>@string/language_name_12</item>
-        <item>@string/language_name_13</item>
-        <item>@string/language_name_14</item>
-        <item>@string/language_name_15</item>
-        <item>@string/language_name_16</item>
-        <item>@string/language_name_17</item>
-    </string-array>
-
-
-<!--    <locale android:name="zh-CN"/> &lt;!&ndash; Chinese (Simplified) &ndash;&gt;-->
-<!--    <locale android:name="zh-HK"/> &lt;!&ndash; Chinese (Hong Kong) &ndash;&gt;-->
-<!--    <locale android:name="zh-TW"/> &lt;!&ndash; Chinese (Traditional) &ndash;&gt;-->
-<!--    <locale android:name="zu"/> &lt;!&ndash; Zulu &ndash;&gt;-->
-<!--    -->
-    <string-array name="language_codes" translatable="false">
-        <item>in</item>
-        <item>bn</item>
-        <item>de</item>
-        <item>en</item>
-        <item>es</item>
-        <item>fil</item>
-        <item>fr</item>
-        <item>it</item>
-        <item>pt</item>
-        <item>ru</item>
-        <item>tr</item>
-        <item>uk</item>
-        <item>zh-cn</item>
-        <item>zh-hk</item>
-        <item>zh-mo</item>
-        <item>zh-sg</item>
-        <item>zh-tw</item>
-    </string-array>
-
-
-    <string-array name="language_original_names" translatable="false">
-        <item>Indonesian</item>
-        <item>Bengali</item>
-        <item>German</item>
-        <item></item>
-        <item>Spanish</item>
-        <item></item>
-        <item>French</item>
-        <item>Italian</item>
-        <item>Portuguese</item>
-        <item>Russian</item>
-        <item>Turkish</item>
-        <item>Ukrainian</item>
-        <item>Chinese Simplified</item>
-        <item>Chinese Hong Kong</item>
-        <item>Chinese MO</item>
-        <item>Chinese SG</item>
-        <item>Chinese Traditional</item>
-    </string-array>
-
-
     <string name="title_activity_language">LanguageActivity</string>
     <!--Locale Languages-->
 

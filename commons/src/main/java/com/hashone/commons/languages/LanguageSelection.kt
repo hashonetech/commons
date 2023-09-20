@@ -136,7 +136,7 @@ fun LanguageSelectionCard(
                     start = languageItemBuilder.paddingStart.dp,
                     top = languageItemBuilder.paddingTop.dp + if (languageData.languageOriginalName.isNullOrEmpty()) 8.dp else 0.dp,
                     end = languageItemBuilder.paddingEnd.dp,
-                    bottom = languageItemBuilder.paddingBottom.dp  + if (languageData.languageOriginalName.isNullOrEmpty()) 8.dp else 0.dp
+                    bottom = languageItemBuilder.paddingBottom.dp + if (languageData.languageOriginalName.isNullOrEmpty()) 8.dp else 0.dp
                 )
                 Column(modifier = mModifier) {
                     Text(
@@ -175,10 +175,12 @@ fun LanguageSelectionCard(
                 }
             }
         }
-        Box(modifier = Modifier
-            .background(dividerColor)
-            .height(dividerWidth.dp)
-            .fillMaxWidth())
+        Box(
+            modifier = Modifier
+                .background(dividerColor)
+                .height(dividerWidth.dp)
+                .fillMaxWidth()
+        )
     }
 
 }

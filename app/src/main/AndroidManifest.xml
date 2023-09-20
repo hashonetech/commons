@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
+        android:name="com.hashone.commons.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,7 +29,7 @@
         android:theme="@style/Theme.AppTheme"
         tools:targetApi="31"
         android:localeConfig="@xml/locale_configs"
-        tools:replace="android:theme">
+        tools:replace="android:theme,android:name">
         <activity
             android:name="com.hashone.commons.MainActivity"
             android:configChanges="locale|layoutDirection|uiMode|orientation|screenSize|screenLayout|keyboardHidden"

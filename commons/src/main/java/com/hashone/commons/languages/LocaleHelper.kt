@@ -29,7 +29,8 @@ object LocaleHelper {
         persist(context, language)
 
         if (context != null) {
-            val locale = Locale(language)
+            Locale.SIMPLIFIED_CHINESE
+            val locale = Locale(language, "")
             Locale.setDefault(locale)
             val config = Configuration()
 

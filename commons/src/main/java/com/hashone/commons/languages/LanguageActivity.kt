@@ -15,14 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.extensions.getColorCode
 import com.hashone.commons.extensions.hideSystemUI
 import com.hashone.commons.extensions.navigationUI
 import com.hashone.commons.extensions.serializable
 import com.hashone.commons.extensions.setStatusBarColor
-//import com.hashone.commons.languages.ui.theme.CommonsTheme
 
-class LanguageActivity : ComponentActivity() {
+class LanguageActivity : BaseActivity() {
 
     private lateinit var builder: Language.Builder
     companion object {

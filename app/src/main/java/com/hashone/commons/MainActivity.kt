@@ -170,11 +170,8 @@ class MainActivity : BaseActivity() {
             )
         }
 
-        val languageList = LanguageItem().getLanguages(this)
-
-
         mBinding.buttonLanguage.setOnClickListener {
-            languageList.forEachIndexed { index, languageItem ->
+            CommonApplication.mInstance.languageList.forEachIndexed { index, languageItem ->
                 languageItem.isChecked =
                     (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(
                         DEFAULT_LANGUAGE
@@ -187,7 +184,7 @@ class MainActivity : BaseActivity() {
 
             mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
-                    languageItemsList = languageList
+                    languageItemsList = CommonApplication.mInstance.languageList
                 ) {
 
                     //TODO: Screen
