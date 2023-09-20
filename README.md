@@ -209,7 +209,31 @@ Table of contents
 ```
 
 ### Language
+
+**Notes:** From now, XML Strings for Language Code and Name logic removed, You must prepare List
 ```kotlin
+
+//TODO: Add this function in Your App Application class
+override fun attachBaseContext(base: Context?) {
+	//TODO: Prepare Language support list
+	prepareLanguageList()
+        super.attachBaseContext(base)
+}
+
+//TODO: Add this function in Your App Application class
+//TODO: Below is the example to prepare list
+private fun prepareLanguageList() {
+        languageList.clear()
+        languageList.addAll(
+            arrayListOf(
+                LanguageItem("bahasa Indonesia", "in", "Indonesian", false),
+                LanguageItem("বাংলা", "bn", "Bengali", false),
+                LanguageItem("Deutsche", "de", "German", false),
+                LanguageItem("English", "en", "", false),//TODO:No SubTitle
+            )
+        )
+}
+
 //TODO: Builder inner variable name updated
 	mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
