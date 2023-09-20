@@ -12,7 +12,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.24'
+	        implementation 'com.github.hashonetech:commons:v1.0.25'
 	}
 ```
 
