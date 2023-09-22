@@ -1,6 +1,7 @@
 package com.hashone.commons.languages
 
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.CommonApplication

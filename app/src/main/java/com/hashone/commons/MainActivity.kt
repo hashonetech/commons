@@ -282,8 +282,24 @@ class MainActivity : BaseActivity() {
             )
         }
     }
+
+    override fun onRestart() {
+        val currentLocale = LocaleManager.getAppLocale()
+        super.onRestart()
+        isContains = false
+        LocaleManager.mLanguagesList.forEach {
+            if (it.languageCode == currentLocale?.toLanguageTag())
+                isContains = true
+
+        }
+    }
+
     override fun onResume() {
         super.onResume()
+        if (!isContains) {
+            ActivityCompat.recreate(mActivity)
+            return
+        }
         mBinding.buttonContactus.text =
             getString(com.hashone.commons.test.R.string.label_contact)
         mBinding.buttonLanguage.text =

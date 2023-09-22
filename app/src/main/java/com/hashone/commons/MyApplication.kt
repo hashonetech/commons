@@ -17,7 +17,7 @@ class MyApplication : CommonApplication() {
     private fun setupAppLocale() {
         LocaleManager.prepareLanguageList(
             arrayListOf(
-                LanguageItem("bahasa Indonesia", "in-ID", "Indonesian", false),
+                LanguageItem("bahasa Indonesia", "id-ID", "Indonesian", false),
                 LanguageItem("বাংলা", "bn-BD", "Bangla", false),
                 LanguageItem("Deutsche", "de-DE", "German", false),
                 LanguageItem("English", "en-US", "", true),//TODO:No SubTitle

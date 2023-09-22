@@ -26,7 +26,7 @@ open class BaseActivity : AppCompatActivity() {
 
     lateinit var mActivity: Activity
 
-    private var isContains = false
+    var isContains = false
 
     val mActivityLauncher: BetterActivityResult<Intent, ActivityResult> =
         BetterActivityResult.registerActivityForResult(this)
@@ -46,23 +46,8 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onRestart() {
-        val currentLocale = LocaleManager.getAppLocale()
         LocaleManager.verifyCurrentAppLocale(mActivity)
         super.onRestart()
-        isContains = false
-        LocaleManager.mLanguagesList.forEach {
-            if (it.languageCode == currentLocale?.toLanguageTag())
-                isContains = true
-
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!isContains) {
-            ActivityCompat.recreate(mActivity)
-            return
-        }
     }
 
     var alertDialog: AlertDialog? = null
