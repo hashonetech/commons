@@ -15,7 +15,6 @@ import android.provider.Settings
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -36,7 +35,6 @@ import com.hashone.commons.extensions.applyTextStyle
 import com.hashone.commons.extensions.applyTintColor
 import com.hashone.commons.extensions.corneredDrawable
 import com.hashone.commons.extensions.getColorCode
-import com.hashone.commons.extensions.getLocaleString
 import com.hashone.commons.extensions.getMediaPickIntent
 import com.hashone.commons.extensions.getScreenWidth
 import com.hashone.commons.extensions.hideSoftKeyboard
@@ -55,8 +53,6 @@ import com.hashone.commons.utils.dpToPx
 import com.hashone.commons.utils.openKeyboard
 import com.hashone.commons.utils.sendContactEmail
 import com.hashone.commons.utils.showSnackBar
-import java.io.File
-import java.net.URI
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -202,7 +198,7 @@ class ContactUsActivity : BaseActivity() {
                 )
             } catch (e2: Exception) {
                 showSnackBar(
-                    mActivity, binding.cardViewSubmit, getLocaleString(R.string.no_gallery_app)
+                    mActivity, binding.cardViewSubmit, getString(R.string.no_gallery_app)
                 )
             }
         }
@@ -238,9 +234,9 @@ class ContactUsActivity : BaseActivity() {
             } else {
                 runOnUiThread {
                     showCustomAlertDialog(
-                        message = getLocaleString(R.string.allow_permission),
-                        negativeButtonText = getLocaleString(R.string.action_cancel),
-                        positionButtonText = getLocaleString(R.string.action_grant),
+                        message = getString(R.string.allow_permission),
+                        negativeButtonText = getString(R.string.action_cancel),
+                        positionButtonText = getString(R.string.action_grant),
                         negativeCallback = {
                             alertDialog?.cancel()
                         },
@@ -339,7 +335,13 @@ class ContactUsActivity : BaseActivity() {
                 selectedOptionId = radioButton.id
                 if (builder.messageBuilder.hint.isEmpty())
                     binding.textViewFeedbackMessage.hint =
-                        builder.messageBuilder.hint.ifEmpty { optionItem.message.ifEmpty { getLocaleString(R.string.label_type_here) } }
+                        builder.messageBuilder.hint.ifEmpty {
+                            optionItem.message.ifEmpty {
+                                getString(
+                                    R.string.label_type_here
+                                )
+                            }
+                        }
             }
 
             radioButton.applyTintColor(getColorCode(if (optionItem.isChecked) builder.radioButtonBinding.selectedColor else builder.radioButtonBinding.defaultColor))
@@ -367,7 +369,8 @@ class ContactUsActivity : BaseActivity() {
 //                dpToPx(0F).roundToInt()
 //            )
 
-            val isLeftToRight = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_LTR
+            val isLeftToRight =
+                TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_LTR
             radioButton.setPadding(
                 dpToPx(if (isLeftToRight) 2F else 32F).roundToInt(),
                 dpToPx(0F).roundToInt(),
@@ -388,7 +391,7 @@ class ContactUsActivity : BaseActivity() {
                     binding.textViewFeedbackMessage.hint =
                         builder.messageBuilder.hint.ifEmpty {
                             optionItem.message.ifEmpty {
-                                getLocaleString(
+                                getString(
                                     R.string.label_type_here
                                 )
                             }
@@ -696,7 +699,9 @@ class ContactUsActivity : BaseActivity() {
 
 
         binding.textViewAttachmentSize.text = String.format(
-            "%s MB/%s MB", decimalFormat.format(attachmentFileSize), builder.mediaBuilder.maxFileSize.toString()
+            "%s MB/%s MB",
+            decimalFormat.format(attachmentFileSize),
+            builder.mediaBuilder.maxFileSize.toString()
         )
 
         binding.textViewAttachmentSize.setTextColor(

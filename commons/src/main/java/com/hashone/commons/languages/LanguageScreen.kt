@@ -101,17 +101,6 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
             }
         ) { languageItem ->
             activity?.let { myActivity ->
-                val localContext =
-                    LocaleHelper.setLocale(
-                        myActivity,
-                        languageItem.languageCode,
-                        languageItem.countryCode
-                    )
-                CommonApplication.mInstance.setLocaleContext(localContext!!)
-                myActivity.sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
-                /*Below Code use to tell System to set App language*/
-                val localeList = LocaleListCompat.forLanguageTags(languageItem.languageCode)
-
                 CommonApplication.mInstance.mStoreUserData.setString(
                     DEFAULT_LANGUAGE,
                     languageItem.languageCode
@@ -125,7 +114,9 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                     languageItem.languageName
                 )
 
-                AppCompatDelegate.setApplicationLocales(localeList)
+                LocaleManager.setAppLocale(languageItem.languageCode)
+
+                myActivity.sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
 
                 myActivity.setResult(Activity.RESULT_OK, Intent().apply {
                     putExtra(KEY_RETURN_LANGUAGE_DATA, languageItem)
@@ -162,8 +153,12 @@ fun MainContent(
             Lifecycle.Event.ON_RESUME -> {
                 if (isPauseScreen) {
                     isPauseScreen = false
+                    val currentLocale = LocaleManager.getAppLocale()
+                    LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
+                        languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
+                    }
                     languageList.clear()
-                    languageList.addAll(CommonApplication.mInstance.languageList)
+                    languageList.addAll(LocaleManager.mLanguagesList)
                     isResumeScreen = true
                 }
             }

@@ -7,20 +7,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.base.BetterActivityResult
 import com.hashone.commons.base.CommonApplication
 import com.hashone.commons.contactus.ContactUs
-import com.hashone.commons.extensions.getLocaleString
 import com.hashone.commons.extensions.serializable
 import com.hashone.commons.languages.Language
 import com.hashone.commons.languages.LanguageActivity.Companion.KEY_RETURN_LANGUAGE_DATA
 import com.hashone.commons.languages.LanguageItem
+import com.hashone.commons.languages.LocaleManager
 import com.hashone.commons.test.databinding.ActivityMainBinding
 import com.hashone.commons.utils.ACTION_LANGUAGE_CHANGE
 import com.hashone.commons.utils.DEFAULT_LANGUAGE
@@ -37,13 +36,6 @@ class MainActivity : BaseActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.buttonContactus.text =
-            getLocaleString(com.hashone.commons.test.R.string.label_contact)
-        mBinding.buttonLanguage.text =
-            getLocaleString(com.hashone.commons.test.R.string.label_language)
-        mBinding.buttonWebView.text =
-            getLocaleString(com.hashone.commons.test.R.string.label_webview)
-
         mBinding.buttonContactus.setOnClickListener {
             ContactUs.open(
                 activity = this, ContactUs.build(
@@ -54,110 +46,110 @@ class MainActivity : BaseActivity() {
                         packageName = "",
                         versionName = "",
                         androidDeviceToken = "",
-                    customerNumber = "",
-                    countryCode = "",
-                    isPremium = false,
-                    purchasedTitle = "",
-                    orderId = "",
-                    contentId = "",
-                    contentTitle = "",
-                    showKeyboard = false,
-                ),
-                mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
-                    allowVideosOnly = false,
-                    allowBoth = true,
-                    maxFileSize = 15L,
-                    //TODO: Ratio (messageBoxHeight / ScreenWidth)
-                    messageBoxHeight = 0.4444444444,
-                    //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
-                    attachmentBoxHeight = 0.588888888888889,
-                    optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Feedback",
-                                message = "Type your feedback here.",
-                                isChecked = true
+                        customerNumber = "",
+                        countryCode = "",
+                        isPremium = false,
+                        purchasedTitle = "",
+                        orderId = "",
+                        contentId = "",
+                        contentTitle = "",
+                        showKeyboard = false,
+                    ),
+                    mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
+                        allowVideosOnly = false,
+                        allowBoth = true,
+                        maxFileSize = 15L,
+                        //TODO: Ratio (messageBoxHeight / ScreenWidth)
+                        messageBoxHeight = 0.4444444444,
+                        //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
+                        attachmentBoxHeight = 0.588888888888889,
+                        optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
+                            add(
+                                ContactUs.OptionItem(
+                                    text = "Feedback",
+                                    message = "Type your feedback here.",
+                                    isChecked = true
+                                )
                             )
-                        )
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Issue",
-                                message = "Please describe issue in detail.",
-                                isChecked = false
+                            add(
+                                ContactUs.OptionItem(
+                                    text = "Issue",
+                                    message = "Please describe issue in detail.",
+                                    isChecked = false
+                                )
                             )
-                        )
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Request",
-                                message = "Add your request here.",
-                                isChecked = false
+                            add(
+                                ContactUs.OptionItem(
+                                    text = "Request",
+                                    message = "Add your request here.",
+                                    isChecked = false
+                                )
                             )
-                        )
-                    }),
+                        }),
                 ) {
-                //TODO: Screen
-                screenBuilder = ContactUs.ScreenBuilder(
-                    isFullScreen = false,
-                    windowBackgroundColor = R.color.extra_extra_light_gray,
-                    statusBarColor = R.color.white,
-                    navigationBarColor = R.color.extra_extra_light_gray,
-                )
+                    //TODO: Screen
+                    screenBuilder = ContactUs.ScreenBuilder(
+                        isFullScreen = false,
+                        windowBackgroundColor = R.color.extra_extra_light_gray,
+                        statusBarColor = R.color.white,
+                        navigationBarColor = R.color.extra_extra_light_gray,
+                    )
 
-                //TODO: Toolbar
-                toolBarBuilder = ContactUs.ToolBarBuilder(
-                    barColor = R.color.white,
-                    backIcon = R.drawable.ic_back_contact_us,
-                    backIconDescription = "",
-                    title = "",
-                    titleColor = R.color.black,
-                    titleFont = R.font.outfit_semi_bold,
-                    titleSize = 16F,
-                )
+                    //TODO: Toolbar
+                    toolBarBuilder = ContactUs.ToolBarBuilder(
+                        barColor = R.color.white,
+                        backIcon = R.drawable.ic_back_contact_us,
+                        backIconDescription = "",
+                        title = "",
+                        titleColor = R.color.black,
+                        titleFont = R.font.outfit_semi_bold,
+                        titleSize = 16F,
+                    )
 
-                //TODO: Radio Buttons
-                radioButtonBinding = ContactUs.RadioButtonBuilder(
-                    selectedColor = R.color.black,
-                    defaultColor = R.color.black,
-                    textFont = R.font.roboto_medium,
-                    textSize = 14F,
-                )
+                    //TODO: Radio Buttons
+                    radioButtonBinding = ContactUs.RadioButtonBuilder(
+                        selectedColor = R.color.black,
+                        defaultColor = R.color.black,
+                        textFont = R.font.roboto_medium,
+                        textSize = 14F,
+                    )
 
-                //TODO: Message UI
-                messageBuilder = ContactUs.MessageBuilder(
-                    backgroundColor = R.color.white,
-                    backgroundRadius = 8F,
-                    hint = "",
-                    message = "",
-                    color = R.color.black,
-                    font = R.font.roboto_medium,
-                    size = 14F,
-                )
+                    //TODO: Message UI
+                    messageBuilder = ContactUs.MessageBuilder(
+                        backgroundColor = R.color.white,
+                        backgroundRadius = 8F,
+                        hint = "",
+                        message = "",
+                        color = R.color.black,
+                        font = R.font.roboto_medium,
+                        size = 14F,
+                    )
 
-                //TODO: Attachment UI
-                attachmentBuilder = ContactUs.AttachmentBuilder(
-                    cardBackgroundColor = R.color.extra_extra_light_gray,
-                    cardBackgroundRadius = 8F,
-                    backgroundColor = R.color.white,
-                    backgroundRadius = 8F,
-                    title = "",
-                    titleColor = R.color.light_gray,
-                    titleFont = R.font.roboto_medium,
-                    titleSize = 14F,
-                    addIcon = R.drawable.ic_contact_us_add_attachment,
-                    deleteIcon = R.drawable.ic_contact_us_img_delete,
-                )
+                    //TODO: Attachment UI
+                    attachmentBuilder = ContactUs.AttachmentBuilder(
+                        cardBackgroundColor = R.color.extra_extra_light_gray,
+                        cardBackgroundRadius = 8F,
+                        backgroundColor = R.color.white,
+                        backgroundRadius = 8F,
+                        title = "",
+                        titleColor = R.color.light_gray,
+                        titleFont = R.font.roboto_medium,
+                        titleSize = 14F,
+                        addIcon = R.drawable.ic_contact_us_add_attachment,
+                        deleteIcon = R.drawable.ic_contact_us_img_delete,
+                    )
 
-                //TODO: Action button
-                actionButtonBuilder = ContactUs.ActionButtonBuilder(
-                    backgroundInactiveColor = R.color.light_gray,
-                    backgroundColor = R.color.black,
-                    radius = 30F,
-                    text = "",
-                    textColor = R.color.white,
-                    textFont = R.font.outfit_bold,
-                    textSize = 16F,
-                )
-            })
+                    //TODO: Action button
+                    actionButtonBuilder = ContactUs.ActionButtonBuilder(
+                        backgroundInactiveColor = R.color.light_gray,
+                        backgroundColor = R.color.black,
+                        radius = 30F,
+                        text = "",
+                        textColor = R.color.white,
+                        textFont = R.font.outfit_bold,
+                        textSize = 16F,
+                    )
+                })
         }
 
         if (CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE) != null && CommonApplication.mInstance.mStoreUserData.getString(
@@ -171,20 +163,14 @@ class MainActivity : BaseActivity() {
         }
 
         mBinding.buttonLanguage.setOnClickListener {
-            CommonApplication.mInstance.languageList.forEachIndexed { index, languageItem ->
-                languageItem.isChecked =
-                    (languageItem.languageCode == CommonApplication.mInstance.mStoreUserData.getString(
-                        DEFAULT_LANGUAGE
-                    ))
-//                if (languageItem.isChecked) {
-//                    val localContext = LocaleHelper.setLocale(mActivity, languageItem.languageCode)
-//                    CommonApplication.mInstance.setLocaleContext(localContext!!)
-//                }
+            val currentLocale = LocaleManager.getAppLocale()
+            LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
+                languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
             }
 
             mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
-                    languageItemsList = CommonApplication.mInstance.languageList
+                    languageItemsList = ArrayList(LocaleManager.mLanguagesList)
                 ) {
 
                     //TODO: Screen
@@ -199,7 +185,7 @@ class MainActivity : BaseActivity() {
                     toolBarBuilder = Language.ToolBarBuilder(
                         toolBarColor = R.color.white,
                         backIcon = R.drawable.ic_back,
-                        title = getLocaleString(com.hashone.commons.test.R.string.label_language),
+                        title = getString(com.hashone.commons.test.R.string.label_language),
                         titleColor = R.color.black,
                         titleFont = R.font.roboto_medium,
                         titleSize = 16F,
@@ -250,31 +236,10 @@ class MainActivity : BaseActivity() {
                                             DEFAULT_LANGUAGE_NAME,
                                             languageItem.languageName
                                         )
-
-                                        /*  val localContext =
-                                              LocaleHelper.setLocale(
-                                                  mActivity,
-                                                  languageItem.languageCode,
-                                                  languageItem.countryCode
-                                              )
-
-                                          CommonApplication.mInstance.setLocaleContext(localContext!!)
-
-                                         */
                                         sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
-                                        //Below Code use to tell System to set App language
-                                        val localeList =
-                                            LocaleListCompat.forLanguageTags(languageItem.languageCode)
-                                        AppCompatDelegate.setApplicationLocales(localeList)
-
-                                        mBinding.buttonContactus.text =
-                                            getLocaleString(com.hashone.commons.test.R.string.label_contact)
-                                        mBinding.buttonLanguage.text =
-                                            getLocaleString(com.hashone.commons.test.R.string.label_language)
-                                        mBinding.buttonWebView.text =
-                                            getLocaleString(com.hashone.commons.test.R.string.label_webview)
-
                                     }
+
+                                    ActivityCompat.recreate(mActivity)
                                 }
                             }
                         }
@@ -316,5 +281,14 @@ class MainActivity : BaseActivity() {
                 WebViewFallback()
             )
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        mBinding.buttonContactus.text =
+            getString(com.hashone.commons.test.R.string.label_contact)
+        mBinding.buttonLanguage.text =
+            getString(com.hashone.commons.test.R.string.label_language)
+        mBinding.buttonWebView.text =
+            getString(com.hashone.commons.test.R.string.label_webview)
     }
 }

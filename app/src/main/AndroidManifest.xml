@@ -25,22 +25,35 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locale_configs"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme"
-        tools:targetApi="31"
-        android:localeConfig="@xml/locale_configs"
-        tools:replace="android:theme,android:name">
+        tools:replace="android:theme,android:name"
+        tools:targetApi="31">
         <activity
             android:name="com.hashone.commons.MainActivity"
             android:configChanges="locale|layoutDirection|uiMode|orientation|screenSize|screenLayout|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:recreateOnConfigChanges="mcc|mnc"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--//TODO: App implementation-->
+        <!-- Let AndroidX handle auto-store locales for pre-T devices to hold the user's selected locale -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
     </application>
 
 </manifest>

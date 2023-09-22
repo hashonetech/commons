@@ -14,21 +14,40 @@
   ~ limitations under the License.
   -->
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
-    <locale android:name="in" />
-    <locale android:name="bn" />
-    <locale android:name="de" />
-    <locale android:name="en" />
-    <locale android:name="es" />
-    <locale android:name="fil" />
-    <locale android:name="fr" />
-    <locale android:name="it" />
-    <locale android:name="pt" />
-    <locale android:name="ru" />
-    <locale android:name="tr" />
-    <locale android:name="uk" /><!-- Specified the custom locale in Locale Config -->
-    <locale android:name="zh-CN"/> <!-- Chinese (Simplified) -->
-    <locale android:name="zh-HK"/> <!-- Chinese (Hong Kong) -->
-    <locale android:name="zh-MO"/> <!-- Chinese (Traditional) -->
-    <locale android:name="zh-SG"/> <!-- Chinese (Traditional) -->
-    <locale android:name="zh-TW"/> <!-- Chinese (Traditional) -->
+    <!-- English -->
+    <locale android:name="en-US" />
+    <!-- Bangla - Bangladesh -->
+    <locale android:name="bn-BD" />
+    <!-- Deutsch - German -->
+    <locale android:name="de-DE" />
+    <!-- Spanisch - Spanish -->
+    <locale android:name="es-ES" />
+    <!-- Filipino -->
+    <locale android:name="fil-PH" />
+    <!-- French (Standard) -->
+    <locale android:name="fr-FR" />
+    <!-- bahasa Indonesia -->
+    <locale android:name="id-ID" />
+    <!-- Italian -->
+    <locale android:name="it-IT" />
+    <!-- portuguese -->
+    <locale android:name="pt-PT" />
+    <!-- Russian -->
+    <locale android:name="ru-RU" />
+    <!-- Turkish -->
+    <locale android:name="tr-TR" />
+    <!-- Ukrainian -->
+    <locale android:name="uk-UA" />
+    <!-- Chinese in Simplified Script -->
+    <locale android:name="zh-Hans-CN" />
+    <!-- Chinese (Hong Kong) in Simplified Script -->
+    <locale android:name="zh-Hans-HK" />
+    <!-- Chinese (Macao) in Simplified Script -->
+    <locale android:name="zh-Hans-MO" />
+    <!-- Chinese (Singapore) in Simplified Script -->
+    <locale android:name="zh-Hans-SG" />
+    <!-- Chinese (Taiwan) in Traditional Script -->
+    <locale android:name="zh-Hant-TW" />
+    <!-- Chinese (Hong Kong) in Traditional Script -->
+    <locale android:name="zh-Hant-HK" />
 </locale-config>

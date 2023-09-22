@@ -1,10 +1,8 @@
 package com.hashone.commons.base
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -13,26 +11,22 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.LocaleManagerCompat
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.os.LocaleListCompat
 import androidx.core.view.isVisible
 import com.hashone.commons.R
 import com.hashone.commons.databinding.DialogConfirmationBinding
-import com.hashone.commons.languages.LocaleHelper
-import com.hashone.commons.utils.DEFAULT_LANGUAGE
-import com.hashone.commons.utils.DEFAULT_LANGUAGE_COUNTY_CODE
-import com.hashone.commons.utils.DEFAULT_LANGUAGE_NAME
+import com.hashone.commons.languages.LocaleManager
 import com.hashone.commons.utils.dpToPx
-import java.util.Locale
 import kotlin.math.roundToInt
 
 open class BaseActivity : AppCompatActivity() {
 
     lateinit var mActivity: Activity
+
+    private var isContains = false
 
     val mActivityLauncher: BetterActivityResult<Intent, ActivityResult> =
         BetterActivityResult.registerActivityForResult(this)
@@ -41,137 +35,34 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mActivity = this
-        LocaleHelper.setLocale(
-            mActivity,
-            CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE),
-            CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE_COUNTY_CODE)
-        )?.let {
-            CommonApplication.mInstance.setLocaleContext(
-                it
-            )
+
+        val currentLocale = LocaleManager.getAppLocale()
+        LocaleManager.mLanguagesList.forEach {
+            if (it.languageCode == currentLocale?.toLanguageTag())
+                isContains = true
+        }
+
+        LocaleManager.verifyCurrentAppLocale(mActivity)
+    }
+
+    override fun onRestart() {
+        val currentLocale = LocaleManager.getAppLocale()
+        LocaleManager.verifyCurrentAppLocale(mActivity)
+        super.onRestart()
+        isContains = false
+        LocaleManager.mLanguagesList.forEach {
+            if (it.languageCode == currentLocale?.toLanguageTag())
+                isContains = true
+
         }
     }
 
     override fun onResume() {
-        migrateLanguage()
         super.onResume()
-    }
-
-    fun migrateLanguage() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            var languageCode = if (!AppCompatDelegate.getApplicationLocales().isEmpty) {
-                AppCompatDelegate.getApplicationLocales()[0]?.language
-            } else {
-                val systemLocal = LocaleManagerCompat.getSystemLocales(this)[0]?.language
-                val data =
-                    CommonApplication.mInstance.languageList.singleOrNull { it.languageCode == systemLocal }
-                if (data != null) {
-                    systemLocal
-                } else {
-                    "en"
-                }
-            }
-            var isContain = false
-            if (languageCode != null) {
-                CommonApplication.mInstance.mStoreUserData.setString(DEFAULT_LANGUAGE, languageCode)
-
-                for (i in 0 until CommonApplication.mInstance.languageList.size) {
-                    if (CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE)!!
-                            .equals(
-                                CommonApplication.mInstance.languageList[i].languageCode,
-                                ignoreCase = true
-                            )
-                    ) {
-                        CommonApplication.mInstance.mStoreUserData.setString(
-                            DEFAULT_LANGUAGE_NAME,
-                            CommonApplication.mInstance.languageList[i].languageName
-                        )
-                        isContain = true
-                    }
-                }
-            }
-            var defaultLanguage = ""
-            if (!isContain) {
-                defaultLanguage =
-                    AppCompatDelegate.getApplicationLocales()[0]?.language!!.lowercase(Locale.getDefault())
-                        .trim() + if (AppCompatDelegate.getApplicationLocales()[0]?.language!!.lowercase(
-                            Locale.getDefault()
-                        )
-                            .trim() == AppCompatDelegate.getApplicationLocales()[0]?.country!!.lowercase(
-                            Locale.getDefault()
-                        ).trim()
-                    ) "" else ("-" + AppCompatDelegate.getApplicationLocales()[0]?.country!!.lowercase(
-                        Locale.getDefault()
-                    ).trim())
-                CommonApplication.mInstance.languageList.forEach {
-                    if (it.languageCode.equals(
-                            defaultLanguage,
-                            ignoreCase = true
-                        )
-                    ) {
-                        isContain = true
-                        CommonApplication.mInstance.mStoreUserData.setString(
-                            DEFAULT_LANGUAGE_NAME,
-                            it.languageName
-                        )
-                        CommonApplication.mInstance.mStoreUserData.setString(
-                            DEFAULT_LANGUAGE,
-                            it.languageCode
-                        )
-                        CommonApplication.mInstance.mStoreUserData.setString(
-                            DEFAULT_LANGUAGE_COUNTY_CODE,
-                            it.countryCode
-                        )
-                    }
-                    it.isChecked = it.languageCode.equals(
-                        defaultLanguage,
-                        ignoreCase = true
-                    )
-
-                }
-            }
-
-            if (!isContain) {
-                languageCode = "en"
-                val languageItem = CommonApplication.mInstance.languageList.first {
-                    it.languageCode.equals(
-                        "en",
-                        ignoreCase = true
-                    )
-                }
-                CommonApplication.mInstance.mStoreUserData.setString(
-                    DEFAULT_LANGUAGE_NAME,
-                    languageItem.languageName
-                )
-                CommonApplication.mInstance.mStoreUserData.setString(
-                    DEFAULT_LANGUAGE,
-                    languageItem.languageCode
-                )
-                CommonApplication.mInstance.mStoreUserData.setString(
-                    DEFAULT_LANGUAGE_COUNTY_CODE,
-                    languageItem.countryCode
-                )
-            }
-            CommonApplication.mInstance!!.mContext = LocaleHelper.setLocale(
-                this,
-                CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE)
-            )
-
-            val locale = CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE)
-                ?.let { Locale(it) }
-            locale?.let { Locale.setDefault(it) }
-            CommonApplication.mInstance.mContext?.resources?.configuration?.setLocale(locale)
-
-            val localeList = LocaleListCompat.forLanguageTags(locale!!.language)
-            AppCompatDelegate.setApplicationLocales(localeList)
-            CommonApplication.mInstance.languageList.forEachIndexed { index, languageItem ->
-                languageItem.isChecked = CommonApplication.mInstance.mStoreUserData.getString(DEFAULT_LANGUAGE) == languageItem.languageCode
-            }
+        if (!isContains) {
+            ActivityCompat.recreate(mActivity)
+            return
         }
-    }
-
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase))
     }
 
     var alertDialog: AlertDialog? = null
