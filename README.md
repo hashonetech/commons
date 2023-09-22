@@ -12,7 +12,7 @@ Used for basic functions and data.
 	}
   
 	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.0.25'
+	        implementation 'com.github.hashonetech:commons:v1.2.0'
 	}
 ```
 
@@ -155,7 +155,7 @@ Table of contents
                 toolBarBuilder = Language.ToolBarBuilder(
                         toolBarColor = R.color.white,
                         backIcon = R.drawable.ic_back,
-                        title = getLocaleString(com.hashone.commons.test.R.string.label_language),
+                        title = getString(com.hashone.commons.test.R.string.label_language),
                         titleColor = R.color.black,
                         titleFont = R.font.roboto_medium,
                         titleSize = 16F,
@@ -269,7 +269,7 @@ private fun prepareLanguageList() {
                     toolBarBuilder = Language.ToolBarBuilder(
                         toolBarColor = R.color.white,
                         backIcon = R.drawable.ic_back,
-                        title = getLocaleString(com.hashone.commons.test.R.string.label_language),
+                        title = getString(com.hashone.commons.test.R.string.label_language),
                         titleColor = R.color.black,
                         titleFont = R.font.roboto_medium,
                         titleSize = 16F,
