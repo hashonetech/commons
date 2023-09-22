@@ -4,16 +4,16 @@ Used for basic functions and data.
 [![](https://jitpack.io/v/hashonetech/commons.svg)](https://jitpack.io/#hashonetech/commons)
 
 ```gradle
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
-  
-	dependencies {
-	        implementation 'com.github.hashonetech:commons:v1.2.0'
-	}
+}
+
+dependencies {
+	implementation 'com.github.hashonetech:commons:v1.2.0'
+}
 ```
 
 ### 📸 Screenshot
@@ -49,333 +49,412 @@ Table of contents
  ### AndroidManifest
 
 ```xml
-	<application
-		...
-		tools:replace="android:theme,android:name">
-		...
+<application
+	...
+	tools:replace="android:theme,android:name">
+	...
 
-		<provider
-		    android:name="androidx.core.content.FileProvider"
-		    android:authorities="${applicationId}.provider"
-		    ...
-		    tools:replace="android:resource"
-		    ...>
-		</provider>
-	 </application>
+	<provider
+	    android:name="androidx.core.content.FileProvider"
+	    android:authorities="${applicationId}.provider"
+	    ...
+	    tools:replace="android:resource"
+	    ...>
+	</provider>
+ </application>
 ```
 
  ### MyApplication
  ```kotlin
- 	//TODO: Extends Application class with CommonApplication:
- 	MyApplication: CommonApplication()
-
-		//TODO: Android 13 device language update
-		languageList: ArrayList<LanguageItem>
-
+//TODO: Extends Application class with CommonApplication:
+MyApplication: CommonApplication()
 ```
   
  ### BaseActivity
  ```kotlin
- 	//TODO: Extends BaseActivity class with Common Lib BaseActivity:
- 	BaseActivity: BaseActivity()
+//TODO: Extends BaseActivity class with Common Lib BaseActivity:
+BaseActivity: BaseActivity()
 ```
 
 ### ContactUs
 ```kotlin
 //TODO: Builder inner variable name updated
 
-	ContactUs.open(activity = this, ContactUs.build(
-                emailBuilder = ContactUs.EmailBuilder(
-                    emailTitle = "",
-                    feedbackEmail = "",
-                    appName = "",
-                    packageName = "",
-                    versionName = "",
-                    androidDeviceToken = "",
-                    customerNumber = "",
-                    countryCode = "",
-		    //TODO: Use for Premium purchase details
-                    isPremium = false,
-                    purchasedTitle = "",
-                    orderId = "",
-		    //TODO: If you want to pass content details use (contentId, contentTitle)
-                    contentId = "",
-                    contentTitle = "",
-                    showKeyboard = true/false,
-                ),
-                mediaBuilder = ContactUs.MediaBuilder(
-		    //TODO: Show only Photo
-		    allowPhotosOnly = true/false,
-		    //TODO: Show only Video
-                    allowVideosOnly = true/false,
-		    //TODO: Show Photo and Video
-                    allowBoth = true/false,
-		    //TODO: Max file size in MB
-                    maxFileSize = 15L,
-                    //TODO: Ratio (messageBoxHeight / ScreenWidth)
-                    messageBoxHeight = 0.4444444444,
-                    //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
-                    attachmentBoxHeight = 0.588888888888889,
-		    //TODO: Radio Button Item
-                    optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Feedback",
-                                message = "Type your feedback here.",
-                                isChecked = true/false
-                            )
-                        )
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Issue",
-                                message = "Please describe issue in detail.",
-                                isChecked = true/false
-                            )
-                        )
-                        add(
-                            ContactUs.OptionItem(
-                                text = "Request",
-                                message = "Add your request here.",
-                                isChecked = true/false
-                            )
-                        )
-                    }),
+ContactUs.open(activity = this, ContactUs.build(
+	emailBuilder = ContactUs.EmailBuilder(
+	    emailTitle = "",
+	    feedbackEmail = "",
+	    appName = "",
+	    packageName = "",
+	    versionName = "",
+	    androidDeviceToken = "",
+	    customerNumber = "",
+	    countryCode = "",
+	    //TODO: Use for Premium purchase details
+	    isPremium = false,
+	    purchasedTitle = "",
+	    orderId = "",
+	    //TODO: If you want to pass content details use (contentId, contentTitle)
+	    contentId = "",
+	    contentTitle = "",
+	    showKeyboard = true/false,
+	),
+	mediaBuilder = ContactUs.MediaBuilder(
+	    //TODO: Show only Photo
+	    allowPhotosOnly = true/false,
+	    //TODO: Show only Video
+	    allowVideosOnly = true/false,
+	    //TODO: Show Photo and Video
+	    allowBoth = true/false,
+	    //TODO: Max file size in MB
+	    maxFileSize = 15L,
+	    //TODO: Ratio (messageBoxHeight / ScreenWidth)
+	    messageBoxHeight = 0.4444444444,
+	    //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
+	    attachmentBoxHeight = 0.588888888888889,
+	    //TODO: Radio Button Item
+	    optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
+		add(
+		    ContactUs.OptionItem(
+			text = "Feedback",
+			message = "Type your feedback here.",
+			isChecked = true/false
+		    )
+		)
+		add(
+		    ContactUs.OptionItem(
+			text = "Issue",
+			message = "Please describe issue in detail.",
+			isChecked = true/false
+		    )
+		)
+		add(
+		    ContactUs.OptionItem(
+			text = "Request",
+			message = "Add your request here.",
+			isChecked = true/false
+		    )
+		)
+	    }),
 
 
-                ) {
-                //TODO: Screen
-                screenBuilder = ContactUs.ScreenBuilder(
-                    isFullScreen = true/false,
-                    windowBackgroundColor = R.color.extra_extra_light_gray,
-                    statusBarColor = R.color.extra_extra_light_gray,
-                    navigationBarColor = R.color.extra_extra_light_gray,
-                )
+	) {
+	//TODO: Screen
+	screenBuilder = ContactUs.ScreenBuilder(
+	    isFullScreen = true/false,
+	    windowBackgroundColor = R.color.extra_extra_light_gray,
+	    statusBarColor = R.color.extra_extra_light_gray,
+	    navigationBarColor = R.color.extra_extra_light_gray,
+	)
 
-                //TODO: Toolbar
-                toolBarBuilder = Language.ToolBarBuilder(
-                        toolBarColor = R.color.white,
-                        backIcon = R.drawable.ic_back,
-                        title = getString(com.hashone.commons.test.R.string.label_language),
-                        titleColor = R.color.black,
-                        titleFont = R.font.roboto_medium,
-                        titleSize = 16F,
-                    )
+	//TODO: Toolbar
+	toolBarBuilder = Language.ToolBarBuilder(
+		toolBarColor = R.color.white,
+		backIcon = R.drawable.ic_back,
+		title = getString(com.hashone.commons.test.R.string.label_language),
+		titleColor = R.color.black,
+		titleFont = R.font.roboto_medium,
+		titleSize = 16F,
+	    )
 
-                //TODO: Radio Buttons
-                radioButtonBinding = ContactUs.RadioButtonBuilder(
-                    selectedColor = R.color.black,
-		    //TODO: New, now you set radio button default color
-                    defaultColor = R.color.black,
-                    textFont = R.font.roboto_medium,
-                    textSize = 14F,
-                )
+	//TODO: Radio Buttons
+	radioButtonBinding = ContactUs.RadioButtonBuilder(
+	    selectedColor = R.color.black,
+	    //TODO: New, now you set radio button default color
+	    defaultColor = R.color.black,
+	    textFont = R.font.roboto_medium,
+	    textSize = 14F,
+	)
 
-                //TODO: Message UI
-                messageBuilder = ContactUs.MessageBuilder(
-                    backgroundColor = R.color.white,
-                    backgroundRadius = 8F,
-                    hint = "",
-                    message = "",
-                    color = R.color.black,
-                    font = R.font.roboto_medium,
-                    size = 14F,
-                )
+	//TODO: Message UI
+	messageBuilder = ContactUs.MessageBuilder(
+	    backgroundColor = R.color.white,
+	    backgroundRadius = 8F,
+	    hint = "",
+	    message = "",
+	    color = R.color.black,
+	    font = R.font.roboto_medium,
+	    size = 14F,
+	)
 
-                //TODO: Attachment UI
-                attachmentBuilder = ContactUs.AttachmentBuilder(
-                    cardBackgroundColor = R.color.extra_extra_light_gray,
-                    cardBackgroundRadius = 8F,
-                    backgroundColor = R.color.white,
-                    backgroundRadius = 8F,
-                    title = "",
-                    titleColor = R.color.light_gray,
-                    titleFont = R.font.roboto_medium,
-                    titleSize = 14F,
-                    addIcon = R.drawable.ic_contact_us_add_attachment,
-                    deleteIcon = R.drawable.ic_contact_us_img_delete,
-                )
+	//TODO: Attachment UI
+	attachmentBuilder = ContactUs.AttachmentBuilder(
+	    cardBackgroundColor = R.color.extra_extra_light_gray,
+	    cardBackgroundRadius = 8F,
+	    backgroundColor = R.color.white,
+	    backgroundRadius = 8F,
+	    title = "",
+	    titleColor = R.color.light_gray,
+	    titleFont = R.font.roboto_medium,
+	    titleSize = 14F,
+	    addIcon = R.drawable.ic_contact_us_add_attachment,
+	    deleteIcon = R.drawable.ic_contact_us_img_delete,
+	)
 
-                //TODO: Action button
-                actionButtonBuilder = ContactUs.ActionButtonBuilder(
-                    backgroundInactiveColor = R.color.light_gray,
-                    backgroundColor = R.color.black,
-                    radius = 30F,
-                    text = "",
-                    textColor = R.color.white,
-                    textFont = R.font.outfit_bold,
-                    textSize = 16F,
-                )
-            })
+	//TODO: Action button
+	actionButtonBuilder = ContactUs.ActionButtonBuilder(
+	    backgroundInactiveColor = R.color.light_gray,
+	    backgroundColor = R.color.black,
+	    radius = 30F,
+	    text = "",
+	    textColor = R.color.white,
+	    textFont = R.font.outfit_bold,
+	    textSize = 16F,
+	)
+    })
 ```
 
 ### Language
 
 **Notes:** From now, XML Strings for Language Code and Name logic removed, You must prepare List
+
+```gradle
+//TODO: App implementation - In app.gradle file
+resourceConfigurations += ["af-rZA", "en", "bn-rBD", "de-rDE", "es-rES", "fil-rPH", "fr-rFR", "in-rID", "it-rIT", "pt-rPT", "ru-rRU", "tr-rTR", "uk-rUA","b+zh+Hans+CN", "b+zh+Hans+HK", "b+zh+Hans+MO", "b+zh+Hans+SG", "b+zh+Hant+HK", "b+zh+Hant+TW"]
+
+```
+
+* Add locale_config file in **app > src > main > res > xml** - [locale_config.xml](https://github.com/hashonetech/commons/blob/master/app/src/main/res/xml/locale_configs.xml)
+
+```xml
+<application
+        ......
+        android:localeConfig="@xml/locale_configs"
+        ......>
+        ......
+
+        <!--//TODO: App implementation-->
+        <!-- Let AndroidX handle auto-store locales for pre-T devices to hold the user's selected locale -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+</application>
+```
+
 ```kotlin
 
 //TODO: Add this function in Your App Application class
-override fun attachBaseContext(base: Context?) {
-	//TODO: Prepare Language support list
-	prepareLanguageList()
-        super.attachBaseContext(base)
+override fun onCreate() {
+	super.onCreate()
+        mInstance = this
+        //TODO: App implementation
+        setupAppLocale()
 }
 
 //TODO: Add this function in Your App Application class
-//TODO: Below is the example to prepare list
-private fun prepareLanguageList() {
-        languageList.clear()
-        languageList.addAll(
-            arrayListOf(
-                LanguageItem("bahasa Indonesia", "in", "Indonesian", false),
-                LanguageItem("বাংলা", "bn", "Bengali", false),
-                LanguageItem("Deutsche", "de", "German", false),
-                LanguageItem("English", "en", "", false),//TODO:No SubTitle
-            )
-        )
+//TODO: App implementation
+private fun setupAppLocale() {
+	LocaleManager.prepareLanguageList(
+	    arrayListOf(
+		LanguageItem("bahasa Indonesia", "id-ID", "Indonesian", false),
+		LanguageItem("বাংলা", "bn-BD", "Bangla", false),
+		LanguageItem("Deutsche", "de-DE", "German", false),
+		LanguageItem("English", "en-US", "", true),//TODO:No SubTitle
+		LanguageItem("Española", "es-ES", "Spanish", false),
+		LanguageItem("Filipino", "fil-PH", "Filipino", false),
+		LanguageItem("français", "fr-FR", "French", false),
+		LanguageItem("Italiano", "it-IT", "Italian", false),
+		LanguageItem("português", "pt-PT", "Portuguese", false),
+		LanguageItem("pусский", "ru-RU", "Russian", false),
+		LanguageItem("Türkçe", "tr-TR", "Turkish", false),
+		LanguageItem("yкраїнський", "uk-UA", "Ukrainian", false),
+		LanguageItem("Chinese Simplified", "zh-Hans-CN", "Chinese Simplified", false),
+		LanguageItem(
+		    "Chinese (Hong Kong) Simplified",
+		    "zh-Hans-HK",
+		    "Chinese (Hong Kong) Simplified",
+		    false
+		),LanguageItem(
+		    "Chinese (Macao) Simplified",
+		    "zh-Hans-MO",
+		    "Chinese (Macao) Simplified",
+		    false
+		),LanguageItem(
+		    "Chinese (Singapore) Simplified",
+		    "zh-Hans-SG",
+		    "Chinese (Singapore) Simplified",
+		    false
+		),
+		LanguageItem(
+		    "Chinese (Taiwan) Traditional",
+		    "zh-Hant-TW",
+		    "Chinese (Taiwan) Traditional",
+		    false
+		),
+		LanguageItem(
+		    "Chinese (Hong Kong) Traditional",
+		    "zh-Hant-HK",
+		    "Chinese (Hong Kong) Traditional",
+		    false
+		),
+	    )
+	)
 }
 
 //TODO: Builder inner variable name updated
-	mActivityLauncher.launch(
-                Language.open(activity = this, Language.build(
-                    languageItemsList = ArrayList<LanguageItem>().apply {
-                	add(
-                            LanguageItem(
-                                languageName = "English",
-                                languageCode = "en",
-				languageOriginalName = "United States",
-                                isChecked = true/false
-                            )
-                        ),
-			 add(
-	                      LanguageItem(
-	                          languageName = "বাংলা",
-	                          languageCode = "bn",
-				  languageOriginalName = "Bangla",
-	                          isChecked = true/false
-	                        )
-	                ),
-			}
-                ) {
 
-                    //TODO: Screen
-                    screenBuilder = Language.ScreenBuilder(
-                        isFullScreen = true/false,
-                        windowBackgroundColor = R.color.white,
-                        statusBarColor = R.color.white,
-                        navigationBarColor = R.color.white,
-                    )
+override fun onRestart() {
+	val currentLocale = LocaleManager.getAppLocale()
+	super.onRestart()
+	isContains = false
+	LocaleManager.mLanguagesList.forEach {
+	    if (it.languageCode == currentLocale?.toLanguageTag())
+		isContains = true
+	}
+}
 
-                    //TODO: Toolbar
-                    toolBarBuilder = Language.ToolBarBuilder(
-                        toolBarColor = R.color.white,
-                        backIcon = R.drawable.ic_back,
-                        title = getString(com.hashone.commons.test.R.string.label_language),
-                        titleColor = R.color.black,
-                        titleFont = R.font.roboto_medium,
-                        titleSize = 16F,
-                    )
-
-                    //TODO: Language Item
-                    languageItemBuilder = Language.LanguageItemBuilder(
-                        selectedColor = R.color.black,
-                        defaultColor = R.color.light_gray,
-                        selectedIcon = R.drawable.ic_apply,
-                        bgColor = R.color.white,
-                        titleFont = R.font.roboto_medium,
-                        titleSize = 14F,
-                        paddingStart = 16,
-                        paddingEnd = 0,
-                        paddingTop = 24,
-                        paddingBottom = 24,
-                        iconPaddingStart = 8,
-                        iconPaddingEnd = 8,
-                        iconPaddingTop = 8,
-                        iconPaddingBottom = 8,
-                        originalNameFont = R.font.roboto_regular,
-                        originalNameSize = 12F,
-                        dividerColor = R.color.secondary_extra_light_gray,
-                        dividerThickness = 1,
-                    )
-                }),
-                onActivityResult = object : BetterActivityResult.OnActivityResult<ActivityResult> {
-                    override fun onActivityResult(result: ActivityResult) {
-                        if (result.resultCode == Activity.RESULT_OK) {
-                            result.data?.let { intentData ->
-                                if (intentData.hasExtra(KEY_RETURN_LANGUAGE_DATA)) {
-                                    val languageItem =
-                                        intentData.extras?.serializable<LanguageItem>(
-                                            KEY_RETURN_LANGUAGE_DATA
-                                        )
-                                    
-                                    languageItem?.let {
-                                        CommonApplication.mInstance.mStoreUserData.setString(
-                                            DEFAULT_LANGUAGE_NAME,
-                                            languageItem.languageName
-                                        )
-
-                                        val localContext =
-                                            LocaleHelper.setLocale(
-                                                mActivity,
-                                                languageItem.languageCode,
-						languageItem.countryCode
-                                            )
-                                        CommonApplication.mInstance.mStoreUserData.setString(
-                                            DEFAULT_LANGUAGE,
-                                            languageItem.languageCode
-                                        )
-                                        CommonApplication.mInstance.mStoreUserData.setString(
-                                            DEFAULT_LANGUAGE_NAME,
-                                            languageItem.languageName
-                                        )
-                                        CommonApplication.mInstance.setLocaleContext(localContext!!)
-                                        sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
-                                        /*Below Code use to tell System to set App language*/
-                                        val localeList =
-                                            LocaleListCompat.forLanguageTags(languageItem.languageCode)
-                                        AppCompatDelegate.setApplicationLocales(localeList)
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            )
+override fun onResume() {
+        super.onResume()
+        if (!isContains) {
+            ActivityCompat.recreate(mActivity)
+            return
         }
+        //TODO: Update UI text
+	......
+}
+
+//TODO: Update Selected Language item
+val currentLocale = LocaleManager.getAppLocale()
+LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
+	languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
+}
+
+mActivityLauncher.launch(
+	Language.open(activity = this, Language.build(
+	    languageItemsList = ArrayList<LanguageItem>().apply {
+		add(
+		    LanguageItem(
+			languageName = "English",
+			languageCode = "en",
+			languageOriginalName = "United States",
+			isChecked = true/false
+		    )
+		),
+		 add(
+		      LanguageItem(
+			  languageName = "বাংলা",
+			  languageCode = "bn",
+			  languageOriginalName = "Bangla",
+			  isChecked = true/false
+			)
+		),
+		}
+	) {
+
+	    //TODO: Screen
+	    screenBuilder = Language.ScreenBuilder(
+		isFullScreen = true/false,
+		windowBackgroundColor = R.color.white,
+		statusBarColor = R.color.white,
+		navigationBarColor = R.color.white,
+	    )
+
+	    //TODO: Toolbar
+	    toolBarBuilder = Language.ToolBarBuilder(
+		toolBarColor = R.color.white,
+		backIcon = R.drawable.ic_back,
+		title = getString(com.hashone.commons.test.R.string.label_language),
+		titleColor = R.color.black,
+		titleFont = R.font.roboto_medium,
+		titleSize = 16F,
+	    )
+
+	    //TODO: Language Item
+	    languageItemBuilder = Language.LanguageItemBuilder(
+		selectedColor = R.color.black,
+		defaultColor = R.color.light_gray,
+		selectedIcon = R.drawable.ic_apply,
+		bgColor = R.color.white,
+		titleFont = R.font.roboto_medium,
+		titleSize = 14F,
+		paddingStart = 16,
+		paddingEnd = 0,
+		paddingTop = 24,
+		paddingBottom = 24,
+		iconPaddingStart = 8,
+		iconPaddingEnd = 8,
+		iconPaddingTop = 8,
+		iconPaddingBottom = 8,
+		originalNameFont = R.font.roboto_regular,
+		originalNameSize = 12F,
+		dividerColor = R.color.secondary_extra_light_gray,
+		dividerThickness = 1,
+	    )
+	}),
+	onActivityResult = object : BetterActivityResult.OnActivityResult<ActivityResult> {
+	    override fun onActivityResult(result: ActivityResult) {
+		if (result.resultCode == Activity.RESULT_OK) {
+		    result.data?.let { intentData ->
+			if (intentData.hasExtra(KEY_RETURN_LANGUAGE_DATA)) {
+			    val languageItem =
+				intentData.extras?.serializable<LanguageItem>(
+				    KEY_RETURN_LANGUAGE_DATA
+				)
+			    languageItem?.let {
+
+				CommonApplication.mInstance.mStoreUserData.setString(
+				    DEFAULT_LANGUAGE,
+				    languageItem.languageCode
+				)
+				CommonApplication.mInstance.mStoreUserData.setString(
+				    DEFAULT_LANGUAGE_COUNTY_CODE,
+				    languageItem.countryCode
+				)
+				CommonApplication.mInstance.mStoreUserData.setString(
+				    DEFAULT_LANGUAGE_NAME,
+				    languageItem.languageName
+				)
+				sendBroadcast(Intent().setAction(ACTION_LANGUAGE_CHANGE))
+			    }
+
+			    ActivityCompat.recreate(mActivity)
+			}
+		    }
+		}
+	    }
+	}
+    )
+}
 ```
 
 ### Chromium WebView
 ```kotlin
-	val customTabsIntent = CustomTabsIntent.Builder()
-	                .setShareState(CustomTabsIntent.SHARE_STATE_DEFAULT | CustomTabsIntent.SHARE_STATE_OFF | CustomTabsIntent.SHARE_STATE_ON)
-	                .setUrlBarHidingEnabled(true/false)
-	                .setInstantAppsEnabled(true/false)
-	                .setShowTitle(true/false)
-	                .setCloseButtonIcon(
-	                    BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_back)
-	                )
-	                .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM | CustomTabsIntent.COLOR_SCHEME_DARK | CustomTabsIntent.COLOR_SCHEME_LIGHT)
-	                .setDefaultColorSchemeParams(
-	                    CustomTabColorSchemeParams.Builder()
-	                        .setToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
-	                        .setNavigationBarColor(ContextCompat.getColor(mActivity, R.color.white))
-	                        .setSecondaryToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
-	                        .setNavigationBarDividerColor(
-	                            ContextCompat.getColor(
-	                                mActivity,
-	                                R.color.white
-	                            )
-	                        )
-	                        .build()
-	                )
-	                .build()
-	            CustomTabActivityHelper.openCustomTab(
-	                mActivity,
-	                customTabsIntent,
-	                Uri.parse(<Your URL>),
-	                <Title>,
-	                WebViewFallback()
-	            )
+val customTabsIntent = CustomTabsIntent.Builder()
+		.setShareState(CustomTabsIntent.SHARE_STATE_DEFAULT | CustomTabsIntent.SHARE_STATE_OFF | CustomTabsIntent.SHARE_STATE_ON)
+		.setUrlBarHidingEnabled(true/false)
+		.setInstantAppsEnabled(true/false)
+		.setShowTitle(true/false)
+		.setCloseButtonIcon(
+		    BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_back)
+		)
+		.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM | CustomTabsIntent.COLOR_SCHEME_DARK | CustomTabsIntent.COLOR_SCHEME_LIGHT)
+		.setDefaultColorSchemeParams(
+		    CustomTabColorSchemeParams.Builder()
+			.setToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+			.setNavigationBarColor(ContextCompat.getColor(mActivity, R.color.white))
+			.setSecondaryToolbarColor(ContextCompat.getColor(mActivity, R.color.white))
+			.setNavigationBarDividerColor(
+			    ContextCompat.getColor(
+				mActivity,
+				R.color.white
+			    )
+			)
+			.build()
+		)
+		.build()
+	    CustomTabActivityHelper.openCustomTab(
+		mActivity,
+		customTabsIntent,
+		Uri.parse(<Your URL>),
+		<Title>,
+		WebViewFallback()
+    )
 ```
 
 ## In-App Billing
@@ -383,28 +462,28 @@ private fun prepareLanguageList() {
 ### Initialize BillingClient
 
 ```kotlin
-	MyApplication: CommonApplication(){
-  		override fun onCreate() {
-    		super.onCreate()
-    		PurchaseManager.initializeBillingClient(this)
-		}
+MyApplication: CommonApplication(){
+	override fun onCreate() {
+		super.onCreate()
+		PurchaseManager.initializeBillingClient(this)
 	}
+}
 ```
 
 ### Checking User Premium Status
 To determine if a user has premium access, you can call the **isPremium()** method within your splash screen or any relevant location. Ensure you have an array of product IDs representing premium subscriptions and products.
 
 ```kotlin
-	val premiumArray = arrayListOf(Constants.SUB_YEAR, Constants.SUB_MONTH, Constants.PROD_LIFETIME)
-	PurchaseManager.isPremium(premiumArray) { isPremium ->
-		if (isPremium) {
-    		// User is premium
-    		// Proceed with premium features
-		} else {
-    		// User is not premium
-    		// Provide non-premium features or prompt to upgrade
-	 	}
+val premiumArray = arrayListOf(Constants.SUB_YEAR, Constants.SUB_MONTH, Constants.PROD_LIFETIME)
+PurchaseManager.isPremium(premiumArray) { isPremium ->
+	if (isPremium) {
+	// User is premium
+	// Proceed with premium features
+	} else {
+	// User is not premium
+	// Provide non-premium features or prompt to upgrade
 	}
+}
 ```
 
 ### Retrieving Product and Subscription Details
@@ -412,26 +491,26 @@ To determine if a user has premium access, you can call the **isPremium()** meth
 Fetch the details of products and subscriptions to display related information in your Pro screen. Use the **queryAllProductDetails()** method and provide the list of product IDs
 
 ```kotlin
-	val subscriptions = listOf(Constants.SUB_YEAR, Constants.SUB_MONTH)
-	val products = listOf(Constants.PROD_LIFETIME)
+val subscriptions = listOf(Constants.SUB_YEAR, Constants.SUB_MONTH)
+val products = listOf(Constants.PROD_LIFETIME)
 
-	PurchaseManager.queryAllProductDetails(subscriptions, products, object : PurchaseListener() {
- 
-		override fun onBillingError(responseCode: Int, debugMessage: String) {
-                	// Handle error
-            	}
+PurchaseManager.queryAllProductDetails(subscriptions, products, object : PurchaseListener() {
 
-		override fun onProductDetail(productDetails: List<ProductDetails>) {
-    			runOnUiThread {
-        		productDetails.forEach { product ->
-            		setupProUIItem(product)           		
-        		}
+	override fun onBillingError(responseCode: Int, debugMessage: String) {
+		// Handle error
+	}
 
-			setSelection(Constants.SUB_YEAR)
-			// Example usage: pre-select the subscription
-    		   }
+	override fun onProductDetail(productDetails: List<ProductDetails>) {
+		runOnUiThread {
+		productDetails.forEach { product ->
+		setupProUIItem(product)           		
 		}
-	})
+
+		setSelection(Constants.SUB_YEAR)
+		// Example usage: pre-select the subscription
+	   }
+	}
+})
 ```
 
 ### Setting Up Pro UI Items
@@ -440,7 +519,7 @@ In order to display subscription and product details on your Pro screen, you can
 - Feel free to customize and adjust the provided code snippets as per your application's needs and design preferences.
 
 ```kotlin
-	private fun setupProUIItem(skuDetails: ProductDetails) {
+private fun setupProUIItem(skuDetails: ProductDetails) {
         try {
             var trialString = ""
             var hasTrail = false
@@ -517,26 +596,26 @@ In order to display subscription and product details on your Pro screen, you can
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
+}
 ```
 ### Purchase Process
 
 **Note:** purchaseSubscription & purchaseProduct is an Extension function which requires activity to use.
 
 ```kotlin
-	binding.layoutContinue.setOnClickListener {
-                if (Utils.checkClickTime()) {
-                    if (Utils.isNetworkAvailable(mActivity)) {
-                        if (selectedSkuId.isNotEmpty()) {
-                            if (selectedSkuId == Constants.PROD_LIFETIME) {
-                                lifeTimeSkuDetails?.let { it1 -> purchaseProduct(it1) }
-                            } else {
-                                (if (selectedSkuId == Constants.SUB_MONTH) monthSkuDetails else yearSkuDetails)?.let { it1 -> purchaseSubscription(it1) }
-                            }
-                        }
-                    }
-                }
-            }
+binding.layoutContinue.setOnClickListener {
+	if (Utils.checkClickTime()) {
+	    if (Utils.isNetworkAvailable(mActivity)) {
+		if (selectedSkuId.isNotEmpty()) {
+		    if (selectedSkuId == Constants.PROD_LIFETIME) {
+			lifeTimeSkuDetails?.let { it1 -> purchaseProduct(it1) }
+		    } else {
+			(if (selectedSkuId == Constants.SUB_MONTH) monthSkuDetails else yearSkuDetails)?.let { it1 -> purchaseSubscription(it1) }
+		    }
+		}
+	    }
+	}
+}
 ```
 ### Handling Purchase Events
 To handle purchase events after the purchase is completed, implement the **onPurchaseReceived()** method. This method is triggered when a purchase event occurs.
@@ -544,66 +623,66 @@ To handle purchase events after the purchase is completed, implement the **onPur
 
 Subscribe to the event using @Subscribe annotation and specify the thread mode.
 ```kotlin
-	@Subscribe(threadMode = ThreadMode.MAIN)
-	fun onPurchaseReceived(event: PurchaseEventModel?) {
-		event?.let { it1 ->
-    		if (it1.isPurchaseSuccess) {
-        		it1.purchaseData?.let { handlePurchase(it)
-			}
-    		} else {
-        		Log.d("onPurchaseReceived", "it1 ${it1.errorCode}")
-    		}
-	   }
+@Subscribe(threadMode = ThreadMode.MAIN)
+fun onPurchaseReceived(event: PurchaseEventModel?) {
+	event?.let { it1 ->
+	if (it1.isPurchaseSuccess) {
+		it1.purchaseData?.let { handlePurchase(it)
+		}
+	} else {
+		Log.d("onPurchaseReceived", "it1 ${it1.errorCode}")
 	}
-	// Note: you have to register the eventbus to retrieve callback 
+   }
+}
+// Note: you have to register the eventbus to retrieve callback 
 ```
 
 ### Handling Purchase
 
 ```kotlin
-	private fun handlePurchase(purchase: PurchaseData) {
+private fun handlePurchase(purchase: PurchaseData) {
     	PurchaseManager.storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchase)
     	PurchaseManager.storePurchaseData?.setPremiumPurchase(true)
     	showSuccessScreen()
-	}
-	// Note: You have to store purchase related data in preference.
-	// if purchased item is premium then save in **CURRENT_PURCHASE key** & setPremiumPurchase **true** otherwise save as **productId**.
+}
+// Note: You have to store purchase related data in preference.
+// if purchased item is premium then save in **CURRENT_PURCHASE key** & setPremiumPurchase **true** otherwise save as **productId**.
 ```
 ### PurchaseHistory:
 Retrieves the purchase history of both subscription and in-app products and notifies the listener with the history.
 
 ```kotlin
-	PurchaseManager.getPurchaseHistory(object : PurchaseListener() {
-	override fun onPurchaseHistoryReceived(historyList: List<HistoryPurchaseData>) {
-    		if (historyList.isNotEmpty()) {
-        		// Display purchase history to the user
-        		for (history in historyList) {
-            		val productType = if (history.productType == ProductType.SUBS) "Subscription" else "In-App"
-            		val autoRenewingStatus = if (history.isAutoRenewing) "Auto-Renewing" else "Not Auto-Renewing"
-            		Log.d("PurchaseHistory", "Product: ${history.productId}, Type: $productType, Order ID: ${history.orderId}, Time: ${history.purchaseTime}, $autoRenewingStatus")
-        	}
-    		} else {
-        	// No purchase history available
-        	Log.d("PurchaseHistory", "No purchase history available.")
-    		}
-	  }
-	})
-
-
-	//Below is sample function to convert history data to JSONArray for our Userdetail API.
-
-        fun convertHistoryDataToJsonArray(array: ArrayList<HistoryPurchaseData>): JSONArray {
-    		val jsonArray = JSONArray()
-    		array.forEach { historyData ->
-        		jsonArray.put(JSONObject().apply {
-            		put("product_id", historyData.productId)
-            		put("order_id", historyData.orderId)
-            		put("purchase_time", historyData.purchaseTime)
-            		qput("auto_renew", historyData.autoRenew)
-        		})
-    		}
-    	return jsonArray
+PurchaseManager.getPurchaseHistory(object : PurchaseListener() {
+override fun onPurchaseHistoryReceived(historyList: List<HistoryPurchaseData>) {
+	if (historyList.isNotEmpty()) {
+		// Display purchase history to the user
+		for (history in historyList) {
+		val productType = if (history.productType == ProductType.SUBS) "Subscription" else "In-App"
+		val autoRenewingStatus = if (history.isAutoRenewing) "Auto-Renewing" else "Not Auto-Renewing"
+		Log.d("PurchaseHistory", "Product: ${history.productId}, Type: $productType, Order ID: ${history.orderId}, Time: ${history.purchaseTime}, $autoRenewingStatus")
 	}
+	} else {
+	// No purchase history available
+	Log.d("PurchaseHistory", "No purchase history available.")
+	}
+  }
+})
+
+
+//Below is sample function to convert history data to JSONArray for our Userdetail API.
+
+fun convertHistoryDataToJsonArray(array: ArrayList<HistoryPurchaseData>): JSONArray {
+	val jsonArray = JSONArray()
+	array.forEach { historyData ->
+		jsonArray.put(JSONObject().apply {
+		put("product_id", historyData.productId)
+		put("order_id", historyData.orderId)
+		put("purchase_time", historyData.purchaseTime)
+		qput("auto_renew", historyData.autoRenew)
+		})
+	}
+	return jsonArray
+}
 ```
 
 ### License
