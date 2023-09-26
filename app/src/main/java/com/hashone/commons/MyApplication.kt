@@ -17,45 +17,29 @@ class MyApplication : CommonApplication() {
     private fun setupAppLocale() {
         LocaleManager.prepareLanguageList(
             arrayListOf(
-                LanguageItem("bahasa Indonesia", "id-ID", "Indonesian", false),
-                LanguageItem("বাংলা", "bn-BD", "Bangla", false),
-                LanguageItem("Deutsche", "de-DE", "German", false),
-                LanguageItem("English", "en-US", "", true),//TODO:No SubTitle
-                LanguageItem("Española", "es-ES", "Spanish", false),
-                LanguageItem("Filipino", "fil-PH", "Filipino", false),
-                LanguageItem("français", "fr-FR", "French", false),
-                LanguageItem("Italiano", "it-IT", "Italian", false),
-                LanguageItem("português", "pt-PT", "Portuguese", false),
-                LanguageItem("pусский", "ru-RU", "Russian", false),
-                LanguageItem("Türkçe", "tr-TR", "Turkish", false),
-                LanguageItem("yкраїнський", "uk-UA", "Ukrainian", false),
-                LanguageItem("Chinese Simplified", "zh-Hans-CN", "Chinese Simplified", false),
-                LanguageItem(
-                    "Chinese (Hong Kong) Simplified",
-                    "zh-Hans-HK",
-                    "Chinese (Hong Kong) Simplified",
-                    false
-                ),LanguageItem(
-                    "Chinese (Macao) Simplified",
-                    "zh-Hans-MO",
-                    "Chinese (Macao) Simplified",
-                    false
-                ),LanguageItem(
-                    "Chinese (Singapore) Simplified",
-                    "zh-Hans-SG",
-                    "Chinese (Singapore) Simplified",
-                    false
-                ),
+                LanguageItem("bahasa Indonesia", "id", "Indonesian", false),
+                LanguageItem("বাংলা", "bn", "Bangla", false),
+                LanguageItem("Deutsche", "de", "German", false),
+                LanguageItem("English", "en", "", true),//TODO:No SubTitle
+                LanguageItem("Española", "es", "Spanish", false),
+                LanguageItem("Filipino", "fil", "Filipino", false),
+                LanguageItem("français", "fr", "French", false),
+                LanguageItem("Italiano", "it", "Italian", false),
+                LanguageItem("português", "pt", "Portuguese", false),
+                LanguageItem("pусский", "ru", "Russian", false),
+                LanguageItem("Türkçe", "tr", "Turkish", false),
+                LanguageItem("yкраїнський", "uk", "Ukrainian", false),
+                LanguageItem("Chinese Simplified", "zh-Hans", "Chinese Simplified", false),
                 LanguageItem(
                     "Chinese (Taiwan) Traditional",
-                    "zh-Hant-TW",
+                    "zh-Hant",
                     "Chinese (Taiwan) Traditional",
                     false
                 ),
                 LanguageItem(
-                    "Chinese (Hong Kong) Traditional",
-                    "zh-Hant-HK",
-                    "Chinese (Hong Kong) Traditional",
+                    "Chinese (Macao) Traditional",
+                    "zh-Hant-MO",
+                    "Chinese (Macao) Traditional",
                     false
                 ),
             )

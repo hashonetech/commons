@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Commons</string>
+    <string name="label_language">Language - zh-rCN</string>
+    <string name="label_contact">Contact - zh-rCN</string>
+    <string name="label_webview">Chromium webView - zh-rCN</string>
+</resources>

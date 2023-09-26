@@ -59,20 +59,6 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
-   /* override fun onInternetConnectivityChanged(isConnected: Boolean) {
-        if (isConnected) {
-            if (::mBinding.isInitialized) {
-                loadStringInWebView()
-                mBinding.layoutEmptyWebView.isVisible = false
-                mBinding.progressBarPrivacy.isVisible = false
-            }
-        } else {
-            if (::mBinding.isInitialized) {
-                mBinding.layoutEmptyWebView.isVisible = true
-            }
-        }
-    }*/
-
     override fun onDestroy() {
         if (::mBinding.isInitialized) {
             mBinding.webViewPrivacy.destroy()

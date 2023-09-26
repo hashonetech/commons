@@ -197,6 +197,7 @@ class ContactUsActivity : BaseActivity() {
                     )
                 )
             } catch (e2: Exception) {
+                //TODO: Language translation require
                 showSnackBar(
                     mActivity, binding.cardViewSubmit, getString(R.string.no_gallery_app)
                 )
@@ -233,6 +234,7 @@ class ContactUsActivity : BaseActivity() {
                 }
             } else {
                 runOnUiThread {
+                    //TODO: Language translation require
                     showCustomAlertDialog(
                         message = getString(R.string.allow_permission),
                         negativeButtonText = getString(R.string.action_cancel),
@@ -336,6 +338,7 @@ class ContactUsActivity : BaseActivity() {
                 if (builder.messageBuilder.hint.isEmpty())
                     binding.textViewFeedbackMessage.hint =
                         builder.messageBuilder.hint.ifEmpty {
+                            //TODO: Language translation require
                             optionItem.message.ifEmpty {
                                 getString(
                                     R.string.label_type_here
@@ -350,24 +353,6 @@ class ContactUsActivity : BaseActivity() {
                 builder.radioButtonBinding.textFont,
                 builder.radioButtonBinding.textSize
             )
-
-//            val colorStateList = ColorStateList(
-//                arrayOf<IntArray>(
-//                    intArrayOf(-android.R.attr.state_enabled),
-//                    intArrayOf(android.R.attr.state_enabled)
-//                ), intArrayOf(
-//                    Color.BLACK,  //disabled
-//                    Color.BLUE //enabled
-//                )
-//            )
-//
-//            radioButton.setButtonTintList(colorStateList)
-//            radioButton.setPadding(
-//                dpToPx(4F).roundToInt(),
-//                dpToPx(0F).roundToInt(),
-//                dpToPx(32F).roundToInt(),
-//                dpToPx(0F).roundToInt()
-//            )
 
             val isLeftToRight =
                 TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_LTR
@@ -429,7 +414,6 @@ class ContactUsActivity : BaseActivity() {
             radioButton.setTextColor(getColorCode(if (optionItem.isChecked) builder.radioButtonBinding.selectedColor else builder.radioButtonBinding.defaultColor))
 
             binding.flexRadioButtons.addView(radioButton)
-//            binding.flexRadioButtons.setSpaceBetweenItem(dpToPx(32F))
         }
     }
 

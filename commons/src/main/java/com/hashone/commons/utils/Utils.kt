@@ -130,6 +130,7 @@ fun sendContactEmail(
     try {
         context.startActivity(
             Intent.createChooser(
+                //TODO: Language translation require
                 emailIntent, builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }
             )
         )
@@ -170,6 +171,7 @@ fun sendContactEmail(
         context.startActivity(
             Intent.createChooser(
                 emailIntent,
+                //TODO: Language translation require
                 builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }).apply {
                 putExtra(Intent.EXTRA_INITIAL_INTENTS, intentList.toTypedArray())
             })

@@ -15,39 +15,33 @@
   -->
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- English -->
-    <locale android:name="en-US" />
+    <locale android:name="en" />
     <!-- Bangla - Bangladesh -->
-    <locale android:name="bn-BD" />
+    <locale android:name="bn" />
     <!-- Deutsch - German -->
-    <locale android:name="de-DE" />
+    <locale android:name="de" />
     <!-- Spanisch - Spanish -->
-    <locale android:name="es-ES" />
+    <locale android:name="es" />
     <!-- Filipino -->
-    <locale android:name="fil-PH" />
+    <locale android:name="fil" />
     <!-- French (Standard) -->
-    <locale android:name="fr-FR" />
+    <locale android:name="fr" />
     <!-- bahasa Indonesia -->
-    <locale android:name="in-ID" />
+    <locale android:name="in" />
     <!-- Italian -->
-    <locale android:name="it-IT" />
+    <locale android:name="it" />
     <!-- portuguese -->
-    <locale android:name="pt-PT" />
+    <locale android:name="pt" />
     <!-- Russian -->
-    <locale android:name="ru-RU" />
+    <locale android:name="ru" />
     <!-- Turkish -->
-    <locale android:name="tr-TR" />
+    <locale android:name="tr" />
     <!-- Ukrainian -->
-    <locale android:name="uk-UA" />
+    <locale android:name="uk" />
     <!-- Chinese in Simplified Script -->
-    <locale android:name="zh-Hans-CN" />
-    <!-- Chinese (Hong Kong) in Simplified Script -->
-    <locale android:name="zh-Hans-HK" />
-    <!-- Chinese (Macao) in Simplified Script -->
-    <locale android:name="zh-Hans-MO" />
-    <!-- Chinese (Singapore) in Simplified Script -->
-    <locale android:name="zh-Hans-SG" />
+    <locale android:name="zh-Hans" />
     <!-- Chinese (Taiwan) in Traditional Script -->
-    <locale android:name="zh-Hant-TW" />
+    <locale android:name="zh-Hant" />
     <!-- Chinese (Hong Kong) in Traditional Script -->
-    <locale android:name="zh-Hant-HK" />
+    <locale android:name="zh-Hant-MO" />
 </locale-config>

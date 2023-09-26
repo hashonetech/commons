@@ -25,7 +25,7 @@ object LocaleManager {
         updateAppPreference()
     }
 
-    /*----------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------*/
     private fun checkMigrationIsAlreadyDone(context: Context) {
         // Check if the migration has already been done or not
         if (getString(context, FIRST_TIME_MIGRATION) != STATUS_DONE) {
@@ -47,23 +47,37 @@ object LocaleManager {
 
     private fun checkIfLanguageExist() {
         if (!AppCompatDelegate.getApplicationLocales().isEmpty) {
-            val selectedLanguageTag = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
+            var selectedLanguageTag = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
             val languageCodeList = ArrayList<String>()
 
             mLanguagesList.forEach {
                 languageCodeList.add(it.languageCode)
             }
             if (!languageCodeList.contains(selectedLanguageTag)) {
-                val localeList = LocaleListCompat.forLanguageTags("en-US")
-                AppCompatDelegate.setApplicationLocales(localeList)
+                var isLanguageCodeExist = false
+                languageCodeList.forEach {
+                    selectedLanguageTag?.let { languageCode ->
+                        if (languageCode.startsWith(it, ignoreCase = true)) {
+                            selectedLanguageTag = it
+                            isLanguageCodeExist = true
+                        }
+                    }
+                }
+                if (isLanguageCodeExist) {
+                    val localeList = LocaleListCompat.forLanguageTags(selectedLanguageTag)
+                    AppCompatDelegate.setApplicationLocales(localeList)
+                } else {
+                    val localeList = LocaleListCompat.forLanguageTags("en")
+                    AppCompatDelegate.setApplicationLocales(localeList)
+                }
             }
         } else {
-            val localeList = LocaleListCompat.forLanguageTags("en-US")
+            val localeList = LocaleListCompat.forLanguageTags("en")
             AppCompatDelegate.setApplicationLocales(localeList)
         }
     }
 
-    /*----------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------*/
     //TODO: App Locale
     fun setAppLocale(languageCode: String) {
         val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags(languageCode)
@@ -83,9 +97,9 @@ object LocaleManager {
         }
     }
 
-    /*----------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------*/
 
-    /*----------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------*/
     //TODO: Preference management
 
     // Specify the constants to be used in the below code snippets
@@ -120,7 +134,7 @@ object LocaleManager {
                 mLanguagesList.add(
                     LanguageItem(
                         languageName = "English",
-                        languageCode = "en-US",
+                        languageCode = "en",
                         languageOriginalName = "",
                         countryCode = "IN",
                         isChecked = true
@@ -144,6 +158,6 @@ object LocaleManager {
             }
         }
     }
-    /*----------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------*/
 
 }

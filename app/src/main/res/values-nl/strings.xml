@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Commons</string>
+    <string name="label_language" >Language - NL-rNL</string>
+    <string name="label_contact" >Contact - NL-rNL</string>
+    <string name="label_webview" >Chromium webView - NL-rNL</string>
+</resources>

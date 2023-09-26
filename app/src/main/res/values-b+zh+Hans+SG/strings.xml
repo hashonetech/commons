@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Commons</string>
-    <string name="label_language">Мова</string>
-    <string name="label_contact">контакт - zh SG</string>
-    <string name="label_webview">Веб-перегляд Chromium sg</string>
-</resources>

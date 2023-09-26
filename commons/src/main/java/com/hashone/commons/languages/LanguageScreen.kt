@@ -80,6 +80,7 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                     IconButton(onClick = { activity?.finish() }) {
                         Icon(
                             ImageVector.vectorResource(id = languageBuilder.toolBarBuilder.backIcon),
+                            //TODO: Language translation require
                             contentDescription = stringResource(id = R.string.label_back)
                         )
                     }

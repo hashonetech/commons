@@ -97,17 +97,6 @@ fun AnimatedLanguageSelection(
                     }
                 )
             }
-
-            coroutineScope.launch {
-//                val itemInfo = listState.layoutInfo.visibleItemsInfo.firstOrNull { it.index == currentIndex }
-//                if (itemInfo != null) {
-//                    val center = listState.layoutInfo.viewportEndOffset / 2
-//                    val childCenter = itemInfo.offset + itemInfo.size / 2
-//                    listState.animateScrollBy((childCenter - center).toFloat())
-//                } else {
-//                    listState.scrollToItem(currentIndex)
-//                }
-            }
         }
     }
 }
@@ -169,6 +158,7 @@ fun LanguageSelectionCard(
                 ) {
                     Image(
                         painter = painterResource(id = selectedIcon),
+                        //TODO: Language translation require
                         contentDescription = "Icon",
                         contentScale = ContentScale.Crop,
                     )

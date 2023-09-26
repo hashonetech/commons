@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Commons</string>
+    <string name="label_language" >Language - EL-rGR</string>
+    <string name="label_contact" >Contact - El-rGR</string>
+    <string name="label_webview" >Chromium webView - El-rGR</string>
+</resources>
