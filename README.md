@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.0'
+	implementation 'com.github.hashonetech:commons:v1.2.1'
 }
 ```
 
@@ -210,7 +210,7 @@ ContactUs.open(activity = this, ContactUs.build(
 
 ```gradle
 //TODO: App implementation - In app.gradle file
-resourceConfigurations += ["af-rZA", "en", "bn-rBD", "de-rDE", "es-rES", "fil-rPH", "fr-rFR", "in-rID", "it-rIT", "pt-rPT", "ru-rRU", "tr-rTR", "uk-rUA","b+zh+Hans+CN", "b+zh+Hans+HK", "b+zh+Hans+MO", "b+zh+Hans+SG", "b+zh+Hant+HK", "b+zh+Hant+TW"]
+resourceConfigurations += ["af", "en", "bn", "de-rDE", "es", "fil", "fr", "in", "it", "pt", "ru", "tr", "uk","zh-rCN" "b+zh+Hans+MO", "zh-rTW"]
 
 ```
 
@@ -252,45 +252,29 @@ override fun onCreate() {
 private fun setupAppLocale() {
 	LocaleManager.prepareLanguageList(
 	    arrayListOf(
-		LanguageItem("bahasa Indonesia", "id-ID", "Indonesian", false),
-		LanguageItem("বাংলা", "bn-BD", "Bangla", false),
+		LanguageItem("bahasa Indonesia", "id", "Indonesian", false),
+		LanguageItem("বাংলা", "bn", "Bangla", false),
 		LanguageItem("Deutsche", "de-DE", "German", false),
-		LanguageItem("English", "en-US", "", true),//TODO:No SubTitle
-		LanguageItem("Española", "es-ES", "Spanish", false),
-		LanguageItem("Filipino", "fil-PH", "Filipino", false),
-		LanguageItem("français", "fr-FR", "French", false),
-		LanguageItem("Italiano", "it-IT", "Italian", false),
-		LanguageItem("português", "pt-PT", "Portuguese", false),
-		LanguageItem("pусский", "ru-RU", "Russian", false),
-		LanguageItem("Türkçe", "tr-TR", "Turkish", false),
-		LanguageItem("yкраїнський", "uk-UA", "Ukrainian", false),
-		LanguageItem("Chinese Simplified", "zh-Hans-CN", "Chinese Simplified", false),
-		LanguageItem(
-		    "Chinese (Hong Kong) Simplified",
-		    "zh-Hans-HK",
-		    "Chinese (Hong Kong) Simplified",
-		    false
-		),LanguageItem(
-		    "Chinese (Macao) Simplified",
-		    "zh-Hans-MO",
-		    "Chinese (Macao) Simplified",
-		    false
-		),LanguageItem(
-		    "Chinese (Singapore) Simplified",
-		    "zh-Hans-SG",
-		    "Chinese (Singapore) Simplified",
-		    false
-		),
+		LanguageItem("English", "en", "", true),//TODO:No SubTitle
+		LanguageItem("Española", "es", "Spanish", false),
+		LanguageItem("Filipino", "fil", "Filipino", false),
+		LanguageItem("français", "fr", "French", false),
+		LanguageItem("Italiano", "it", "Italian", false),
+		LanguageItem("português", "pt", "Portuguese", false),
+		LanguageItem("pусский", "ru", "Russian", false),
+		LanguageItem("Türkçe", "tr", "Turkish", false),
+		LanguageItem("yкраїнський", "uk", "Ukrainian", false),
+		LanguageItem("Chinese Simplified", "zh-Hans", "Chinese Simplified", false),
 		LanguageItem(
 		    "Chinese (Taiwan) Traditional",
-		    "zh-Hant-TW",
+		    "zh-Hant",
 		    "Chinese (Taiwan) Traditional",
 		    false
 		),
 		LanguageItem(
-		    "Chinese (Hong Kong) Traditional",
-		    "zh-Hant-HK",
-		    "Chinese (Hong Kong) Traditional",
+		    "Chinese (Macao) Traditional",
+		    "zh-Hant-MO",
+		    "Chinese (Macao) Traditional",
 		    false
 		),
 	    )
