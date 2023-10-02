@@ -58,8 +58,11 @@ object LocaleManager {
                 languageCodeList.forEach {
                     selectedLanguageTag?.let { languageCode ->
                         if (languageCode.startsWith(it, ignoreCase = true)) {
-                            selectedLanguageTag = it
-                            isLanguageCodeExist = true
+                            val systemLanguageCodeData = selectedLanguageTag?.substringBeforeLast("-")
+                            if (systemLanguageCodeData.equals(it, true)) {
+                                selectedLanguageTag = it
+                                isLanguageCodeExist = true
+                            }
                         }
                     }
                 }
