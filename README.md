@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.2'
+	implementation 'com.github.hashonetech:commons:v1.2.3'
 }
 ```
 
@@ -210,7 +210,7 @@ ContactUs.open(activity = this, ContactUs.build(
 
 ```gradle
 //TODO: App implementation - In app.gradle file
-resourceConfigurations += ["af", "en", "bn", "de-rDE", "es", "fil", "fr", "in", "it", "pt", "ru", "tr", "uk","zh-rCN" "b+zh+Hans+MO", "zh-rTW"]
+resourceConfigurations += ["af", "en", "bn", "de-rDE", "es", "fil", "fr", "in", "it", "pt", "ru", "tr", "uk","zh-rCN" "b+zh+Hans+MO", "zh-rTW", "hi"]
 
 ```
 
@@ -256,6 +256,7 @@ private fun setupAppLocale() {
 		LanguageItem("বাংলা", "bn", "Bangla", false),
 		LanguageItem("Deutsche", "de-DE", "German", false),
 		LanguageItem("English", "en", "", true),//TODO:No SubTitle
+		LanguageItem("हिंदी", "hi", "Hindi", false),
 		LanguageItem("Española", "es", "Spanish", false),
 		LanguageItem("Filipino", "fil", "Filipino", false),
 		LanguageItem("français", "fr", "French", false),
@@ -286,11 +287,7 @@ private fun setupAppLocale() {
 override fun onRestart() {
 	val currentLocale = LocaleManager.getAppLocale()
 	super.onRestart()
-	isContains = false
-	LocaleManager.mLanguagesList.forEach {
-	    if (it.languageCode == currentLocale?.toLanguageTag())
-		isContains = true
-	}
+	isContains = LocaleManager.isLocaleContains(currentLocale)
 }
 
 override fun onResume() {
@@ -306,7 +303,13 @@ override fun onResume() {
 //TODO: Update Selected Language item
 val currentLocale = LocaleManager.getAppLocale()
 LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
-	languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
+	if (currentLocale!!.toLanguageTag().startsWith(languageItem.languageCode, ignoreCase = true)) {
+	    val systemLanguageCodeData = currentLocale!!.toLanguageTag().substringBeforeLast("-")
+	    languageItem.isChecked =
+		systemLanguageCodeData.equals(languageItem.languageCode, true)
+	} else {
+	    languageItem.isChecked = false
+	}
 }
 
 mActivityLauncher.launch(
