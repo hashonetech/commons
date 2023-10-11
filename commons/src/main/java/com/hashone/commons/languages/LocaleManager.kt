@@ -29,12 +29,10 @@ object LocaleManager {
     private fun checkMigrationIsAlreadyDone(context: Context) {
         // Check if the migration has already been done or not
         if (getString(context, FIRST_TIME_MIGRATION) != STATUS_DONE) {
-
             // Fetch the selected language from wherever it was stored. In this case it’s SharedPref
 
             // In this case let’s assume that it was stored in a key named SELECTED_LANGUAGE
             getString(context, SELECTED_LANGUAGE)?.let {
-
                 // Set this locale using the AndroidX library that will handle the storage itself
                 val localeList = LocaleListCompat.forLanguageTags(it)
                 AppCompatDelegate.setApplicationLocales(localeList)
@@ -55,12 +53,13 @@ object LocaleManager {
             }
             if (!languageCodeList.contains(selectedLanguageTag)) {
                 var isLanguageCodeExist = false
-                languageCodeList.forEach {
+                languageCodeList.forEachIndexed { index, item ->
                     selectedLanguageTag?.let { languageCode ->
-                        if (languageCode.startsWith(it, ignoreCase = true)) {
-                            val systemLanguageCodeData = selectedLanguageTag?.substringBeforeLast("-")
-                            if (systemLanguageCodeData.equals(it, true)) {
-                                selectedLanguageTag = it
+                        if (languageCode.startsWith(item, ignoreCase = true)) {
+                            val systemLanguageCodeData =
+                                selectedLanguageTag?.substringBeforeLast("-")
+                            if (systemLanguageCodeData.equals(item, true)) {
+                                selectedLanguageTag = item
                                 isLanguageCodeExist = true
                             }
                         }
@@ -75,9 +74,25 @@ object LocaleManager {
                 }
             }
         } else {
-            val localeList = LocaleListCompat.forLanguageTags("en")
+            val localeData = getAppLocale()
+            val localeList =
+                LocaleListCompat.forLanguageTags(if (localeData != null) localeData.toLanguageTag() else "en")
             AppCompatDelegate.setApplicationLocales(localeList)
         }
+    }
+
+    fun isLocaleContains(currentLocale: Locale?): Boolean {
+        var isContains = false
+        if (currentLocale != null) {
+            mLanguagesList.forEach {
+                if (currentLocale.toLanguageTag().startsWith(it.languageCode, ignoreCase = true)) {
+                    val systemLanguageCodeData = currentLocale.toLanguageTag().substringBeforeLast("-")
+                    if (systemLanguageCodeData.equals(it.languageCode, true))
+                        isContains = true
+                }
+            }
+        }
+        return isContains
     }
 
     /*--------------------------------------------------------------------------------------------*/

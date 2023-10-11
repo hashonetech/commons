@@ -37,11 +37,7 @@ open class BaseActivity : AppCompatActivity() {
         mActivity = this
 
         val currentLocale = LocaleManager.getAppLocale()
-        LocaleManager.mLanguagesList.forEach {
-            if (it.languageCode == currentLocale?.toLanguageTag())
-                isContains = true
-        }
-
+        isContains = LocaleManager.isLocaleContains(currentLocale)
         LocaleManager.verifyCurrentAppLocale(mActivity)
     }
 

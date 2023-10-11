@@ -21,6 +21,7 @@ class MyApplication : CommonApplication() {
                 LanguageItem("বাংলা", "bn", "Bangla", false),
                 LanguageItem("Deutsche", "de", "German", false),
                 LanguageItem("English", "en", "", true),//TODO:No SubTitle
+                LanguageItem("हिंदी", "hi", "Hindi", true),
                 LanguageItem("Española", "es", "Spanish", false),
                 LanguageItem("Filipino", "fil", "Filipino", false),
                 LanguageItem("français", "fr", "French", false),

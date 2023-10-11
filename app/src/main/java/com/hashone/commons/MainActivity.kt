@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -165,7 +164,13 @@ class MainActivity : BaseActivity() {
         mBinding.buttonLanguage.setOnClickListener {
             val currentLocale = LocaleManager.getAppLocale()
             LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
-                languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
+                if (currentLocale!!.toLanguageTag().startsWith(languageItem.languageCode, ignoreCase = true)) {
+                    val systemLanguageCodeData = currentLocale!!.toLanguageTag().substringBeforeLast("-")
+                    languageItem.isChecked =
+                        systemLanguageCodeData.equals(languageItem.languageCode, true)
+                } else {
+                    languageItem.isChecked = false
+                }
             }
 
             mActivityLauncher.launch(
@@ -286,12 +291,7 @@ class MainActivity : BaseActivity() {
     override fun onRestart() {
         val currentLocale = LocaleManager.getAppLocale()
         super.onRestart()
-        isContains = false
-        LocaleManager.mLanguagesList.forEach {
-            if (it.languageCode == currentLocale?.toLanguageTag())
-                isContains = true
-
-        }
+        isContains = LocaleManager.isLocaleContains(currentLocale)
     }
 
     override fun onResume() {
