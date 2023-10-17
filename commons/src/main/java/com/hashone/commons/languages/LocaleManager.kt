@@ -1,7 +1,6 @@
 package com.hashone.commons.languages
 
 import android.content.Context
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.hashone.commons.base.CommonApplication
@@ -30,7 +29,6 @@ object LocaleManager {
         // Check if the migration has already been done or not
         if (getString(context, FIRST_TIME_MIGRATION) != STATUS_DONE) {
             // Fetch the selected language from wherever it was stored. In this case it’s SharedPref
-
             // In this case let’s assume that it was stored in a key named SELECTED_LANGUAGE
             getString(context, SELECTED_LANGUAGE)?.let {
                 // Set this locale using the AndroidX library that will handle the storage itself
@@ -55,7 +53,10 @@ object LocaleManager {
                 var isLanguageCodeExist = false
                 languageCodeList.forEachIndexed { index, item ->
                     selectedLanguageTag?.let { languageCode ->
-                        if (languageCode.startsWith(item, ignoreCase = true)) {
+                        if (languageCode.equals(item, ignoreCase = true)) {
+                            selectedLanguageTag = item
+                            isLanguageCodeExist = true
+                        } else if (languageCode.startsWith(item, ignoreCase = true)) {
                             val systemLanguageCodeData =
                                 selectedLanguageTag?.substringBeforeLast("-")
                             if (systemLanguageCodeData.equals(item, true)) {
@@ -85,7 +86,9 @@ object LocaleManager {
         var isContains = false
         if (currentLocale != null) {
             mLanguagesList.forEach {
-                if (currentLocale.toLanguageTag().startsWith(it.languageCode, ignoreCase = true)) {
+                if (currentLocale.toLanguageTag().equals(it.languageCode, ignoreCase = true)) {
+                    isContains = true
+                } else if (currentLocale.toLanguageTag().startsWith(it.languageCode, ignoreCase = true)) {
                     val systemLanguageCodeData = currentLocale.toLanguageTag().substringBeforeLast("-")
                     if (systemLanguageCodeData.equals(it.languageCode, true))
                         isContains = true
@@ -93,6 +96,27 @@ object LocaleManager {
             }
         }
         return isContains
+    }
+
+    fun updateSelection() {
+        val currentLocale = getAppLocale()
+        if (currentLocale != null) {
+            mLanguagesList.forEach { languageItem ->
+                if (currentLocale.toLanguageTag().equals(languageItem.languageCode, ignoreCase = true)) {
+                    languageItem.isChecked = true
+                } else if (currentLocale.toLanguageTag().startsWith(languageItem.languageCode, ignoreCase = true)) {
+                    val systemLanguageCodeData = currentLocale.toLanguageTag().substringBeforeLast("-")
+                    languageItem.isChecked =
+                        systemLanguageCodeData.equals(languageItem.languageCode, true)
+                } else {
+                    languageItem.isChecked = false
+                }
+            }
+        } else {
+            mLanguagesList.forEach { languageItem ->
+                languageItem.isChecked = "en".equals(languageItem.languageCode, ignoreCase = true)
+            }
+        }
     }
 
     /*--------------------------------------------------------------------------------------------*/

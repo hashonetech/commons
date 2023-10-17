@@ -162,16 +162,7 @@ class MainActivity : BaseActivity() {
         }
 
         mBinding.buttonLanguage.setOnClickListener {
-            val currentLocale = LocaleManager.getAppLocale()
-            LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
-                if (currentLocale!!.toLanguageTag().startsWith(languageItem.languageCode, ignoreCase = true)) {
-                    val systemLanguageCodeData = currentLocale!!.toLanguageTag().substringBeforeLast("-")
-                    languageItem.isChecked =
-                        systemLanguageCodeData.equals(languageItem.languageCode, true)
-                } else {
-                    languageItem.isChecked = false
-                }
-            }
+            LocaleManager.updateSelection()
 
             mActivityLauncher.launch(
                 Language.open(activity = this, Language.build(
@@ -288,9 +279,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onRestart() {
+    override fun onStart() {
         val currentLocale = LocaleManager.getAppLocale()
-        super.onRestart()
+        super.onStart()
         isContains = LocaleManager.isLocaleContains(currentLocale)
     }
 

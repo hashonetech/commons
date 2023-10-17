@@ -232,7 +232,7 @@ fun LanguageSelection(
 ) {
 
     var initialSelectedIndex = remember {
-        val languageItem = languageList.first {
+        val languageItem = languageList.firstOrNull {
             it.isChecked
         }
         languageList.indexOf(languageItem)
