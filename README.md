@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.3'
+	implementation 'com.github.hashonetech:commons:v1.2.4'
 }
 ```
 
@@ -148,7 +148,7 @@ ContactUs.open(activity = this, ContactUs.build(
 	)
 
 	//TODO: Toolbar
-	toolBarBuilder = Language.ToolBarBuilder(
+	toolBarBuilder = ContactUs.ToolBarBuilder(
 		toolBarColor = R.color.white,
 		backIcon = R.drawable.ic_back,
 		title = getString(com.hashone.commons.test.R.string.label_language),
@@ -284,9 +284,9 @@ private fun setupAppLocale() {
 
 //TODO: Builder inner variable name updated
 
-override fun onRestart() {
+override fun onStart() {
 	val currentLocale = LocaleManager.getAppLocale()
-	super.onRestart()
+	super.onStart()
 	isContains = LocaleManager.isLocaleContains(currentLocale)
 }
 
@@ -301,16 +301,7 @@ override fun onResume() {
 }
 
 //TODO: Update Selected Language item
-val currentLocale = LocaleManager.getAppLocale()
-LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
-	if (currentLocale!!.toLanguageTag().startsWith(languageItem.languageCode, ignoreCase = true)) {
-	    val systemLanguageCodeData = currentLocale!!.toLanguageTag().substringBeforeLast("-")
-	    languageItem.isChecked =
-		systemLanguageCodeData.equals(languageItem.languageCode, true)
-	} else {
-	    languageItem.isChecked = false
-	}
-}
+LocaleManager.updateSelection()
 
 mActivityLauncher.launch(
 	Language.open(activity = this, Language.build(
