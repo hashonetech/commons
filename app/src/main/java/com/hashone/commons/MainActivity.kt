@@ -66,7 +66,7 @@ class MainActivity : BaseActivity() {
                             add(
                                 ContactUs.OptionItem(
                                     text = "Feedback",
-                                    message = "Type your feedback here.",
+                                    message = "",
                                     isChecked = true
                                 )
                             )
@@ -181,7 +181,7 @@ class MainActivity : BaseActivity() {
                     toolBarBuilder = Language.ToolBarBuilder(
                         toolBarColor = R.color.white,
                         backIcon = R.drawable.ic_back,
-                        title = getString(com.hashone.commons.test.R.string.label_language),
+//                        title = getString(com.hashone.commons.test.R.string.label_language),
                         titleColor = R.color.black,
                         titleFont = R.font.roboto_medium,
                         titleSize = 16F,
@@ -292,7 +292,7 @@ class MainActivity : BaseActivity() {
             return
         }
         mBinding.buttonContactus.text =
-            getString(com.hashone.commons.test.R.string.label_contact)
+            getString(com.hashone.commons.test.R.string.commons_label_contact)
         mBinding.buttonLanguage.text =
             getString(com.hashone.commons.test.R.string.label_language)
         mBinding.buttonWebView.text =

@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">контакт</string>
+    <string name="commons_label_feedback">Зворотній зв\'язок</string>
+    <string name="commons_label_issue">Проблема</string>
+    <string name="commons_label_type_here">Друкуйте тут</string>
+    <string name="commons_add_media">Додайте медіа</string>
+    <string name="commons_email_title">Відправити лист…</string>
+    <string name="commons_action_back">Назад</string>
+    <string name="commons_action_cancel">Скасувати</string>
+    <string name="commons_action_grant">Грант</string>
+    <string name="commons_action_submit">Надіслати</string>
+    <string name="commons_no_gallery_app">На вашому телефоні немає жодної програми для галереї, завантажте її з Play Store</string>
+    <string name="commons_allow_permission">Потрібно надати доступ до дозволів на зберігання.</string>
+    <string name="commons_no_internet">Немає підключення до Інтернету.</string>
+    <string name="commons_something_wrong">Щось пішло не так</string>
+    <string name="commons_label_retry">Повторіть спробу</string>
+    <string name="commons_label_back">Назад</string>
+    <string name="commons_language_title">Мова</string>
+</resources>

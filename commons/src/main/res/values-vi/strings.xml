@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Liên hệ</string>
+    <string name="commons_label_feedback">Nhận xét</string>
+    <string name="commons_label_issue">Vấn đề</string>
+    <string name="commons_label_type_here">Nhập ở đây</string>
+    <string name="commons_add_media">Thêm phương tiện truyền thông</string>
+    <string name="commons_email_title">Gửi email…</string>
+    <string name="commons_action_back">Mặt sau</string>
+    <string name="commons_action_cancel">Hủy bỏ</string>
+    <string name="commons_action_grant">Khoản trợ cấp</string>
+    <string name="commons_action_submit">Nộp</string>
+    <string name="commons_no_gallery_app">Điện thoại của bạn không có bất kỳ APP thư viện nào, vui lòng tải xuống từ cửa hàng play</string>
+    <string name="commons_allow_permission">Bạn cần cho phép truy cập vào quyền lưu trữ.</string>
+    <string name="commons_no_internet">Không có kết nối Internet.</string>
+    <string name="commons_something_wrong">Đã xảy ra lỗi</string>
+    <string name="commons_label_retry">Thử lại</string>
+    <string name="commons_label_back">Mặt sau</string>
+    <string name="commons_language_title">Ngôn ngữ</string>
+</resources>

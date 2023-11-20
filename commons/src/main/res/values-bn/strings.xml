@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">যোগাযোগ</string>
+    <string name="commons_label_feedback">প্রতিক্রিয়া</string>
+    <string name="commons_label_issue">সমস্যা</string>
+    <string name="commons_label_type_here">এখানে লিখুন</string>
+    <string name="commons_add_media">মিডিয়া যোগ করুন</string>
+    <string name="commons_email_title">ইমেইল পাঠান…</string>
+    <string name="commons_action_back">পেছনে</string>
+    <string name="commons_action_cancel">বাতিল করুন</string>
+    <string name="commons_action_grant">প্রদান</string>
+    <string name="commons_action_submit">জমা দিন</string>
+    <string name="commons_no_gallery_app">আপনার ফোনে কোনো গ্যালারি APP নেই, প্লে স্টোর থেকে ডাউনলোড করুন</string>
+    <string name="commons_allow_permission">আপনাকে স্টোরেজ অনুমতিগুলিতে অ্যাক্সেসের অনুমতি দিতে হবে।</string>
+    <string name="commons_no_internet">ইন্টারনেট সংযোগ নেই।</string>
+    <string name="commons_something_wrong">কিছু ভুল হয়েছে</string>
+    <string name="commons_label_retry">পুনরায় চেষ্টা করা</string>
+    <string name="commons_label_back">পেছনে</string>
+    <string name="commons_language_title">ভাষা</string>
+</resources>

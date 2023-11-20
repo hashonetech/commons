@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">연락하다</string>
+    <string name="commons_label_feedback">피드백</string>
+    <string name="commons_label_issue">문제</string>
+    <string name="commons_label_type_here">여기에 입력하세요</string>
+    <string name="commons_add_media">미디어 추가</string>
+    <string name="commons_email_title">이메일을 보내…</string>
+    <string name="commons_action_back">뒤쪽에</string>
+    <string name="commons_action_cancel">취소</string>
+    <string name="commons_action_grant">승인하다</string>
+    <string name="commons_action_submit">제출하다</string>
+    <string name="commons_no_gallery_app">귀하의 휴대폰에는 갤러리 앱이 없습니다. 플레이 스토어에서 다운로드하세요.</string>
+    <string name="commons_allow_permission">저장소 권한에 대한 접근을 허용해야 합니다.</string>
+    <string name="commons_no_internet">인터넷에 연결되지 않음.</string>
+    <string name="commons_something_wrong">문제가 발생했습니다.</string>
+    <string name="commons_label_retry">다시 해 보다</string>
+    <string name="commons_label_back">뒤쪽에</string>
+    <string name="commons_language_title">언어</string>
+</resources>

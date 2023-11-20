@@ -2,9 +2,7 @@ package com.hashone.commons.languages
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,7 +32,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -69,7 +66,9 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp),
-                        text = languageBuilder.toolBarBuilder.title,
+                        text = languageBuilder.toolBarBuilder.title.ifEmpty {
+                            stringResource(id = R.string.commons_language_title)
+                        },
                         fontSize = languageBuilder.toolBarBuilder.titleSize.sp,
                         color = colorResource(languageBuilder.toolBarBuilder.titleColor),
                         fontFamily = FontFamily(Font(languageBuilder.toolBarBuilder.titleFont))
@@ -81,7 +80,7 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                         Icon(
                             ImageVector.vectorResource(id = languageBuilder.toolBarBuilder.backIcon),
                             //TODO: Language translation require
-                            contentDescription = stringResource(id = R.string.label_back)
+                            contentDescription = stringResource(id = R.string.commons_label_back)
                         )
                     }
                 }, colors = TopAppBarDefaults.largeTopAppBarColors(
@@ -156,7 +155,8 @@ fun MainContent(
                     isPauseScreen = false
                     val currentLocale = LocaleManager.getAppLocale()
                     LocaleManager.mLanguagesList.forEachIndexed { index, languageItem ->
-                        languageItem.isChecked = currentLocale?.toLanguageTag() == languageItem.languageCode
+                        languageItem.isChecked =
+                            currentLocale?.toLanguageTag() == languageItem.languageCode
                     }
                     languageList.clear()
                     languageList.addAll(LocaleManager.mLanguagesList)

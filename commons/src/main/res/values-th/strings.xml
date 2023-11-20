@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">ติดต่อ</string>
+    <string name="commons_label_feedback">ข้อเสนอแนะ</string>
+    <string name="commons_label_issue">ปัญหา</string>
+    <string name="commons_label_type_here">พิมพ์ที่นี่</string>
+    <string name="commons_add_media">เพิ่มสื่อ</string>
+    <string name="commons_email_title">ส่งอีเมล…</string>
+    <string name="commons_action_back">กลับ</string>
+    <string name="commons_action_cancel">ยกเลิก</string>
+    <string name="commons_action_grant">ยินยอม</string>
+    <string name="commons_action_submit">ส่ง</string>
+    <string name="commons_no_gallery_app">โทรศัพท์ของคุณไม่มีแอปแกลเลอรี โปรดดาวน์โหลดจาก Play Store</string>
+    <string name="commons_allow_permission">คุณต้องอนุญาตการเข้าถึงสิทธิ์การจัดเก็บข้อมูล</string>
+    <string name="commons_no_internet">ไม่มีการเชื่อมต่ออินเทอร์เน็ต.</string>
+    <string name="commons_something_wrong">บางอย่างผิดพลาด</string>
+    <string name="commons_label_retry">ลองอีกครั้ง</string>
+    <string name="commons_label_back">กลับ</string>
+    <string name="commons_language_title">ภาษา</string>
+</resources>

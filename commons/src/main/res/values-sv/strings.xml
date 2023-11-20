@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kontakt</string>
+    <string name="commons_label_feedback">Respons</string>
+    <string name="commons_label_issue">Problem</string>
+    <string name="commons_label_type_here">Skriv här</string>
+    <string name="commons_add_media">Lägg till media</string>
+    <string name="commons_email_title">Skicka epost…</string>
+    <string name="commons_action_back">Tillbaka</string>
+    <string name="commons_action_cancel">Annullera</string>
+    <string name="commons_action_grant">Bevilja</string>
+    <string name="commons_action_submit">Skicka in</string>
+    <string name="commons_no_gallery_app">Din telefon har ingen galleri-APP, ladda ner från Play Store</string>
+    <string name="commons_allow_permission">Du måste tillåta åtkomst till lagringsbehörigheter.</string>
+    <string name="commons_no_internet">Ingen internetanslutning.</string>
+    <string name="commons_something_wrong">Något gick fel</string>
+    <string name="commons_label_retry">Försök igen</string>
+    <string name="commons_label_back">Tillbaka</string>
+    <string name="commons_language_title">Språk</string>
+</resources>

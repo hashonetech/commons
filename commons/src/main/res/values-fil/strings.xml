@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Makipag-ugnayan</string>
+    <string name="commons_label_feedback">Feedback</string>
+    <string name="commons_label_issue">Isyu</string>
+    <string name="commons_label_type_here">Magsulat Dito</string>
+    <string name="commons_add_media">Magdagdag ng media</string>
+    <string name="commons_email_title">Magpadala ng email...</string>
+    <string name="commons_action_back">Bumalik</string>
+    <string name="commons_action_cancel">Kanselahin</string>
+    <string name="commons_action_grant">Grant</string>
+    <string name="commons_action_submit">Ipasa</string>
+    <string name="commons_no_gallery_app">Ang iyong telepono ay walang anumang gallery APP, mangyaring i-download mula sa play store</string>
+    <string name="commons_allow_permission">Kailangan mong payagan ang pag-access sa mga pahintulot sa storage.</string>
+    <string name="commons_no_internet">Walang koneksyon sa internet.</string>
+    <string name="commons_something_wrong">Nagkaproblema</string>
+    <string name="commons_label_retry">Subukan muli</string>
+    <string name="commons_label_back">Bumalik</string>
+    <string name="commons_language_title">Wika</string>
+</resources>

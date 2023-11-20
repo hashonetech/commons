@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">ទំនាក់ទំនង</string>
+    <string name="commons_label_feedback">មតិកែលម្អ</string>
+    <string name="commons_label_issue">កិច្ចការ</string>
+    <string name="commons_label_type_here">វាយ​បញ្ចូល​នៅ​ទីនេះ</string>
+    <string name="commons_add_media">បន្ថែមប្រព័ន្ធផ្សព្វផ្សាយ</string>
+    <string name="commons_email_title">ផ្ញើអ៊ីមែល…</string>
+    <string name="commons_action_back">ត្រឡប់មកវិញ</string>
+    <string name="commons_action_cancel">បោះបង់</string>
+    <string name="commons_action_grant">ជំនួយ</string>
+    <string name="commons_action_submit">ដាក់ស្នើ</string>
+    <string name="commons_no_gallery_app">ទូរស័ព្ទរបស់អ្នកមិនមាន APP វិចិត្រសាលទេ សូមទាញយកពី play store</string>
+    <string name="commons_allow_permission">អ្នកត្រូវអនុញ្ញាតឱ្យចូលប្រើការអនុញ្ញាតការផ្ទុក។</string>
+    <string name="commons_no_internet">គ្មានការតភ្ជាប់អ៊ីនធឺណិត។</string>
+    <string name="commons_something_wrong">មាន​អ្វីមួយ​មិន​ប្រក្រតី</string>
+    <string name="commons_label_retry">ព្យាយាមម្តងទៀត</string>
+    <string name="commons_label_back">ត្រឡប់មកវិញ</string>
+    <string name="commons_language_title">ភាសា</string>
+</resources>

@@ -114,11 +114,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/outfit_bold"
-                android:text="@string/no_internet"
+                android:text="@string/commons_no_internet"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="parent"
-                tools:text="@string/something_wrong" />
+                tools:text="@string/commons_something_wrong" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_retry_webView"
@@ -133,7 +133,7 @@
                 android:paddingLeft="10dp"
                 android:paddingEnd="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/label_retry"
+                android:text="@string/commons_label_retry"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="parent" />

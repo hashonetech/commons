@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kontakt</string>
+    <string name="commons_label_feedback">Povratne informacije</string>
+    <string name="commons_label_issue">Problem</string>
+    <string name="commons_label_type_here">Upiši ovdje</string>
+    <string name="commons_add_media">Dodajte medije</string>
+    <string name="commons_email_title">Pošalji e-mail…</string>
+    <string name="commons_action_back">leđa</string>
+    <string name="commons_action_cancel">Otkazati</string>
+    <string name="commons_action_grant">Grant</string>
+    <string name="commons_action_submit">podnijeti</string>
+    <string name="commons_no_gallery_app">Vaš telefon nema nijednu galerijsku APLIKACIJU, preuzmite iz trgovine Play</string>
+    <string name="commons_allow_permission">Morate dopustiti pristup dozvolama za pohranu.</string>
+    <string name="commons_no_internet">Nema internetske veze.</string>
+    <string name="commons_something_wrong">Nešto je pošlo po zlu</string>
+    <string name="commons_label_retry">Pokušaj ponovo</string>
+    <string name="commons_label_back">leđa</string>
+    <string name="commons_language_title">Jezik</string>
+</resources>

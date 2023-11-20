@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
 import androidx.annotation.IntRange
+import androidx.annotation.StringRes
 import com.hashone.commons.R
 import java.io.Serializable
 
@@ -54,7 +55,7 @@ open class Language(val builder: Builder) : Serializable {
         var toolBarColor: Int = R.color.white,
         @DrawableRes
         var backIcon: Int = R.drawable.ic_back,
-        var title: String = "Language",
+        var title: String = "",
         @ColorRes
         var titleColor: Int = R.color.black,
         @FontRes

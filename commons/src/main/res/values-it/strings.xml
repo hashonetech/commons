@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Contatto</string>
+    <string name="commons_label_feedback">Feedback</string>
+    <string name="commons_label_issue">Problema</string>
+    <string name="commons_label_type_here">Digitare qui</string>
+    <string name="commons_add_media">Aggiungi contenuti multimediali</string>
+    <string name="commons_email_title">Invia una email…</string>
+    <string name="commons_action_back">Indietro</string>
+    <string name="commons_action_cancel">Annulla</string>
+    <string name="commons_action_grant">Concessione</string>
+    <string name="commons_action_submit">Invia</string>
+    <string name="commons_no_gallery_app">Il tuo telefono non dispone di APP per la galleria, scaricala dal Play Store</string>
+    <string name="commons_allow_permission">È necessario consentire l\'accesso alle autorizzazioni di archiviazione.</string>
+    <string name="commons_no_internet">Nessuna connessione internet.</string>
+    <string name="commons_something_wrong">Qualcosa è andato storto</string>
+    <string name="commons_label_retry">Riprova</string>
+    <string name="commons_label_back">Indietro</string>
+    <string name="commons_language_title">Lingua</string>
+</resources>

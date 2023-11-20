@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">a lua legatura</string>
+    <string name="commons_label_feedback">Părere</string>
+    <string name="commons_label_issue">Emisiune</string>
+    <string name="commons_label_type_here">Scrie aici</string>
+    <string name="commons_add_media">Adăugați conținut media</string>
+    <string name="commons_email_title">Trimite email…</string>
+    <string name="commons_action_back">Înapoi</string>
+    <string name="commons_action_cancel">Anulare</string>
+    <string name="commons_action_grant">Acorda</string>
+    <string name="commons_action_submit">Trimite</string>
+    <string name="commons_no_gallery_app">Telefonul dvs. nu are nicio aplicație pentru galerie, vă rugăm să descărcați din magazinul Play</string>
+    <string name="commons_allow_permission">Trebuie să permiteți accesul la permisiunile de stocare.</string>
+    <string name="commons_no_internet">Fără conexiune internet.</string>
+    <string name="commons_something_wrong">Ceva n-a mers bine</string>
+    <string name="commons_label_retry">Reîncercați</string>
+    <string name="commons_label_back">Înapoi</string>
+    <string name="commons_language_title">Limba</string>
+</resources>

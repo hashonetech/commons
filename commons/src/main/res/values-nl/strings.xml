@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Contact</string>
+    <string name="commons_label_feedback">Feedback</string>
+    <string name="commons_label_issue">Probleem</string>
+    <string name="commons_label_type_here">Typ hier</string>
+    <string name="commons_add_media">Voeg media toe</string>
+    <string name="commons_email_title">E-mail verzenden…</string>
+    <string name="commons_action_back">Rug</string>
+    <string name="commons_action_cancel">Annuleren</string>
+    <string name="commons_action_grant">Studiebeurs</string>
+    <string name="commons_action_submit">Indienen</string>
+    <string name="commons_no_gallery_app">Je telefoon heeft geen galerij-APP. Download deze vanuit de Play Store</string>
+    <string name="commons_allow_permission">U moet toegang tot opslagrechten toestaan.</string>
+    <string name="commons_no_internet">Geen internet verbinding.</string>
+    <string name="commons_something_wrong">Er is iets fout gegaan</string>
+    <string name="commons_label_retry">Opnieuw proberen</string>
+    <string name="commons_label_back">Rug</string>
+    <string name="commons_language_title">Taal</string>
+</resources>

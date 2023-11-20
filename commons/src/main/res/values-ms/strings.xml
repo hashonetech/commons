@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kenalan</string>
+    <string name="commons_label_feedback">Maklum balas</string>
+    <string name="commons_label_issue">Isu</string>
+    <string name="commons_label_type_here">Taip di sini</string>
+    <string name="commons_add_media">Tambah media</string>
+    <string name="commons_email_title">Menghantar e-mel…</string>
+    <string name="commons_action_back">belakang</string>
+    <string name="commons_action_cancel">Batal</string>
+    <string name="commons_action_grant">Geran</string>
+    <string name="commons_action_submit">Hantar</string>
+    <string name="commons_no_gallery_app">Telefon anda tidak mempunyai sebarang APP galeri, sila muat turun dari gedung mainan</string>
+    <string name="commons_allow_permission">Anda perlu membenarkan akses kepada kebenaran storan.</string>
+    <string name="commons_no_internet">Tiada sambungan internet.</string>
+    <string name="commons_something_wrong">Sesuatu telah berlaku</string>
+    <string name="commons_label_retry">Cuba semula</string>
+    <string name="commons_label_back">belakang</string>
+    <string name="commons_language_title">Bahasa</string>
+</resources>

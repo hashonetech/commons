@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Контакт</string>
+    <string name="commons_label_feedback">Обратная связь</string>
+    <string name="commons_label_issue">Проблема</string>
+    <string name="commons_label_type_here">Введите здесь</string>
+    <string name="commons_add_media">Добавить медиа</string>
+    <string name="commons_email_title">Отправить письмо…</string>
+    <string name="commons_action_back">Назад</string>
+    <string name="commons_action_cancel">Отмена</string>
+    <string name="commons_action_grant">Грант</string>
+    <string name="commons_action_submit">Представлять на рассмотрение</string>
+    <string name="commons_no_gallery_app">На вашем телефоне нет приложения «Галерея», загрузите его из игрового магазина.</string>
+    <string name="commons_allow_permission">Вам необходимо разрешить доступ к разрешениям на хранение.</string>
+    <string name="commons_no_internet">Нет соединения с интернетом.</string>
+    <string name="commons_something_wrong">Что-то пошло не так</string>
+    <string name="commons_label_retry">Повторить попытку</string>
+    <string name="commons_label_back">Назад</string>
+    <string name="commons_language_title">Язык</string>
+</resources>

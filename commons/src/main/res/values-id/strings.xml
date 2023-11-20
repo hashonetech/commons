@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kontak</string>
+    <string name="commons_label_feedback">Masukan</string>
+    <string name="commons_label_issue">Masalah</string>
+    <string name="commons_label_type_here">Ketik di sini</string>
+    <string name="commons_add_media">Tambahkan media</string>
+    <string name="commons_email_title">Mengirim email…</string>
+    <string name="commons_action_back">Kembali</string>
+    <string name="commons_action_cancel">Membatalkan</string>
+    <string name="commons_action_grant">Menganugerahkan</string>
+    <string name="commons_action_submit">Kirim</string>
+    <string name="commons_no_gallery_app">Ponsel Anda tidak memiliki aplikasi galeri apa pun, silakan unduh dari play store</string>
+    <string name="commons_allow_permission">Anda perlu mengizinkan akses ke izin penyimpanan.</string>
+    <string name="commons_no_internet">Tidak ada koneksi internet.</string>
+    <string name="commons_something_wrong">Ada yang salah</string>
+    <string name="commons_label_retry">Mencoba kembali</string>
+    <string name="commons_label_back">Kembali</string>
+    <string name="commons_language_title">Bahasa</string>
+</resources>

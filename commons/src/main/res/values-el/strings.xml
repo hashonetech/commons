@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Επικοινωνία</string>
+    <string name="commons_label_feedback">Ανατροφοδότηση</string>
+    <string name="commons_label_issue">Θέμα</string>
+    <string name="commons_label_type_here">Πληκτρολογίστε εδώ</string>
+    <string name="commons_add_media">Προσθήκη πολυμέσων</string>
+    <string name="commons_email_title">Να στείλετε e-mail…</string>
+    <string name="commons_action_back">Πίσω</string>
+    <string name="commons_action_cancel">Ματαίωση</string>
+    <string name="commons_action_grant">Χορήγηση</string>
+    <string name="commons_action_submit">υποβάλλουν</string>
+    <string name="commons_no_gallery_app">Το τηλέφωνό σας δεν διαθέτει εφαρμογή συλλογής, κάντε λήψη από το play store</string>
+    <string name="commons_allow_permission">Πρέπει να επιτρέψετε την πρόσβαση στα δικαιώματα αποθήκευσης.</string>
+    <string name="commons_no_internet">Δεν υπάρχει σύνδεση στο διαδίκτυο.</string>
+    <string name="commons_something_wrong">Κάτι πήγε στραβά</string>
+    <string name="commons_label_retry">Ξαναδοκιμάσετε</string>
+    <string name="commons_label_back">Πίσω</string>
+    <string name="commons_language_title">Γλώσσα</string>
+</resources>

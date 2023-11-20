@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">اتصال</string>
+    <string name="commons_label_feedback">تعليق</string>
+    <string name="commons_label_issue">مشكلة</string>
+    <string name="commons_label_type_here">أكتب هنا</string>
+    <string name="commons_add_media">أضف الوسائط</string>
+    <string name="commons_email_title">ارسل بريد الكتروني…</string>
+    <string name="commons_action_back">خلف</string>
+    <string name="commons_action_cancel">يلغي</string>
+    <string name="commons_action_grant">منحة</string>
+    <string name="commons_action_submit">يُقدِّم</string>
+    <string name="commons_no_gallery_app">لا يحتوي هاتفك على أي تطبيق معرض، يرجى تنزيله من متجر الألعاب</string>
+    <string name="commons_allow_permission">تحتاج إلى السماح بالوصول إلى أذونات التخزين.</string>
+    <string name="commons_no_internet">لا يوجد اتصال بالإنترنت.</string>
+    <string name="commons_something_wrong">هناك خطأ ما</string>
+    <string name="commons_label_retry">أعد المحاولة</string>
+    <string name="commons_label_back">خلف</string>
+    <string name="commons_language_title">لغة</string>
+</resources>

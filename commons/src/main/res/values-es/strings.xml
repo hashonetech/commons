@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Contacto</string>
+    <string name="commons_label_feedback">Comentario</string>
+    <string name="commons_label_issue">Asunto</string>
+    <string name="commons_label_type_here">Escriba aquí</string>
+    <string name="commons_add_media">Agregar medios</string>
+    <string name="commons_email_title">Enviar correo electrónico…</string>
+    <string name="commons_action_back">Atrás</string>
+    <string name="commons_action_cancel">Cancelar</string>
+    <string name="commons_action_grant">Conceder</string>
+    <string name="commons_action_submit">Entregar</string>
+    <string name="commons_no_gallery_app">Su teléfono no tiene ninguna aplicación de galería, descárguela desde Play Store</string>
+    <string name="commons_allow_permission">Debe permitir el acceso a los permisos de almacenamiento.</string>
+    <string name="commons_no_internet">Sin conexión a Internet.</string>
+    <string name="commons_something_wrong">Algo salió mal</string>
+    <string name="commons_label_retry">Rever</string>
+    <string name="commons_label_back">Atrás</string>
+    <string name="commons_language_title">Idioma</string>
+</resources>

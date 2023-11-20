@@ -14,7 +14,7 @@
         android:fontFamily="@font/outfit_bold"
         android:paddingHorizontal="26dp"
         android:paddingVertical="13dp"
-        android:text="@string/label_contact"
+        android:text="@string/commons_label_contact"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"

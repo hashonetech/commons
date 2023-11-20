@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">مخاطب</string>
+    <string name="commons_label_feedback">بازخورد</string>
+    <string name="commons_label_issue">موضوع</string>
+    <string name="commons_label_type_here">اینجا تایپ کنید</string>
+    <string name="commons_add_media">رسانه اضافه کنید</string>
+    <string name="commons_email_title">ایمیل بفرست…</string>
+    <string name="commons_action_back">بازگشت</string>
+    <string name="commons_action_cancel">لغو کنید</string>
+    <string name="commons_action_grant">اعطا کردن</string>
+    <string name="commons_action_submit">ارسال</string>
+    <string name="commons_no_gallery_app">گوشی شما هیچ برنامه گالری ندارد، لطفا از فروشگاه بازی دانلود کنید</string>
+    <string name="commons_allow_permission">باید اجازه دسترسی به مجوزهای ذخیره سازی را بدهید.</string>
+    <string name="commons_no_internet">بدون اتصال به اینترنت</string>
+    <string name="commons_something_wrong">مشکلی پیش آمد</string>
+    <string name="commons_label_retry">دوباره امتحان کنید</string>
+    <string name="commons_label_back">بازگشت</string>
+    <string name="commons_language_title">زبان</string>
+</resources>

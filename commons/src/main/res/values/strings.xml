@@ -1,29 +1,26 @@
 <resources>
     <!--Text-->
-    <string name="label_contact">Contact</string>
-    <string name="label_feedback">Feedback</string>
-    <string name="label_issue">Issue</string>
-    <string name="label_type_here">Type here</string>
-    <string name="add_media">Add media</string>
-    <string name="email_title">Send email…</string>
+    <string name="commons_label_contact">Contact</string>
+    <string name="commons_label_feedback">Feedback</string>
+    <string name="commons_label_issue">Issue</string>
+    <string name="commons_label_type_here">Type here</string>
+    <string name="commons_add_media">Add media</string>
+    <string name="commons_email_title">Send email…</string>
+    <string name="commons_language_title">Language</string>
     <!--Text-->
     <!--Actions-->
-    <string name="action_back">Back</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="action_grant">Grant</string>
-    <string name="action_submit">Submit</string>
+    <string name="commons_action_back">Back</string>
+    <string name="commons_action_cancel">Cancel</string>
+    <string name="commons_action_grant">Grant</string>
+    <string name="commons_action_submit">Submit</string>
     <!--Actions-->
-    <string name="no_gallery_app">Your phone does not have any gallery APP, please download from play store</string>
+    <string name="commons_no_gallery_app">Your phone does not have any gallery APP, please download from play store</string>
     <!--Permission-->
-    <string name="allow_permission">You need to allow access to storage permissions.</string>
+    <string name="commons_allow_permission">You need to allow access to storage permissions.</string>
     <!--Permission-->
-    <!--Locale Languages-->
-    <string name="title_activity_language">LanguageActivity</string>
-    <!--Locale Languages-->
 
-    <string name="label_back">Back</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="no_internet">No internet connection.</string>
-    <string name="something_wrong">Something went wrong</string>
-    <string name="label_retry">Retry</string>
+    <string name="commons_label_back">Back</string>
+    <string name="commons_no_internet">No internet connection.</string>
+    <string name="commons_something_wrong">Something went wrong</string>
+    <string name="commons_label_retry">Retry</string>
 </resources>

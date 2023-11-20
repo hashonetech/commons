@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">接觸</string>
+    <string name="commons_label_feedback">回饋</string>
+    <string name="commons_label_issue">問題</string>
+    <string name="commons_label_type_here">在此輸入</string>
+    <string name="commons_add_media">新增媒體</string>
+    <string name="commons_email_title">發電子郵件…</string>
+    <string name="commons_action_back">後退</string>
+    <string name="commons_action_cancel">取消</string>
+    <string name="commons_action_grant">授予</string>
+    <string name="commons_action_submit">提交</string>
+    <string name="commons_no_gallery_app">您的手機沒有圖庫APP，請從play商店下載</string>
+    <string name="commons_allow_permission">您需要允許存取儲存權限。</string>
+    <string name="commons_no_internet">沒有網路連線。</string>
+    <string name="commons_something_wrong">出了點問題</string>
+    <string name="commons_label_retry">重試</string>
+    <string name="commons_label_back">後退</string>
+    <string name="commons_language_title">語言</string>
+</resources>

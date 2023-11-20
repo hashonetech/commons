@@ -7,13 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.LabeledIntent
 import android.content.res.Resources
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Display
 import android.view.View
 import android.view.ViewGroup
@@ -131,7 +128,7 @@ fun sendContactEmail(
         context.startActivity(
             Intent.createChooser(
                 //TODO: Language translation require
-                emailIntent, builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }
+                emailIntent, builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.commons_email_title) }
             )
         )
     } catch (e: ActivityNotFoundException) {
@@ -172,7 +169,7 @@ fun sendContactEmail(
             Intent.createChooser(
                 emailIntent,
                 //TODO: Language translation require
-                builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.email_title) }).apply {
+                builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.commons_email_title) }).apply {
                 putExtra(Intent.EXTRA_INITIAL_INTENTS, intentList.toTypedArray())
             })
     }

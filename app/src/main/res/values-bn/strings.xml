@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Commons</string>
     <string name="label_language">ভাষা</string>
-    <string name="label_contact">যোগাযোগ</string>
+    <string name="commons_label_contact">যোগাযোগ</string>
     <string name="label_webview">ক্রোমিয়াম ওয়েবভিউ</string>
 </resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kapcsolatba lépni</string>
+    <string name="commons_label_feedback">Visszacsatolás</string>
+    <string name="commons_label_issue">Probléma</string>
+    <string name="commons_label_type_here">Írj ide</string>
+    <string name="commons_add_media">Média hozzáadása</string>
+    <string name="commons_email_title">Küldjön e-mailt…</string>
+    <string name="commons_action_back">Vissza</string>
+    <string name="commons_action_cancel">Megszünteti</string>
+    <string name="commons_action_grant">Grant</string>
+    <string name="commons_action_submit">Beküldés</string>
+    <string name="commons_no_gallery_app">Telefonján nincs galéria APP, kérjük, töltse le a Play Áruházból</string>
+    <string name="commons_allow_permission">Engedélyeznie kell a tárolási engedélyekhez való hozzáférést.</string>
+    <string name="commons_no_internet">Nincs internetkapcsolat.</string>
+    <string name="commons_something_wrong">Valami elromlott</string>
+    <string name="commons_label_retry">Próbálja újra</string>
+    <string name="commons_label_back">Vissza</string>
+    <string name="commons_language_title">Nyelv</string>
+</resources>

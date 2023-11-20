@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Commons</string>
     <string name="label_language" >Language - th</string>
-    <string name="label_contact" >Contact - th</string>
+    <string name="commons_label_contact" >Contact - th</string>
     <string name="label_webview" >Chromium webView - th</string>
 </resources>

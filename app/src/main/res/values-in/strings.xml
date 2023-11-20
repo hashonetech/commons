@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Commons</string>
     <string name="label_language">Bahasa</string>
-    <string name="label_contact">Kontak</string>
+    <string name="commons_label_contact">Kontak</string>
     <string name="label_webview">Tampilan web Chromium</string>
 </resources>

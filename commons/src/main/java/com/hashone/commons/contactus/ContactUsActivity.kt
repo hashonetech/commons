@@ -199,7 +199,7 @@ class ContactUsActivity : BaseActivity() {
             } catch (e2: Exception) {
                 //TODO: Language translation require
                 showSnackBar(
-                    mActivity, binding.cardViewSubmit, getString(R.string.no_gallery_app)
+                    mActivity, binding.cardViewSubmit, getString(R.string.commons_no_gallery_app)
                 )
             }
         }
@@ -236,9 +236,9 @@ class ContactUsActivity : BaseActivity() {
                 runOnUiThread {
                     //TODO: Language translation require
                     showCustomAlertDialog(
-                        message = getString(R.string.allow_permission),
-                        negativeButtonText = getString(R.string.action_cancel),
-                        positionButtonText = getString(R.string.action_grant),
+                        message = getString(R.string.commons_allow_permission),
+                        negativeButtonText = getString(R.string.commons_action_cancel),
+                        positionButtonText = getString(R.string.commons_action_grant),
                         negativeCallback = {
                             alertDialog?.cancel()
                         },
@@ -341,7 +341,7 @@ class ContactUsActivity : BaseActivity() {
                             //TODO: Language translation require
                             optionItem.message.ifEmpty {
                                 getString(
-                                    R.string.label_type_here
+                                    R.string.commons_label_type_here
                                 )
                             }
                         }
@@ -377,7 +377,7 @@ class ContactUsActivity : BaseActivity() {
                         builder.messageBuilder.hint.ifEmpty {
                             optionItem.message.ifEmpty {
                                 getString(
-                                    R.string.label_type_here
+                                    R.string.commons_label_type_here
                                 )
                             }
                         }

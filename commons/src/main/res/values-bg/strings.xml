@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Контакт</string>
+    <string name="commons_label_feedback">Обратна връзка</string>
+    <string name="commons_label_issue">Проблем</string>
+    <string name="commons_label_type_here">Пиши тук</string>
+    <string name="commons_add_media">Добавете медия</string>
+    <string name="commons_email_title">Изпратете имейл…</string>
+    <string name="commons_action_back">обратно</string>
+    <string name="commons_action_cancel">Отказ</string>
+    <string name="commons_action_grant">Грант</string>
+    <string name="commons_action_submit">Изпращане</string>
+    <string name="commons_no_gallery_app">Вашият телефон няма ПРИЛОЖЕНИЕ за галерия, моля, изтеглете от Play Store</string>
+    <string name="commons_allow_permission">Трябва да разрешите достъп до разрешения за съхранение.</string>
+    <string name="commons_no_internet">Няма интернет връзка.</string>
+    <string name="commons_something_wrong">Нещо се обърка</string>
+    <string name="commons_label_retry">Опитайте отново</string>
+    <string name="commons_label_back">обратно</string>
+    <string name="commons_language_title">език</string>
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Ottaa yhteyttä</string>
+    <string name="commons_label_feedback">Palaute</string>
+    <string name="commons_label_issue">Ongelma</string>
+    <string name="commons_label_type_here">Kirjoita tähän</string>
+    <string name="commons_add_media">Lisää mediaa</string>
+    <string name="commons_email_title">Lähettää sähköpostia…</string>
+    <string name="commons_action_back">Takaisin</string>
+    <string name="commons_action_cancel">Peruuttaa</string>
+    <string name="commons_action_grant">Myöntää</string>
+    <string name="commons_action_submit">Lähetä</string>
+    <string name="commons_no_gallery_app">Puhelimessasi ei ole galleriasovellusta, lataa se Play Kaupasta</string>
+    <string name="commons_allow_permission">Sinun on sallittava tallennustilan käyttöoikeudet.</string>
+    <string name="commons_no_internet">Ei Internet-yhteyttä.</string>
+    <string name="commons_something_wrong">Jotain meni pieleen</string>
+    <string name="commons_label_retry">Yritä uudelleen</string>
+    <string name="commons_label_back">Takaisin</string>
+    <string name="commons_language_title">Kieli</string>
+</resources>

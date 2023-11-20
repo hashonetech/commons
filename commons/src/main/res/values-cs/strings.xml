@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Kontakt</string>
+    <string name="commons_label_feedback">Zpětná vazba</string>
+    <string name="commons_label_issue">Problém</string>
+    <string name="commons_label_type_here">Napište sem</string>
+    <string name="commons_add_media">Přidejte média</string>
+    <string name="commons_email_title">Poslat e-mailem…</string>
+    <string name="commons_action_back">Zadní</string>
+    <string name="commons_action_cancel">zrušení</string>
+    <string name="commons_action_grant">Grant</string>
+    <string name="commons_action_submit">Předložit</string>
+    <string name="commons_no_gallery_app">Váš telefon nemá žádnou galerii, stáhněte si ji z obchodu Play</string>
+    <string name="commons_allow_permission">Musíte povolit přístup k oprávněním úložiště.</string>
+    <string name="commons_no_internet">Žádné internetové připojení.</string>
+    <string name="commons_something_wrong">Něco se pokazilo</string>
+    <string name="commons_label_retry">Zkuste to znovu</string>
+    <string name="commons_label_back">Zadní</string>
+    <string name="commons_language_title">Jazyk</string>
+</resources>

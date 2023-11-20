@@ -17,7 +17,7 @@ android {
 
         renderscriptSupportModeEnabled true
         //TODO: App implementation
-        resourceConfigurations += ["af", "en", "bn", "de", "es", "fil", "fr", "in", "it", "pt", "ru", "tr", "uk","zh-rCN", "b+zh+Hant+MO", "zh-rTW", "hi"]
+        resourceConfigurations += ["af", "ar", "bg", "bn", "cs", "da", "de", "el", "en", "es", "fa", "fi", "fil", "fr", "hi", "hr", "hu", "id", "in", "it", "ja", "km", "ko", "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW", "b+zh+Hant+MO"]
     }
 
     buildTypes {

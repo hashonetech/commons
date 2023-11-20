@@ -1,0 +1,19 @@
+<resources>
+    <string name="commons_label_contact">Temas etmek</string>
+    <string name="commons_label_feedback">Geri bildirim</string>
+    <string name="commons_label_issue">Sorun</string>
+    <string name="commons_label_type_here">Buraya yaz</string>
+    <string name="commons_add_media">Medya ekle</string>
+    <string name="commons_email_title">Eposta gönder…</string>
+    <string name="commons_action_back">Geri</string>
+    <string name="commons_action_cancel">İptal etmek</string>
+    <string name="commons_action_grant">Hibe etmek</string>
+    <string name="commons_action_submit">Göndermek</string>
+    <string name="commons_no_gallery_app">Telefonunuzda herhangi bir galeri uygulaması yok, lütfen Play Store\'dan indirin</string>
+    <string name="commons_allow_permission">Depolama izinlerine erişime izin vermeniz gerekir.</string>
+    <string name="commons_no_internet">İnternet bağlantısı yok.</string>
+    <string name="commons_something_wrong">Bir şeyler yanlış gitti</string>
+    <string name="commons_label_retry">Yeniden dene</string>
+    <string name="commons_label_back">Geri</string>
+    <string name="commons_language_title">Dil</string>
+</resources>
