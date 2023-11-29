@@ -13,14 +13,18 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.0.23"
+        versionName "1.2.6.0"
 
         renderscriptSupportModeEnabled true
         //TODO: App implementation
-        resourceConfigurations += ["af", "ar", "bg", "bn", "cs", "da", "de", "el", "en", "es", "fa", "fi", "fil", "fr", "hi", "hr", "hu", "id", "in", "it", "ja", "km", "ko", "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW", "b+zh+Hant+MO"]
+        resourceConfigurations += ["af", "ar", "bg", "bn", "cs", "da", "de", "el", "en", "es", "fa", "fi", "fil", "fr", "hi", "hr", "hu", "id", "it", "ja", "km", "ko", "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW", "b+zh+Hant+MO"]
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

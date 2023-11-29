@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.LabeledIntent
 import android.content.res.Resources
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
@@ -17,6 +18,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.google.android.material.snackbar.Snackbar
 import com.hashone.commons.R
 import com.hashone.commons.contactus.ContactUs
@@ -78,46 +80,107 @@ fun sendContactEmail(
     val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
     emailIntent.type = "text/plain"
     emailIntent.setPackage("com.google.android.gm")
-    emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.emailBuilder.feedbackEmail))
-    emailIntent.putExtra(
-        Intent.EXTRA_SUBJECT, if (selectionType.isNotEmpty()) {
-            "${builder.emailBuilder.appName}($selectionType)"
-        } else {
-            builder.emailBuilder.appName
-        }
-    )
+    emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.emailData.email))
+//    emailIntent.putExtra(
+//        Intent.EXTRA_SUBJECT, if (selectionType.isNotEmpty()) {
+//            "${builder.emailBuilder.appName}($selectionType)"
+//        } else {
+//            builder.emailBuilder.appName
+//        }
+//    )
+
+    emailIntent.putExtra(Intent.EXTRA_SUBJECT, builder.emailData.subject)
 
     val currentTime: String = SimpleDateFormat("HH:mm:ss a", Locale.getDefault()).format(Date())
 
     var body = message
     body += "\n\n"
     body += "======Do not delete this======" + "\n"
-    body += "App name: ${builder.emailBuilder.appName}\n"
-    body += "App Version : ${builder.emailBuilder.versionName}\n"
-    body += "Brand : " + Build.BRAND + "\n"
-    body += "Manufacturer : " + Build.MANUFACTURER + "\n"
-    body += "Model : " + Build.MODEL + "\n"
-    body += "Android Version : " + Build.VERSION.RELEASE + "\n"
-    body += "SDK : " + Build.VERSION.SDK_INT + "\n"
-    body += "Free Memory : " + mi.availMem + "\n"
-    body += "Screen Resolution : $width*$height\n"
-    body += "Time : $currentTime\n"
-    body += "Package Name: ${builder.emailBuilder.packageName}\n"
-    body += "Country Code: " + builder.emailBuilder.countryCode + "\n"
-    if (builder.emailBuilder.isPremium) {
-        body += "Purchase : ${builder.emailBuilder.purchasedTitle}\n"
-        if (builder.emailBuilder.orderId.isNotEmpty()) {
-            body += "Order ID : ${builder.emailBuilder.orderId}\n"
+    if (builder.exportToFile) {
+        body += "Brand : " + Build.BRAND + " " + Build.MODEL + "\n"
+        body += "Android Version : " + Build.VERSION.RELEASE + "("+ Build.VERSION.SDK_INT +")" + "\n"
+        if (builder.appData.version.isNotEmpty())
+            body += "App Version : ${builder.appData.version}\n"
+        if (builder.appData.token.isNotEmpty())
+            body += "User ID: ${builder.appData.token}\n"
+
+        var dataString = ""
+        if (builder.appData.name.isNotEmpty())
+            dataString += "App name: ${builder.appData.name}\n"
+        dataString += "Free Memory : " + mi.availMem + "\n"
+        dataString += "Screen Resolution : $width*$height\n"
+        dataString += "Time : $currentTime\n"
+        if (builder.appData.mPackage.isNotEmpty())
+            dataString += "Package Name: ${builder.appData.mPackage}\n"
+        if (builder.appData.countryCode.isNotEmpty())
+            dataString += "Country Code: " + builder.appData.countryCode + "\n"
+        if (builder.purchases.isPremium) {
+            if (builder.purchases.title.isNotEmpty())
+                dataString += "Purchase : ${builder.purchases.title}\n"
+            if (builder.purchases.orderId.isNotEmpty()) {
+                dataString += "Order ID : ${builder.purchases.orderId}\n"
+            }
+        }
+        if (builder.appData.customerNumber.isNotEmpty())
+            dataString += "Customer No.: ${builder.appData.customerNumber}\n"
+
+        if (builder.extraContents.isNotEmpty()) {
+            val stringBuilder = StringBuilder()
+            builder.extraContents.forEach {
+                if (builder.extraContents.size > 1)
+                    stringBuilder.append("\n")
+                stringBuilder.append("${it.key}: ${it.value}")
+            }
+            dataString += "${stringBuilder.toString()}\n"
+        }
+        val dataFile = writeTextInFile(context = context, dataString)
+
+//        val dataUri = Uri.parse("file://" + dataFile.absolutePath)
+
+        val dataUri = FileProvider.getUriForFile(context, "com.hashone.commons.test.provider",dataFile)
+        fileUris.add(dataUri)
+    } else {
+        if (builder.appData.name.isNotEmpty())
+            body += "App name: ${builder.appData.name}\n"
+        if (builder.appData.version.isNotEmpty())
+            body += "App Version : ${builder.appData.version}\n"
+        body += "Brand : " + Build.BRAND + "\n"
+        body += "Manufacturer : " + Build.MANUFACTURER + "\n"
+        body += "Model : " + Build.MODEL + "\n"
+        body += "Android Version : " + Build.VERSION.RELEASE + "\n"
+        body += "SDK : " + Build.VERSION.SDK_INT + "\n"
+        body += "Free Memory : " + mi.availMem + "\n"
+        body += "Screen Resolution : $width*$height\n"
+        body += "Time : $currentTime\n"
+        if (builder.appData.mPackage.isNotEmpty())
+            body += "Package Name: ${builder.appData.mPackage}\n"
+        if (builder.appData.countryCode.isNotEmpty())
+            body += "Country Code: " + builder.appData.countryCode + "\n"
+        if (builder.purchases.isPremium) {
+            if (builder.purchases.title.isNotEmpty())
+                body += "Purchase : ${builder.purchases.title}\n"
+            if (builder.purchases.orderId.isNotEmpty()) {
+                body += "Order ID : ${builder.purchases.orderId}\n"
+            }
+        }
+        if (builder.appData.token.isNotEmpty())
+            body += "User ID: ${builder.appData.token}\n"
+        if (builder.appData.customerNumber.isNotEmpty())
+            body += "Customer No.: ${builder.appData.customerNumber}\n"
+
+        if (builder.extraContents.isNotEmpty()) {
+            val stringBuilder = StringBuilder()
+            builder.extraContents.forEach {
+                if (builder.extraContents.size > 1)
+                    stringBuilder.append("\n")
+                stringBuilder.append("${it.key}: ${it.value}")
+            }
+            body += "${stringBuilder.toString()}\n"
         }
     }
-    body += "User ID: ${builder.emailBuilder.androidDeviceToken}\n"
-    if (builder.emailBuilder.customerNumber.isNotEmpty())
-        body += "Customer No.: ${builder.emailBuilder.customerNumber}\n"
 
-    if (builder.emailBuilder.contentId.isNotEmpty())
-        body += "content Id: ${builder.emailBuilder.contentId}\n"
-    if (builder.emailBuilder.contentTitle.isNotEmpty())
-        body += "content Title: ${builder.emailBuilder.contentTitle}\n"
+
+
 
     emailIntent.putExtra(Intent.EXTRA_TEXT, body)
     if (fileUris.size > 0) {
@@ -128,7 +191,8 @@ fun sendContactEmail(
         context.startActivity(
             Intent.createChooser(
                 //TODO: Language translation require
-                emailIntent, builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.commons_email_title) }
+                emailIntent,
+                context.getString(R.string.commons_email_title)
             )
         )
     } catch (e: ActivityNotFoundException) {
@@ -147,11 +211,12 @@ fun sendContactEmail(
                 emailIntent.setPackage(emailPackageName)
             } else if (emailPackageName.contains("android.gm")) {
                 val intent = getEmailIntent(
-                    builder.emailBuilder.appName,
+                    builder.appData.name,
                     emailPackageName,
                     resolveInfo,
                     selectionType,
-                    builder.emailBuilder.feedbackEmail,
+                    builder.emailData.subject,
+                    builder.emailData.email,
                     body,
                     fileUris
                 )
@@ -169,9 +234,10 @@ fun sendContactEmail(
             Intent.createChooser(
                 emailIntent,
                 //TODO: Language translation require
-                builder.emailBuilder.emailTitle.ifEmpty { context.getString(R.string.commons_email_title) }).apply {
-                putExtra(Intent.EXTRA_INITIAL_INTENTS, intentList.toTypedArray())
-            })
+                context.getString(R.string.commons_email_title))
+                .apply {
+                    putExtra(Intent.EXTRA_INITIAL_INTENTS, intentList.toTypedArray())
+                })
     }
 }
 

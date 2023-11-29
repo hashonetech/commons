@@ -210,7 +210,7 @@ ContactUs.open(activity = this, ContactUs.build(
 
 ```gradle
 //TODO: App implementation - In app.gradle file
-resourceConfigurations += ["af", "en", "bn", "de-rDE", "es", "fil", "fr", "in", "it", "pt", "ru", "tr", "uk","zh-rCN" "b+zh+Hans+MO", "zh-rTW", "hi"]
+resourceConfigurations += ["af", "en", "bn", "de-rDE", "es", "fil", "fr", "id", "it", "pt", "ru", "tr", "uk","zh-rCN" "b+zh+Hans+MO", "zh-rTW", "hi"]
 
 ```
 

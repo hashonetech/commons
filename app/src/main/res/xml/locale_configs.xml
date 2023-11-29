@@ -27,7 +27,7 @@
     <!-- French (Standard) -->
     <locale android:name="fr" />
     <!-- bahasa Indonesia -->
-    <locale android:name="in" />
+    <locale android:name="id" />
     <!-- Italian -->
     <locale android:name="it" />
     <!-- portuguese -->
@@ -55,7 +55,6 @@
     <locale android:name="hi" />
     <locale android:name="hr" />
     <locale android:name="hu" />
-    <locale android:name="id" />
     <locale android:name="ja" />
     <locale android:name="km" />
     <locale android:name="ko" />

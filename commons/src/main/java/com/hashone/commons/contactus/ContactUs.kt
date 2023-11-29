@@ -1,13 +1,10 @@
 package com.hashone.commons.contactus
 
 import android.app.Activity
-import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
-import androidx.annotation.LongDef
-import com.google.android.datatransport.runtime.dagger.multibindings.LongKey
 import com.hashone.commons.R
 import java.io.Serializable
 
@@ -15,13 +12,22 @@ open class ContactUs(val builder: Builder) : Serializable {
 
     companion object {
         inline fun build(
-            //TODO: Email details
-            emailBuilder: EmailBuilder,
+            emailData: EmailData = EmailData("", ""),
+            appData: AppData,
+            purchases: Purchases,
+            extraContents: HashMap<String, String> = hashMapOf(),
+            exportToFile: Boolean = false,
+            showKeyboard: Boolean = false,
             //TODO: Allow Media Pick
             mediaBuilder: MediaBuilder = MediaBuilder(),
             block: Builder.() -> Unit
         ) = Builder(
-            emailBuilder,
+            emailData,
+            appData,
+            purchases,
+            extraContents,
+            exportToFile,
+            showKeyboard,
             mediaBuilder,
         ).apply(block).build()
 
@@ -32,7 +38,12 @@ open class ContactUs(val builder: Builder) : Serializable {
     }
 
     class Builder(
-        var emailBuilder: EmailBuilder,
+        var emailData: EmailData,
+        var appData: AppData,
+        var purchases: Purchases,
+        var extraContents: HashMap<String, String> = hashMapOf(),
+        var exportToFile: Boolean = false,
+        var showKeyboard: Boolean = false,
         //TODO: Allow Media Pick
         var mediaBuilder: MediaBuilder = MediaBuilder()
 
@@ -150,22 +161,26 @@ open class ContactUs(val builder: Builder) : Serializable {
         var textSize: Float = 16F,
     ) : Serializable
 
-    class EmailBuilder(
-        var emailTitle: String,
-        var feedbackEmail: String,
-        var appName: String,
-        var packageName: String,
-        var versionName: String,
-        var androidDeviceToken: String = "",
+    class EmailData(
+        var subject: String = "",
+        var email: String
+    ): Serializable
+
+    class AppData(
+        var mPackage: String,
+        var name: String,
+        var version: String,
+        var token: String = "",
         var customerNumber: String = "",
         var countryCode: String = "",
+    ): Serializable
+
+    class Purchases(
         var isPremium: Boolean = false,
-        var purchasedTitle: String = "",
+        var title: String = "",
         var orderId: String = "",
-        var contentId: String = "",
-        var contentTitle: String = "",
-        var showKeyboard: Boolean = false,
-    ) : Serializable
+    ): Serializable
+
     class MediaBuilder(
         var allowPhotosOnly: Boolean = false,
         var allowVideosOnly: Boolean = false,

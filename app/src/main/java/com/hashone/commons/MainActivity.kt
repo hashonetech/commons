@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -19,6 +20,7 @@ import com.hashone.commons.languages.Language
 import com.hashone.commons.languages.LanguageActivity.Companion.KEY_RETURN_LANGUAGE_DATA
 import com.hashone.commons.languages.LanguageItem
 import com.hashone.commons.languages.LocaleManager
+import com.hashone.commons.test.BuildConfig
 import com.hashone.commons.test.databinding.ActivityMainBinding
 import com.hashone.commons.utils.ACTION_LANGUAGE_CHANGE
 import com.hashone.commons.utils.DEFAULT_LANGUAGE
@@ -38,22 +40,25 @@ class MainActivity : BaseActivity() {
         mBinding.buttonContactus.setOnClickListener {
             ContactUs.open(
                 activity = this, ContactUs.build(
-                    emailBuilder = ContactUs.EmailBuilder(
-                        emailTitle = "",
-                        feedbackEmail = "",
-                        appName = "",
-                        packageName = "",
-                        versionName = "",
-                        androidDeviceToken = "",
+                    emailData = ContactUs.EmailData(
+                        email = ""
+                    ),
+                    appData = ContactUs.AppData(
+                        mPackage = BuildConfig.APPLICATION_ID,
+                        name = "",
+                        version = "",
+                        token = "",
                         customerNumber = "",
                         countryCode = "",
-                        isPremium = false,
-                        purchasedTitle = "",
-                        orderId = "",
-                        contentId = "",
-                        contentTitle = "",
-                        showKeyboard = false,
                     ),
+                    purchases = ContactUs.Purchases(
+                        isPremium = false,
+                        title = "",
+                        orderId = "",
+                    ),
+                    extraContents = hashMapOf<String, String>().apply {},
+                    exportToFile = false,
+                    showKeyboard = false,
                     mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
                         allowVideosOnly = false,
                         allowBoth = true,
@@ -65,14 +70,14 @@ class MainActivity : BaseActivity() {
                         optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
                             add(
                                 ContactUs.OptionItem(
-                                    text = "Feedback",
+                                    text = getString(R.string.commons_label_feedback),
                                     message = "",
                                     isChecked = true
                                 )
                             )
                             add(
                                 ContactUs.OptionItem(
-                                    text = "Issue",
+                                    text = getString(R.string.commons_label_issue),
                                     message = "Please describe issue in detail.",
                                     isChecked = false
                                 )

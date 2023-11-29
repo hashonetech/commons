@@ -596,7 +596,7 @@ class ContactUsActivity : BaseActivity() {
             }
         }
 
-        if (builder.emailBuilder.showKeyboard) {
+        if (builder.showKeyboard) {
             binding.textViewFeedbackMessage.requestFocus()
             openKeyboard(mActivity)
         } else {
@@ -647,6 +647,12 @@ class ContactUsActivity : BaseActivity() {
                         fileUris.add(
                             attachmentUri3!!
                         )
+                    }
+
+                    builder.emailData.subject = if (selectedOptionId != -1) {
+                        "${builder.appData.name}(${(binding.root.findViewById<RadioButton>(selectedOptionId)).text.toString()})"
+                    } else {
+                        builder.appData.name
                     }
 
                     //TODO: Email details

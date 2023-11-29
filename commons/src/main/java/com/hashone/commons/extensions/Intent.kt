@@ -10,6 +10,7 @@ fun getEmailIntent(
     packageName: String = "",
     resolveInfo: ResolveInfo? = null,
     selectionType: String = "",
+    subject: String = "",
     email: String,
     body: String,
     fileUris: ArrayList<Uri>
@@ -21,7 +22,7 @@ fun getEmailIntent(
         type = "text/plain"
         putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
         putExtra(
-            Intent.EXTRA_SUBJECT, "$appName($selectionType)"
+            Intent.EXTRA_SUBJECT, subject
         )
         putExtra(Intent.EXTRA_TEXT, body)
         if (fileUris.size > 0) {

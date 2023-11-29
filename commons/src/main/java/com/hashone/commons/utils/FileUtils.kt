@@ -21,3 +21,21 @@ fun getInternalCameraDir(context: Context): File {
     }
     return imageDir
 }
+
+fun getCacheDirectoryName(context: Context): File {
+    val contextWrapper = ContextWrapper(context)
+    val rootDir = contextWrapper.getDir(context.cacheDir.name, Context.MODE_PRIVATE)
+    if (!rootDir.exists()) {
+        rootDir.mkdirs()
+        rootDir.mkdir()
+    }
+    return context.cacheDir
+}
+
+fun writeTextInFile(context: Context, content: String): File {
+    val dataFile = File(getCacheDirectoryName(context), "device-info.txt")
+    dataFile.setReadable(true)
+    dataFile.setWritable(true, false)
+    dataFile.writeText(content)
+    return dataFile
+}
