@@ -169,10 +169,26 @@ open class ContactUs(val builder: Builder) : Serializable {
     class AppData(
         var mPackage: String,
         var name: String,
-        var version: String,
+        var appVersionData: AppVersionData,
         var token: String = "",
         var customerNumber: String = "",
-        var countryCode: String = "",
+        var languageData: LanguageData = LanguageData(),
+        var countryData: CountryData = CountryData()
+    ): Serializable
+
+    class CountryData(
+        var name: String = "",
+        var code: String = ""
+    ): Serializable
+
+    class AppVersionData(
+        var name: String,
+        var code: String
+    ): Serializable
+
+    class LanguageData(
+        var name: String = "",
+        var code: String = ""
     ): Serializable
 
     class Purchases(

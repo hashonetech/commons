@@ -81,49 +81,52 @@ fun sendContactEmail(
     emailIntent.type = "text/plain"
     emailIntent.setPackage("com.google.android.gm")
     emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(builder.emailData.email))
-//    emailIntent.putExtra(
-//        Intent.EXTRA_SUBJECT, if (selectionType.isNotEmpty()) {
-//            "${builder.emailBuilder.appName}($selectionType)"
-//        } else {
-//            builder.emailBuilder.appName
-//        }
-//    )
-
     emailIntent.putExtra(Intent.EXTRA_SUBJECT, builder.emailData.subject)
 
     val currentTime: String = SimpleDateFormat("HH:mm:ss a", Locale.getDefault()).format(Date())
 
     var body = message
     body += "\n\n"
-    body += "======Do not delete this======" + "\n"
     if (builder.exportToFile) {
-        body += "Brand : " + Build.BRAND + " " + Build.MODEL + "\n"
-        body += "Android Version : " + Build.VERSION.RELEASE + "("+ Build.VERSION.SDK_INT +")" + "\n"
-        if (builder.appData.version.isNotEmpty())
-            body += "App Version : ${builder.appData.version}\n"
-        if (builder.appData.token.isNotEmpty())
-            body += "User ID: ${builder.appData.token}\n"
-
         var dataString = ""
+        dataString += "======Do not delete this======" + "\n\n"
         if (builder.appData.name.isNotEmpty())
-            dataString += "App name: ${builder.appData.name}\n"
-        dataString += "Free Memory : " + mi.availMem + "\n"
-        dataString += "Screen Resolution : $width*$height\n"
-        dataString += "Time : $currentTime\n"
+            dataString += "Name: ${builder.appData.name}\n"
         if (builder.appData.mPackage.isNotEmpty())
-            dataString += "Package Name: ${builder.appData.mPackage}\n"
-        if (builder.appData.countryCode.isNotEmpty())
-            dataString += "Country Code: " + builder.appData.countryCode + "\n"
-        if (builder.purchases.isPremium) {
-            if (builder.purchases.title.isNotEmpty())
-                dataString += "Purchase : ${builder.purchases.title}\n"
-            if (builder.purchases.orderId.isNotEmpty()) {
-                dataString += "Order ID : ${builder.purchases.orderId}\n"
-            }
+            dataString += "Package: ${builder.appData.mPackage}\n"
+        if (builder.appData.appVersionData.code.isNotEmpty())
+            dataString += "Version: ${builder.appData.appVersionData.name} (${builder.appData.appVersionData.code})\n"
+        if (builder.appData.languageData.code.isNotEmpty()) {
+            dataString += "Language: ${builder.appData.languageData.code} (${builder.appData.languageData.name})\n"
         }
+        dataString += "-\n"
+        dataString += "Device: " + Build.BRAND + " " + Build.MODEL + "\n"
+        dataString += "OS: " + Build.VERSION.SDK_INT + " (${Build.VERSION.RELEASE})" + "\n"
+        dataString += "Free Memory: " + mi.availMem + "\n"
+        dataString += "Resolution: $width*$height\n"
+        dataString += "-\n"
+        if (builder.appData.token.isNotEmpty())
+            dataString += "User ID: ${builder.appData.token}\n"
         if (builder.appData.customerNumber.isNotEmpty())
             dataString += "Customer No.: ${builder.appData.customerNumber}\n"
-
+        if (builder.purchases.isPremium) {
+            if (builder.purchases.title.isNotEmpty())
+                dataString += "Purchase: ${builder.purchases.title}\n"
+            if (builder.purchases.orderId.isNotEmpty()) {
+                dataString += "Order ID: ${builder.purchases.orderId}\n"
+            }
+        }
+        if (builder.appData.countryData.code.isNotEmpty()) {
+            dataString += if (builder.appData.countryData.name.isNotEmpty()) {
+                "Country: " + builder.appData.countryData.code + " (${builder.appData.countryData.name})" + "\n"
+            } else {
+                "Country: " + builder.appData.countryData.code + "\n"
+            }
+        } else if (builder.appData.countryData.name.isNotEmpty()) {
+            dataString += "Country: " + builder.appData.countryData.name + "\n"
+        }
+        dataString += "Time: $currentTime\n"
+        dataString += "-"
         if (builder.extraContents.isNotEmpty()) {
             val stringBuilder = StringBuilder()
             builder.extraContents.forEach {
@@ -133,41 +136,50 @@ fun sendContactEmail(
             }
             dataString += "${stringBuilder.toString()}\n"
         }
+        dataString += "\n"
+
         val dataFile = writeTextInFile(context = context, dataString)
-
-//        val dataUri = Uri.parse("file://" + dataFile.absolutePath)
-
-        val dataUri = FileProvider.getUriForFile(context, "com.hashone.commons.test.provider",dataFile)
+        val dataUri = FileProvider.getUriForFile(context, "${builder.appData.mPackage}.provider",dataFile)
         fileUris.add(dataUri)
     } else {
+        body += "======Do not delete this======" + "\n\n"
         if (builder.appData.name.isNotEmpty())
-            body += "App name: ${builder.appData.name}\n"
-        if (builder.appData.version.isNotEmpty())
-            body += "App Version : ${builder.appData.version}\n"
-        body += "Brand : " + Build.BRAND + "\n"
-        body += "Manufacturer : " + Build.MANUFACTURER + "\n"
-        body += "Model : " + Build.MODEL + "\n"
-        body += "Android Version : " + Build.VERSION.RELEASE + "\n"
-        body += "SDK : " + Build.VERSION.SDK_INT + "\n"
-        body += "Free Memory : " + mi.availMem + "\n"
-        body += "Screen Resolution : $width*$height\n"
-        body += "Time : $currentTime\n"
+            body += "Name: ${builder.appData.name}\n"
         if (builder.appData.mPackage.isNotEmpty())
-            body += "Package Name: ${builder.appData.mPackage}\n"
-        if (builder.appData.countryCode.isNotEmpty())
-            body += "Country Code: " + builder.appData.countryCode + "\n"
-        if (builder.purchases.isPremium) {
-            if (builder.purchases.title.isNotEmpty())
-                body += "Purchase : ${builder.purchases.title}\n"
-            if (builder.purchases.orderId.isNotEmpty()) {
-                body += "Order ID : ${builder.purchases.orderId}\n"
-            }
+            body += "Package: ${builder.appData.mPackage}\n"
+        if (builder.appData.appVersionData.code.isNotEmpty())
+            body += "Version: ${builder.appData.appVersionData.name} (${builder.appData.appVersionData.code})\n"
+        if (builder.appData.languageData.code.isNotEmpty()) {
+            body += "Language: ${builder.appData.languageData.code} (${builder.appData.languageData.name})\n"
         }
+        body += "-\n"
+        body += "Device: " + Build.BRAND + " " + Build.MODEL + "\n"
+        body += "OS: " + Build.VERSION.SDK_INT + " (${Build.VERSION.RELEASE})" + "\n"
+        body += "Free Memory: " + mi.availMem + "\n"
+        body += "Resolution: $width*$height\n"
+        body += "-\n"
         if (builder.appData.token.isNotEmpty())
             body += "User ID: ${builder.appData.token}\n"
         if (builder.appData.customerNumber.isNotEmpty())
             body += "Customer No.: ${builder.appData.customerNumber}\n"
-
+        if (builder.purchases.isPremium) {
+            if (builder.purchases.title.isNotEmpty())
+                body += "Purchase: ${builder.purchases.title}\n"
+            if (builder.purchases.orderId.isNotEmpty()) {
+                body += "Order ID: ${builder.purchases.orderId}\n"
+            }
+        }
+        if (builder.appData.countryData.code.isNotEmpty()) {
+            body += if (builder.appData.countryData.name.isNotEmpty()) {
+                "Country: " + builder.appData.countryData.code + " (${builder.appData.countryData.name})" + "\n"
+            } else {
+                "Country: " + builder.appData.countryData.code + "\n"
+            }
+        } else if (builder.appData.countryData.name.isNotEmpty()) {
+            body += "Country: " + builder.appData.countryData.name + "\n"
+        }
+        body += "Time: $currentTime\n"
+        body += "-"
         if (builder.extraContents.isNotEmpty()) {
             val stringBuilder = StringBuilder()
             builder.extraContents.forEach {
@@ -177,10 +189,8 @@ fun sendContactEmail(
             }
             body += "${stringBuilder.toString()}\n"
         }
+        body += "\n"
     }
-
-
-
 
     emailIntent.putExtra(Intent.EXTRA_TEXT, body)
     if (fileUris.size > 0) {

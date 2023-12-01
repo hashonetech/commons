@@ -114,7 +114,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="start|top"
                     android:hint="@string/commons_label_type_here"
-                    android:layoutDirection="locale"
+                    android:layoutDirection="inherit"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
                     android:textColor="@color/black"

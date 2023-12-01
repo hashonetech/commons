@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -41,23 +40,37 @@ class MainActivity : BaseActivity() {
             ContactUs.open(
                 activity = this, ContactUs.build(
                     emailData = ContactUs.EmailData(
-                        email = ""
+                        email = "kailash.c@hashone.com"
                     ),
                     appData = ContactUs.AppData(
                         mPackage = BuildConfig.APPLICATION_ID,
-                        name = "",
-                        version = "",
-                        token = "",
-                        customerNumber = "",
-                        countryCode = "",
+                        name = "Aio",
+                        appVersionData = ContactUs.AppVersionData(
+                            name = "1.0.0",
+                            code = "10"
+                        ),
+                        token = "aasd-asd-asd-asd-asd",
+                        customerNumber = "123456",
+                        languageData = ContactUs.LanguageData(
+                            name = "English",
+                            code = "EN"
+                        ),
+                        countryData = ContactUs.CountryData(
+                            name = "India",
+                            code = "IN"
+                        ),
                     ),
                     purchases = ContactUs.Purchases(
-                        isPremium = false,
-                        title = "",
-                        orderId = "",
+                        isPremium = true,
+                        title = "Monthly",
+                        orderId = "asd-asd-asd-asd",
                     ),
-                    extraContents = hashMapOf<String, String>().apply {},
-                    exportToFile = false,
+                    extraContents = hashMapOf<String, String>().apply {
+                        put("Content ID", "123")
+                        put("Content Name", "Film")
+                        put("Event Name", "View Item")
+                    },
+                    exportToFile = mBinding.switchFileExport.isChecked,
                     showKeyboard = false,
                     mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
                         allowVideosOnly = false,
