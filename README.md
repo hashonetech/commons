@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.5'
+	implementation 'com.github.hashonetech:commons:v1.2.7'
 }
 ```
 
@@ -81,64 +81,71 @@ BaseActivity: BaseActivity()
 //TODO: Builder inner variable name updated
 
 ContactUs.open(activity = this, ContactUs.build(
-	emailBuilder = ContactUs.EmailBuilder(
-	    emailTitle = "",
-	    feedbackEmail = "",
-	    appName = "",
-	    packageName = "",
-	    versionName = "",
-	    androidDeviceToken = "",
-	    customerNumber = "",
-	    countryCode = "",
-	    //TODO: Use for Premium purchase details
-	    isPremium = false,
-	    purchasedTitle = "",
-	    orderId = "",
-	    //TODO: If you want to pass content details use (contentId, contentTitle)
-	    contentId = "",
-	    contentTitle = "",
-	    showKeyboard = true/false,
-	),
-	mediaBuilder = ContactUs.MediaBuilder(
-	    //TODO: Show only Photo
-	    allowPhotosOnly = true/false,
-	    //TODO: Show only Video
-	    allowVideosOnly = true/false,
-	    //TODO: Show Photo and Video
-	    allowBoth = true/false,
-	    //TODO: Max file size in MB
-	    maxFileSize = 15L,
-	    //TODO: Ratio (messageBoxHeight / ScreenWidth)
-	    messageBoxHeight = 0.4444444444,
-	    //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
-	    attachmentBoxHeight = 0.588888888888889,
-	    //TODO: Radio Button Item
-	    optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
-		add(
-		    ContactUs.OptionItem(
-			text = "Feedback",
-			message = "Type your feedback here.",
-			isChecked = true/false
-		    )
-		)
-		add(
-		    ContactUs.OptionItem(
-			text = "Issue",
-			message = "Please describe issue in detail.",
-			isChecked = true/false
-		    )
-		)
-		add(
-		    ContactUs.OptionItem(
-			text = "Request",
-			message = "Add your request here.",
-			isChecked = true/false
-		    )
-		)
-	    }),
-
-
-	) {
+	activity = this, ContactUs.build(
+                    emailData = ContactUs.EmailData(
+                        email = ""
+                    ),
+                    appData = ContactUs.AppData(
+                        mPackage = "",
+                        name = "",
+                        appVersionData = ContactUs.AppVersionData(
+                            name = "",
+                            code = ""
+                        ),
+                        token = "",
+                        customerNumber = "",
+                        languageData = ContactUs.LanguageData(
+                            name = "",
+                            code = ""
+                        ),
+                        countryData = ContactUs.CountryData(
+                            name = "",
+                            code = ""
+                        ),
+                    ),
+                    purchases = ContactUs.Purchases(
+                        isPremium = true/false,
+                        title = "",
+                        orderId = "",
+                    ),
+                    extraContents = hashMapOf<String, String>().apply {
+                        put("", "")
+                    },
+			//TODO: Check If require to Send details as Text File attachment - true -> Attach at Text File, false -> As Email Content
+                    exportToFile = mBinding.switchFileExport.isChecked,
+                    showKeyboard = true/false,
+                    mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = true/false,
+                        allowVideosOnly = true/false,
+                        allowBoth = true/false,
+                        maxFileSize = 15L,
+                        //TODO: Ratio (messageBoxHeight / ScreenWidth)
+                        messageBoxHeight = 0.4444444444,
+                        //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
+                        attachmentBoxHeight = 0.588888888888889,
+                        optionItemsList = ArrayList<ContactUs.OptionItem>().apply {
+                            add(
+                                ContactUs.OptionItem(
+                                    text = getString(R.string.commons_label_feedback),
+                                    message = "",
+                                    isChecked = true/false
+                                )
+                            )
+                            add(
+                                ContactUs.OptionItem(
+                                    text = getString(R.string.commons_label_issue),
+                                    message = "Please describe issue in detail.",
+                                    isChecked = true/false
+                                )
+                            )
+                            add(
+                                ContactUs.OptionItem(
+                                    text = "Request",
+                                    message = "Add your request here.",
+                                    isChecked = true/false
+                                )
+                            )
+                        }),
+                ) {
 	//TODO: Screen
 	screenBuilder = ContactUs.ScreenBuilder(
 	    isFullScreen = true/false,
