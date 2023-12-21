@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.compose.ui.text.style.TextAlign
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hashone.commons.base.BaseActivity
@@ -199,10 +200,15 @@ class MainActivity : BaseActivity() {
                     toolBarBuilder = Language.ToolBarBuilder(
                         toolBarColor = R.color.white,
                         backIcon = R.drawable.ic_back,
-//                        title = getString(com.hashone.commons.test.R.string.label_language),
                         titleColor = R.color.black,
                         titleFont = R.font.roboto_medium,
                         titleSize = 16F,
+                        textAlign = TextAlign.Start
+                    )
+
+                    languageUIBuilder = Language.LanguageUIBuilder(
+                        padding = 0F,
+                        cornerRadius = 16F
                     )
 
                     //TODO: Language Item
@@ -221,6 +227,7 @@ class MainActivity : BaseActivity() {
                         iconPaddingEnd = 8,
                         iconPaddingTop = 8,
                         iconPaddingBottom = 8,
+                        iconPosition = 1,
                         originalNameFont = R.font.roboto_regular,
                         originalNameSize = 12F,
                         dividerColor = R.color.secondary_extra_light_gray,

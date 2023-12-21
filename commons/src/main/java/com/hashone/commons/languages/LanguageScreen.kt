@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
@@ -65,13 +66,14 @@ fun LanguageScreen(languageBuilder: Language.Builder) {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(0.dp),
+                            .padding(end = if (languageBuilder.toolBarBuilder.textAlign == TextAlign.Center) 50.dp else 0.dp),
                         text = languageBuilder.toolBarBuilder.title.ifEmpty {
                             stringResource(id = R.string.commons_language_title)
                         },
                         fontSize = languageBuilder.toolBarBuilder.titleSize.sp,
                         color = colorResource(languageBuilder.toolBarBuilder.titleColor),
-                        fontFamily = FontFamily(Font(languageBuilder.toolBarBuilder.titleFont))
+                        fontFamily = FontFamily(Font(languageBuilder.toolBarBuilder.titleFont)),
+                        textAlign = if (languageBuilder.toolBarBuilder.textAlign == TextAlign.Center) TextAlign.Center else TextAlign.Start
                     )
                 },
 
@@ -202,24 +204,22 @@ fun prepareLanguageUI(
     onLoadLanguage: () -> Unit,
     onLanguageChange: (item: LanguageItem) -> Unit
 ) {
-    if (isResume) {
-        Box(
-            modifier = Modifier
-                .padding(paddingValues)
-                .background(colorResource(id = languageBuilder.screenBuilder.windowBackgroundColor))
-        ) {
-            LanguageSelection(languageBuilder = languageBuilder,
-                languageList = languageList,
-                activity = activity!!,
-                onLoadLanguage = {
-                    onLoadLanguage()
-                },
-                onLanguageChange = {
-                    onLanguageChange(it)
-                })
-        }
-        onLoadLanguage()
+    Box(
+        modifier = Modifier
+            .padding(paddingValues)
+            .background(colorResource(id = languageBuilder.screenBuilder.windowBackgroundColor))
+    ) {
+        LanguageSelection(languageBuilder = languageBuilder,
+            languageList = languageList,
+            activity = activity!!,
+            onLoadLanguage = {
+                onLoadLanguage()
+            },
+            onLanguageChange = {
+                onLanguageChange(it)
+            })
     }
+    onLoadLanguage()
 }
 
 @Composable
@@ -240,7 +240,6 @@ fun LanguageSelection(
     AnimatedLanguageSelection(languageBuilder = languageBuilder,
         languageList = languageList,
         initialSelectedIndex = initialSelectedIndex,
-        activity = activity,
         onLanguageChange = {
             onLanguageChange(it)
         })

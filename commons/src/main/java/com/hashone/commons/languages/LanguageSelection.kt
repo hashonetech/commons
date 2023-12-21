@@ -1,6 +1,5 @@
 package com.hashone.commons.languages
 
-import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,16 +14,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
@@ -36,21 +36,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hashone.commons.utils.checkClickTime
 import com.hashone.commons.utils.dpToPx
-import kotlinx.coroutines.launch
 
 @Composable
 fun AnimatedLanguageSelection(
     languageBuilder: Language.Builder,
     languageList: java.util.ArrayList<LanguageItem>,
     initialSelectedIndex: Int,
-    activity: Activity,
     onLanguageChange: (item: LanguageItem) -> Unit
 ) {
     var currentIndex by remember { mutableStateOf(initialSelectedIndex) }
     val listState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
 
-    BoxWithConstraints {
+    BoxWithConstraints(
+        modifier = Modifier
+            .padding(languageBuilder.languageUIBuilder.padding.dp)
+            .clip(RoundedCornerShape(languageBuilder.languageUIBuilder.cornerRadius.dp))
+    ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -154,9 +155,13 @@ fun LanguageSelectionCard(
                     bottom = languageItemBuilder.iconPaddingBottom.dp
                 )
                 Box(
-                    modifier = mModifier.align(Alignment.CenterVertically)
+                    modifier = mModifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterVertically)
                 ) {
                     Image(
+                        modifier = Modifier
+                            .align(if (languageItemBuilder.iconPosition == 1) Alignment.CenterEnd else Alignment.CenterStart),
                         painter = painterResource(id = selectedIcon),
                         //TODO: Language translation require
                         contentDescription = "Icon",

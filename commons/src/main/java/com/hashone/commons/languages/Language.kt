@@ -7,7 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
 import androidx.annotation.IntRange
-import androidx.annotation.StringRes
+import androidx.compose.ui.text.style.TextAlign
 import com.hashone.commons.R
 import java.io.Serializable
 
@@ -33,6 +33,9 @@ open class Language(val builder: Builder) : Serializable {
 
         //TODO: Toolbar
         var toolBarBuilder = ToolBarBuilder()
+
+        //TODO: Language UI
+        var languageUIBuilder = LanguageUIBuilder()
 
         //TODO: Language Item
         var languageItemBuilder = LanguageItemBuilder()
@@ -62,6 +65,29 @@ open class Language(val builder: Builder) : Serializable {
         var titleFont: Int = R.font.roboto_medium,
         @FloatRange
         var titleSize: Float = 16F,
+        /**
+         * Set Text Alignment
+         *
+         * TextAlign.Start -> Start
+         * TextAlign.End -> End
+         *
+         */
+        var textAlign: TextAlign = TextAlign.Start
+    ) : Serializable
+
+    class LanguageUIBuilder(
+        @FloatRange
+        var padding: Float = 0F,
+        @FloatRange
+        var paddingStart: Float = 0F,
+        @FloatRange
+        var paddingTop: Float = 0F,
+        @FloatRange
+        var paddingEnd: Float = 0F,
+        @FloatRange
+        var paddingBottom: Float = 0F,
+        @FloatRange
+        var cornerRadius: Float = 0F
     ) : Serializable
 
     class LanguageItemBuilder(
@@ -103,6 +129,17 @@ open class Language(val builder: Builder) : Serializable {
         var iconPaddingBottom: Int = 8,
         @IntRange
         var iconPaddingAll: Int = -1,
+        //TODO: 0 -> Start, 1 -> End
+        /**
+         * Set Icon position
+         *
+         * 0 -> Start
+         * 1 -> End
+         *
+         */
+        @IntRange
+        var iconPosition: Int = 0,
+
         @ColorRes
         var dividerColor: Int = R.color.secondary_extra_light_gray,
         @IntRange
