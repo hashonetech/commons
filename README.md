@@ -112,7 +112,7 @@ ContactUs.open(activity = this, ContactUs.build(
                         put("", "")
                     },
 			//TODO: Check If require to Send details as Text File attachment - true -> Attach at Text File, false -> As Email Content
-                    exportToFile = mBinding.switchFileExport.isChecked,
+                    exportToFile = true/false,
                     showKeyboard = true/false,
                     mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = true/false,
                         allowVideosOnly = true/false,
