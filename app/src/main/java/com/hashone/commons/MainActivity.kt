@@ -206,6 +206,7 @@ class MainActivity : BaseActivity() {
                         textAlign = TextAlign.Start
                     )
 
+                    //TODO: List UI background changes
                     languageUIBuilder = Language.LanguageUIBuilder(
                         padding = 0F,
                         cornerRadius = 16F
