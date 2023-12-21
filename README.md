@@ -351,9 +351,10 @@ mActivityLauncher.launch(
 		textAlign = TextAlign.Start / TextAlign.End
 	    )
 
+	    //TODO: List UI background changes
 	    languageUIBuilder = Language.LanguageUIBuilder(
 		padding = 0F,
-		cornerRadius = 0F
+		cornerRadius = 16F
 	    )
 
 	    //TODO: Language Item
