@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.7'
+	implementation 'com.github.hashonetech:commons:v1.2.8'
 }
 ```
 
@@ -348,6 +348,12 @@ mActivityLauncher.launch(
 		titleColor = R.color.black,
 		titleFont = R.font.roboto_medium,
 		titleSize = 16F,
+		textAlign = TextAlign.Start / TextAlign.End
+	    )
+
+	    languageUIBuilder = Language.LanguageUIBuilder(
+		padding = 0F,
+		cornerRadius = 0F
 	    )
 
 	    //TODO: Language Item
@@ -366,6 +372,7 @@ mActivityLauncher.launch(
 		iconPaddingEnd = 8,
 		iconPaddingTop = 8,
 		iconPaddingBottom = 8,
+		iconPosition = 0,//TODO: 0 -> Start, 1 -> End
 		originalNameFont = R.font.roboto_regular,
 		originalNameSize = 12F,
 		dividerColor = R.color.secondary_extra_light_gray,
