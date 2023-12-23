@@ -5,6 +5,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
+import androidx.annotation.IntRange
 import com.hashone.commons.R
 import java.io.Serializable
 
@@ -128,6 +129,10 @@ open class ContactUs(val builder: Builder) : Serializable {
         var cardBackgroundColor: Int = R.color.extra_extra_light_gray,
         @FloatRange
         var cardBackgroundRadius: Float = 8F,
+        @IntRange
+        var backgroundStrokeWidth: Int = 1,
+        @ColorRes
+        var backgroundStrokeColor: Int = R.color.card_stroke_color,
         @ColorRes
         var backgroundColor: Int = R.color.white,
         @FloatRange
@@ -153,6 +158,8 @@ open class ContactUs(val builder: Builder) : Serializable {
         @FloatRange
         var radius: Float = 30F,
         var text: String = "",
+        @ColorRes
+        var textInactiveColor: Int = R.color.white,
         @ColorRes
         var textColor: Int = R.color.white,
         @FontRes

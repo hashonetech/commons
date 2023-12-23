@@ -502,18 +502,24 @@ class ContactUsActivity : BaseActivity() {
 
         if (builder.attachmentBuilder.backgroundColor != -1) {
             binding.cardViewAttachments11.setCardBackgroundColor(getColorCode(builder.attachmentBuilder.backgroundColor))
+            binding.cardViewAttachments11.strokeColor = getColorCode(builder.attachmentBuilder.backgroundStrokeColor)
+            binding.cardViewAttachments11.strokeWidth = builder.attachmentBuilder.backgroundStrokeWidth
             binding.cardViewAttachments11.radius = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 builder.attachmentBuilder.backgroundRadius,
                 mActivity.resources.displayMetrics
             )
             binding.cardViewAttachments22.setCardBackgroundColor(getColorCode(builder.attachmentBuilder.backgroundColor))
+            binding.cardViewAttachments22.strokeColor = getColorCode(builder.attachmentBuilder.backgroundStrokeColor)
+            binding.cardViewAttachments22.strokeWidth = builder.attachmentBuilder.backgroundStrokeWidth
             binding.cardViewAttachments22.radius = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 builder.attachmentBuilder.backgroundRadius,
                 mActivity.resources.displayMetrics
             )
             binding.cardViewAttachments33.setCardBackgroundColor(getColorCode(builder.attachmentBuilder.backgroundColor))
+            binding.cardViewAttachments33.strokeColor = getColorCode(builder.attachmentBuilder.backgroundStrokeColor)
+            binding.cardViewAttachments33.strokeWidth = builder.attachmentBuilder.backgroundStrokeWidth
             binding.cardViewAttachments33.radius = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 builder.attachmentBuilder.backgroundRadius,
@@ -623,7 +629,7 @@ class ContactUsActivity : BaseActivity() {
         if (builder.actionButtonBuilder.text.isNotEmpty())
             binding.textViewSubmit.text = builder.actionButtonBuilder.text
         binding.textViewSubmit.applyTextStyle(
-            getColorCode(builder.actionButtonBuilder.textColor),
+            getColorCode(builder.actionButtonBuilder.textInactiveColor),
             builder.actionButtonBuilder.textFont,
             builder.actionButtonBuilder.textSize
         )
@@ -715,22 +721,27 @@ class ContactUsActivity : BaseActivity() {
             if (attachmentFileSize > builder.mediaBuilder.maxFileSize) {
                 binding.cardViewSubmit.isEnabled = false
                 binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.actionButtonBuilder.backgroundInactiveColor))
+                binding.textViewSubmit.setTextColor(getColorCode(builder.actionButtonBuilder.textInactiveColor))
             } else {
                 if (binding.textViewFeedbackMessage.text.toString().trim().isNotEmpty()) {
                     binding.cardViewSubmit.isEnabled = true
                     binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.actionButtonBuilder.backgroundColor))
+                    binding.textViewSubmit.setTextColor(getColorCode(builder.actionButtonBuilder.textColor))
                 } else {
                     binding.cardViewSubmit.isEnabled = false
                     binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.actionButtonBuilder.backgroundInactiveColor))
+                    binding.textViewSubmit.setTextColor(getColorCode(builder.actionButtonBuilder.textInactiveColor))
                 }
             }
         } else {
             if (binding.textViewFeedbackMessage.text.toString().trim().isNotEmpty()) {
                 binding.cardViewSubmit.isEnabled = true
                 binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.actionButtonBuilder.backgroundColor))
+                binding.textViewSubmit.setTextColor(getColorCode(builder.actionButtonBuilder.textColor))
             } else {
                 binding.cardViewSubmit.isEnabled = false
                 binding.cardViewSubmit.setCardBackgroundColor(getColorCode(builder.actionButtonBuilder.backgroundInactiveColor))
+                binding.textViewSubmit.setTextColor(getColorCode(builder.actionButtonBuilder.textInactiveColor))
             }
         }
     }

@@ -13,6 +13,7 @@
     <color name="white">#ffffff</color>
     <color name="alert">#ff1800</color>
     <color name="pure_black">#000000</color>
+    <color name="card_stroke_color">#ecedef</color>
 
     <!--Alert-->
     <color name="snack_bar_text">#deffffff</color>
