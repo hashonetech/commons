@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.8'
+	implementation 'com.github.hashonetech:commons:v1.2.10'
 }
 ```
 
@@ -183,31 +183,34 @@ ContactUs.open(activity = this, ContactUs.build(
 	    font = R.font.roboto_medium,
 	    size = 14F,
 	)
+	
+	    //TODO: Attachment UI
+	    attachmentBuilder = ContactUs.AttachmentBuilder(
+		cardBackgroundColor = R.color.extra_extra_light_gray,
+		cardBackgroundRadius = 8F,
+		backgroundColor = R.color.white,
+		backgroundStrokeColor = R.color.dark_gray,
+		backgroundStrokeWidth = 0,
+		backgroundRadius = 8F,
+		title = "",
+		titleColor = R.color.light_gray,
+		titleFont = R.font.roboto_medium,
+		titleSize = 14F,
+		addIcon = R.drawable.ic_contact_us_add_attachment,
+		deleteIcon = R.drawable.ic_contact_us_img_delete,
+	    )
 
-	//TODO: Attachment UI
-	attachmentBuilder = ContactUs.AttachmentBuilder(
-	    cardBackgroundColor = R.color.extra_extra_light_gray,
-	    cardBackgroundRadius = 8F,
-	    backgroundColor = R.color.white,
-	    backgroundRadius = 8F,
-	    title = "",
-	    titleColor = R.color.light_gray,
-	    titleFont = R.font.roboto_medium,
-	    titleSize = 14F,
-	    addIcon = R.drawable.ic_contact_us_add_attachment,
-	    deleteIcon = R.drawable.ic_contact_us_img_delete,
-	)
-
-	//TODO: Action button
-	actionButtonBuilder = ContactUs.ActionButtonBuilder(
-	    backgroundInactiveColor = R.color.light_gray,
-	    backgroundColor = R.color.black,
-	    radius = 30F,
-	    text = "",
-	    textColor = R.color.white,
-	    textFont = R.font.outfit_bold,
-	    textSize = 16F,
-	)
+	    //TODO: Action button
+	    actionButtonBuilder = ContactUs.ActionButtonBuilder(
+		backgroundInactiveColor = R.color.light_gray,
+		backgroundColor = R.color.black,
+		radius = 30F,
+		text = "",
+		textInactiveColor = R.color.color_primary,
+		textColor = R.color.white,
+		textFont = R.font.outfit_bold,
+		textSize = 16F,
+	    )
     })
 ```
 
