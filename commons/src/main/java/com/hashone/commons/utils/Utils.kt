@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.compose.ui.text.toUpperCase
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.google.android.material.snackbar.Snackbar
@@ -118,9 +119,9 @@ fun sendContactEmail(
         }
         if (builder.appData.countryData.code.isNotEmpty()) {
             dataString += if (builder.appData.countryData.name.isNotEmpty()) {
-                "Country: " + builder.appData.countryData.code + " (${builder.appData.countryData.name})" + "\n"
+                "Country: " + builder.appData.countryData.code.uppercase() + " (${builder.appData.countryData.name})" + "\n"
             } else {
-                "Country: " + builder.appData.countryData.code + "\n"
+                "Country: " + builder.appData.countryData.code.uppercase() + "\n"
             }
         } else if (builder.appData.countryData.name.isNotEmpty()) {
             dataString += "Country: " + builder.appData.countryData.name + "\n"
@@ -130,7 +131,7 @@ fun sendContactEmail(
         if (builder.extraContents.isNotEmpty()) {
             val stringBuilder = StringBuilder()
             builder.extraContents.forEach {
-                if (builder.extraContents.size > 1)
+//                if (builder.extraContents.size > 1)
                     stringBuilder.append("\n")
                 stringBuilder.append("${it.key}: ${it.value}")
             }
@@ -171,9 +172,9 @@ fun sendContactEmail(
         }
         if (builder.appData.countryData.code.isNotEmpty()) {
             body += if (builder.appData.countryData.name.isNotEmpty()) {
-                "Country: " + builder.appData.countryData.code + " (${builder.appData.countryData.name})" + "\n"
+                "Country: " + builder.appData.countryData.code.uppercase() + " (${builder.appData.countryData.name})" + "\n"
             } else {
-                "Country: " + builder.appData.countryData.code + "\n"
+                "Country: " + builder.appData.countryData.code.uppercase() + "\n"
             }
         } else if (builder.appData.countryData.name.isNotEmpty()) {
             body += "Country: " + builder.appData.countryData.name + "\n"
@@ -183,7 +184,6 @@ fun sendContactEmail(
         if (builder.extraContents.isNotEmpty()) {
             val stringBuilder = StringBuilder()
             builder.extraContents.forEach {
-                if (builder.extraContents.size > 1)
                     stringBuilder.append("\n")
                 stringBuilder.append("${it.key}: ${it.value}")
             }
