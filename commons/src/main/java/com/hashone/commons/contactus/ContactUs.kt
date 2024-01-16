@@ -208,7 +208,7 @@ open class ContactUs(val builder: Builder) : Serializable {
         var allowPhotosOnly: Boolean = false,
         var allowVideosOnly: Boolean = false,
         var allowBoth: Boolean = true,
-        var maxFileSize: Long = 0L,
+        var maxFileSize: Long = 25L,
         var messageBoxHeight: Double = 0.0,
         var attachmentBoxHeight: Double = 0.0,
         var optionItemsList: ArrayList<OptionItem> = arrayListOf()

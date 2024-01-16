@@ -11,9 +11,11 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.compose.runtime.SideEffect
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hashone.commons.R
 
 fun Activity.setStatusBarColor(color: Int) {

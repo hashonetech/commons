@@ -12,9 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.hashone.commons.base.BaseActivity
 import com.hashone.commons.extensions.getColorCode
 import com.hashone.commons.extensions.hideSystemUI
@@ -45,6 +48,12 @@ class LanguageActivity : BaseActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val systemUiController = rememberSystemUiController()
+                    SideEffect {
+                        systemUiController.setStatusBarColor(color = Color(getColorCode(builder.screenBuilder.statusBarColor)))
+                        systemUiController.setNavigationBarColor(color = Color(getColorCode(builder.screenBuilder.navigationBarColor)))
+                    }
+
                     LanguageScreen(builder)
                 }
         }

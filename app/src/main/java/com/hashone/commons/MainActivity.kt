@@ -76,7 +76,7 @@ class MainActivity : BaseActivity() {
                     mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = false,
                         allowVideosOnly = false,
                         allowBoth = true,
-                        maxFileSize = 15L,
+                        maxFileSize = 25L,
                         //TODO: Ratio (messageBoxHeight / ScreenWidth)
                         messageBoxHeight = 0.4444444444,
                         //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
