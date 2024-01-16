@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.12'
+	implementation 'com.github.hashonetech:commons:v1.2.13'
 }
 ```
 
