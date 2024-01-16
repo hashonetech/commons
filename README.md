@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.hashonetech:commons:v1.2.11'
+	implementation 'com.github.hashonetech:commons:v1.2.12'
 }
 ```
 
@@ -117,7 +117,7 @@ ContactUs.open(activity = this, ContactUs.build(
                     mediaBuilder = ContactUs.MediaBuilder(allowPhotosOnly = true/false,
                         allowVideosOnly = true/false,
                         allowBoth = true/false,
-                        maxFileSize = 15L,
+                        maxFileSize = 25L,
                         //TODO: Ratio (messageBoxHeight / ScreenWidth)
                         messageBoxHeight = 0.4444444444,
                         //TODO: Ratio (attachmentBoxHeight / ScreenWidth)
