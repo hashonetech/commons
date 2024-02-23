@@ -292,10 +292,10 @@ object PurchaseManager {
      * }
      * ```
      */
-    fun isPremium(proProductListList: ArrayList<String>, callback: (isPremium: Boolean) -> Unit) {
+    fun isPremium(proProductListList: ArrayList<String>, callbackP: (isPremium: Boolean) -> Unit) {
         isBillingInitialized(object : PurchaseListener() {
             override fun onBillingError(responseCode: Int, debugMessage: String) {
-                callback(false)
+                callbackP(false)
             }
 
             override fun onBillingInitialized() {
@@ -306,58 +306,39 @@ object PurchaseManager {
                         val subscriptionResult = queryPurchases(ProductType.SUBS)
                         val inAppResult = queryPurchases(ProductType.INAPP)
 
-                        if (subscriptionResult?.purchasesList?.isNotEmpty() == true || inAppResult?.purchasesList?.isNotEmpty() == true) {
-                            subscriptionResult?.purchasesList?.forEach {
-                                val productId = JSONObject(it.originalJson).optString("productId", "")
-
-                                getSubscriptionDetails(listOf(productId), object : PurchaseListener() {
-                                    override fun onProductDetail(productDetailsList: List<ProductDetails>) {
-                                        productDetailsList.forEach { productDetails ->
-                                            val purchaseData = PurchaseData(
-                                                purchaseToken = it.purchaseToken,
-                                                purchaseTime = it.purchaseTime,
-                                                isAutoRenewing = it.isAutoRenewing,
-                                                isAcknowledged = it.isAcknowledged,
-                                                orderId = it.orderId.orEmpty(),
-                                                productId = productId,
-                                                purchaseState = it.purchaseState,
-                                                productType = ProductType.SUBS,
-                                                hasFreeTrial = getFreeTrial(productDetails).isNotEmpty(),
-                                                trialPeriod = getFreeTrial(productDetails)
-                                            )
-                                            if (it.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                                                if (!purchaseData.isAcknowledged) {
-                                                    GlobalScope.launch(Dispatchers.IO) {
-                                                        acknowledgePurchase(purchaseData.purchaseToken, object : PurchaseListener() {
-                                                            override fun isPurchaseAcknowledge(isReady: Boolean) {
-                                                                if (isReady) {
-                                                                    purchaseData.isAcknowledged = true
-                                                                }
-                                                                if (proProductListList.contains(productId)) {
-                                                                    storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchaseData)
-                                                                    storePurchaseData?.setPremiumPurchase(true)
-                                                                } else {
-                                                                    storePurchaseData?.savePurchaseData(productId, purchaseData)
-                                                                }
-                                                            }
-                                                        })
-                                                    }
-                                                } else {
-                                                    if (proProductListList.contains(productId)) {
-                                                        storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchaseData)
-                                                        storePurchaseData?.setPremiumPurchase(true)
-                                                    } else {
-                                                        storePurchaseData?.savePurchaseData(productId, purchaseData)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                })
+                        if (subscriptionResult?.purchasesList?.isNotEmpty() == true) {
+                            isPremiumSubscription(proProductListList, subscriptionResult!!) {
+                                isPremiumPurchase(proProductListList, inAppResult!!) {
+                                    callbackP((storePurchaseData?.isPremiumPurchased() == true))
+                                }
                             }
+                        } else if (inAppResult?.purchasesList?.isNotEmpty() == true) {
+                            isPremiumPurchase(proProductListList, inAppResult!!) {
+                                callbackP((storePurchaseData?.isPremiumPurchased() == true))
+                            }
+                        } else {
+                            callbackP(false)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        callbackP(false)
+                    }
+                }
+            }
+        })
+    }
 
-                            inAppResult?.purchasesList?.forEach {
-                                val productId = JSONObject(it.originalJson).optString("productId", "")
+    private fun isPremiumSubscription(proProductListList: ArrayList<String>, subscriptionResult: PurchasesResult, callbackP: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (subscriptionResult?.purchasesList?.isNotEmpty() == true) {
+                subscriptionResult?.purchasesList?.forEach {
+                    val productId = JSONObject(it.originalJson).optString("productId", "")
+
+                    var subscriptionCount = 0
+                    getSubscriptionDetails(listOf(productId), object : PurchaseListener() {
+                        override fun onProductDetail(productDetailsList: List<ProductDetails>) {
+                            productDetailsList.forEach { productDetails ->
+                                subscriptionCount++
                                 val purchaseData = PurchaseData(
                                     purchaseToken = it.purchaseToken,
                                     purchaseTime = it.purchaseTime,
@@ -366,9 +347,10 @@ object PurchaseManager {
                                     orderId = it.orderId.orEmpty(),
                                     productId = productId,
                                     purchaseState = it.purchaseState,
-                                    productType = ProductType.INAPP
+                                    productType = ProductType.SUBS,
+                                    hasFreeTrial = getFreeTrial(productDetails).isNotEmpty(),
+                                    trialPeriod = getFreeTrial(productDetails)
                                 )
-
                                 if (it.purchaseState == Purchase.PurchaseState.PURCHASED) {
                                     if (!purchaseData.isAcknowledged) {
                                         GlobalScope.launch(Dispatchers.IO) {
@@ -394,21 +376,71 @@ object PurchaseManager {
                                             storePurchaseData?.savePurchaseData(productId, purchaseData)
                                         }
                                     }
+
+                                    if (subscriptionCount == productDetailsList.size) {
+                                        callbackP()
+                                    }
                                 }
                             }
-                            callback((storePurchaseData?.isPremiumPurchased() == true))
-                        } else {
-                            callback(false)
                         }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        callback(false)
-                    }
+                    })
                 }
-            }
-        })
+            } else callbackP()
+        }
     }
 
+    private fun isPremiumPurchase(proProductListList: ArrayList<String>, inAppResult: PurchasesResult, callbackP: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            var isPurchaseCount = 0
+            if (inAppResult?.purchasesList?.isNotEmpty() == true) {
+                inAppResult?.purchasesList?.forEach {
+                    isPurchaseCount++
+                    val productId = JSONObject(it.originalJson).optString("productId", "")
+                    val purchaseData = PurchaseData(
+                        purchaseToken = it.purchaseToken,
+                        purchaseTime = it.purchaseTime,
+                        isAutoRenewing = it.isAutoRenewing,
+                        isAcknowledged = it.isAcknowledged,
+                        orderId = it.orderId.orEmpty(),
+                        productId = productId,
+                        purchaseState = it.purchaseState,
+                        productType = ProductType.INAPP
+                    )
+
+                    if (it.purchaseState == Purchase.PurchaseState.PURCHASED) {
+                        if (!purchaseData.isAcknowledged) {
+                            GlobalScope.launch(Dispatchers.IO) {
+                                acknowledgePurchase(purchaseData.purchaseToken, object : PurchaseListener() {
+                                    override fun isPurchaseAcknowledge(isReady: Boolean) {
+                                        if (isReady) {
+                                            purchaseData.isAcknowledged = true
+                                        }
+                                        if (proProductListList.contains(productId)) {
+                                            storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchaseData)
+                                            storePurchaseData?.setPremiumPurchase(true)
+                                        } else {
+                                            storePurchaseData?.savePurchaseData(productId, purchaseData)
+                                        }
+                                    }
+                                })
+                            }
+                        } else {
+                            if (proProductListList.contains(productId)) {
+                                storePurchaseData?.savePurchaseData(CURRENT_PURCHASE, purchaseData)
+                                storePurchaseData?.setPremiumPurchase(true)
+                            } else {
+                                storePurchaseData?.savePurchaseData(productId, purchaseData)
+                            }
+                        }
+                    }
+
+                    if (isPurchaseCount == inAppResult?.purchasesList?.size) {
+                        callbackP()
+                    }
+                }
+            } else callbackP()
+        }
+    }
 
     private fun getProductDetailParam(
         listOf: List<String>, productType: String
