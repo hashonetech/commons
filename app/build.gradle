@@ -13,7 +13,7 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.2.12.0"
+        versionName "1.2.14.0"
 
         renderscriptSupportModeEnabled true
         //TODO: App implementation
