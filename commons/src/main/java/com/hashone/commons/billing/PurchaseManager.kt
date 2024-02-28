@@ -292,10 +292,10 @@ object PurchaseManager {
      * }
      * ```
      */
-    fun isPremium(proProductListList: ArrayList<String>, callbackP: (isPremium: Boolean) -> Unit) {
+    fun isPremium(proProductListList: ArrayList<String>, resultCallback: (isPremium: Boolean) -> Unit) {
         isBillingInitialized(object : PurchaseListener() {
             override fun onBillingError(responseCode: Int, debugMessage: String) {
-                callbackP(false)
+                resultCallback(false)
             }
 
             override fun onBillingInitialized() {
@@ -309,26 +309,26 @@ object PurchaseManager {
                         if (subscriptionResult?.purchasesList?.isNotEmpty() == true) {
                             isPremiumSubscription(proProductListList, subscriptionResult!!) {
                                 isPremiumPurchase(proProductListList, inAppResult!!) {
-                                    callbackP((storePurchaseData?.isPremiumPurchased() == true))
+                                    resultCallback((storePurchaseData?.isPremiumPurchased() == true))
                                 }
                             }
                         } else if (inAppResult?.purchasesList?.isNotEmpty() == true) {
                             isPremiumPurchase(proProductListList, inAppResult!!) {
-                                callbackP((storePurchaseData?.isPremiumPurchased() == true))
+                                resultCallback((storePurchaseData?.isPremiumPurchased() == true))
                             }
                         } else {
-                            callbackP(false)
+                            resultCallback(false)
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        callbackP(false)
+                        resultCallback(false)
                     }
                 }
             }
         })
     }
 
-    private fun isPremiumSubscription(proProductListList: ArrayList<String>, subscriptionResult: PurchasesResult, callbackP: () -> Unit) {
+    private fun isPremiumSubscription(proProductListList: ArrayList<String>, subscriptionResult: PurchasesResult, resultCallback: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             if (subscriptionResult?.purchasesList?.isNotEmpty() == true) {
                 subscriptionResult?.purchasesList?.forEach {
@@ -378,18 +378,18 @@ object PurchaseManager {
                                     }
 
                                     if (subscriptionCount == productDetailsList.size) {
-                                        callbackP()
+                                        resultCallback()
                                     }
                                 }
                             }
                         }
                     })
                 }
-            } else callbackP()
+            } else resultCallback()
         }
     }
 
-    private fun isPremiumPurchase(proProductListList: ArrayList<String>, inAppResult: PurchasesResult, callbackP: () -> Unit) {
+    private fun isPremiumPurchase(proProductListList: ArrayList<String>, inAppResult: PurchasesResult, resultCallback: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             var isPurchaseCount = 0
             if (inAppResult?.purchasesList?.isNotEmpty() == true) {
@@ -435,10 +435,10 @@ object PurchaseManager {
                     }
 
                     if (isPurchaseCount == inAppResult?.purchasesList?.size) {
-                        callbackP()
+                        resultCallback()
                     }
                 }
-            } else callbackP()
+            } else resultCallback()
         }
     }
 
